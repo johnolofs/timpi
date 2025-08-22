@@ -23,8 +23,7 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 13. [Troubleshooting (quick fixes)](#13-troubleshooting-quick-fixes)
 14. [Support & resources](#14-support--resources)
 15. [FAQ (full)](#15-faq-full)
-16. [Revisions](#16-revisions)
-17. [Screenshots (filenames & placement)](#17-screenshots-filenames--placement)
+
 
 ---
 
@@ -312,17 +311,4 @@ A: Tier‑based pools differ; Tier 2 earns **~14.3% more** than Tier 1. Initiall
 
 > *Note:* Pools/thresholds may evolve; watch announcements for updates.
 
----
-
-## 16) Revisions
-
-- **v1.2** — Complete GitHub rewrite (step‑by‑step, all 24 screenshots, checker flow, full FAQ, troubleshooting).  
-- **v1.1** — Added node registration steps; cleanup clarification; video tutorial added.  
-- **v1.0** — Initial guide.
-
----
-
-## 17) Screenshots (filenames & placement)
-
-Place these **24** images in `assets/img/` with these exact names:
 
