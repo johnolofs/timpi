@@ -77,21 +77,21 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 <img width="631" height="181" alt="Skärmavbild 2025-08-22 kl  18 27 20" src="https://github.com/user-attachments/assets/b0aa16f1-86c3-4826-8406-8a6c3444577a" />
 
 5) If Windows SmartScreen appears → **More info** → **Run anyway**.  
-![SmartScreen — More info](assets/img/06_smartscreen_moreinfo.png)  
-![SmartScreen — Run anyway](assets/img/07_smartscreen_runanyway.png)
+
 <img width="444" height="181" alt="Skärmavbild 2025-08-22 kl  18 27 28" src="https://github.com/user-attachments/assets/240e6eb8-1409-43d4-a909-91ee30e75b95" />
+
 <img width="464" height="440" alt="Skärmavbild 2025-08-22 kl  18 27 35" src="https://github.com/user-attachments/assets/e5274b45-8e50-44b1-8ed8-56697ca000e3" />
 
 6) Follow the **Setup wizard** → **Next**.  
-![Setup wizard](assets/img/08_setup_wizard.png)
+
 <img width="503" height="410" alt="Skärmavbild 2025-08-22 kl  18 27 42" src="https://github.com/user-attachments/assets/5e088291-b18f-47fc-af54-b74140fec430" />
 
 7) Approve the **UAC** prompt.  
-![UAC — allow changes](assets/img/09_uac_allow_changes.png)
+
 <img width="438" height="360" alt="Skärmavbild 2025-08-22 kl  18 27 49" src="https://github.com/user-attachments/assets/bf306fe7-86ca-4b4e-8a5c-c0b9b83e6d0c" />
 
 8) After install, you’ll see **Launch Synaptron** on your desktop.  
-![Desktop shortcut — Launch Synaptron](assets/img/10_launch_shortcut.png)
+
 <img width="607" height="332" alt="Skärmavbild 2025-08-22 kl  18 27 57" src="https://github.com/user-attachments/assets/888c9190-27ca-4d42-b02e-2b459e886116" />
 
 ---
@@ -99,14 +99,15 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 ## 5) First launch & registration (in the app)
 
 1) Double‑click **Launch Synaptron**. If you see UAC for the agent, click **Yes**.  
-![UAC — SynapAgent](assets/img/11_uac_synapagent.png)
+
+<img width="457" height="343" alt="Skärmavbild 2025-08-22 kl  18 28 03" src="https://github.com/user-attachments/assets/f9d2b140-ba53-4945-8fc2-614b45ec76d0" />
 
 2) In the app, paste your **GUID** and enter a **Friendly Name (≥17 characters)**, then **Complete Registration**.  
-![Register your node — GUID + Friendly Name ≥17 chars](assets/img/13_register_guid_name.png)
+
 <img width="490" height="326" alt="Skärmavbild 2025-08-22 kl  18 28 18" src="https://github.com/user-attachments/assets/225bd471-72a7-4704-ba5a-8c0e3e034706" />
 
 3) You’ll get a **success** confirmation.  
-![Registration success](assets/img/14_registration_success.png)
+
 <img width="526" height="319" alt="Skärmavbild 2025-08-22 kl  18 28 24" src="https://github.com/user-attachments/assets/334f2a9d-6fe3-496e-8631-09183b6eedf6" />
 
 ---
@@ -114,13 +115,13 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 ## 6) Pre‑Install & Install (one‑time prerequisites)
 
 1) Run **Pre‑Install** → wait for **Completed Successfully**.  
-![Pre‑Install / Install overview](assets/img/15_preinstall_install_overview.png)  
-![Pre‑Install — Completed Successfully](assets/img/16_preinstall_success.png)
+
 <img width="533" height="316" alt="Skärmavbild 2025-08-22 kl  18 28 32" src="https://github.com/user-attachments/assets/e6b46552-2f04-4d7e-849a-bedf0e9a5195" />
+
 <img width="505" height="256" alt="Skärmavbild 2025-08-22 kl  18 28 41" src="https://github.com/user-attachments/assets/787b0d10-3185-4c17-828d-2b92b50076dc" />
 
 2) Run **Install** → wait for **Completed Successfully**.  
-![Install — Completed Successfully](assets/img/17_install_success.png)
+
 <img width="545" height="341" alt="Skärmavbild 2025-08-22 kl  18 28 49" src="https://github.com/user-attachments/assets/ee097a41-a7f5-44bb-8fd5-0e3858947f2c" />
 
 > These two steps fetch prerequisites and can take **~15–20 minutes**. Do not close the app during this phase.
@@ -131,7 +132,7 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 
 1) In **Configure GPU Card(s)**, choose your **GPU** and click **Enable**.  
 2) Confirm your GPU shows as **Enabled** and **Timpi Connected** is visible.  
-![Enable GPU — Timpi Connected](assets/img/18_enable_gpu_connected.png)
+
 <img width="552" height="283" alt="Skärmavbild 2025-08-22 kl  18 28 56" src="https://github.com/user-attachments/assets/073e3004-187a-44b1-9fb3-d5dabd56452f" />
 
 *If the GPU doesn’t appear: update NVIDIA drivers, reboot, and re‑launch the app.*
@@ -141,11 +142,11 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 ## 8) Start Work & verify
 
 1) Click **Start Work** → **Register For Work** shows **Success**.  
-![Start Work — Register For Work success](assets/img/19_start_work_success.png)
+
 <img width="641" height="669" alt="Skärmavbild 2025-08-22 kl  18 29 15" src="https://github.com/user-attachments/assets/9b67336d-6e85-4cbe-9369-07459278e57d" />
 
 2) Logs will start to scroll; detections appear between “No object detected” (that’s normal).  
-![Working logs / detections](assets/img/20_working_logs.png)
+
 <img width="724" height="563" alt="Skärmavbild 2025-08-22 kl  18 29 22" src="https://github.com/user-attachments/assets/5df5f910-edbd-438a-84ba-94d685c7a4c4" />
 
 3) In Discord, run **`/synaptronchecker`** again to confirm your **running version**, **GPU**, and **status**.
@@ -155,11 +156,11 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 ## 9) Post‑install checks
 
 - **Task Manager** should show **SynapAgent** and related processes running.  
-![Task Manager — SynapAgent & processes](assets/img/22_task_manager.png)
+
 <img width="725" height="323" alt="Skärmavbild 2025-08-22 kl  18 29 47" src="https://github.com/user-attachments/assets/d6d662af-588c-46c1-bfd1-f3470f08a6f3" />
 
 - The tray may confirm the agent is running in the background.  
-![Tray — SynapAgent running](assets/img/23_tray_running.png)
+
 <img width="371" height="129" alt="Skärmavbild 2025-08-22 kl  18 29 56" src="https://github.com/user-attachments/assets/cb9cb8b7-3603-49ce-912c-3a5bf9e99334" />
 
 ---
@@ -176,7 +177,7 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 If **`/synaptronchecker`** says **Update Required**:
 
 1) Open **Settings → Apps → Installed apps** and **uninstall Synaptron** (remove **Python** too if present).  
-![Apps & features — uninstall for clean reinstall](assets/img/24_apps_features_uninstall.png)
+
 <img width="516" height="367" alt="Skärmavbild 2025-08-22 kl  18 30 05" src="https://github.com/user-attachments/assets/2182d34e-531d-46cb-a2f6-d61633ed42cb" />
 
 2) Delete leftovers (show hidden files):  
