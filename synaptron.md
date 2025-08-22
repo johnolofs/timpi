@@ -1,3 +1,5 @@
+# 🧠 Timpi Synaptron Node Setup
+
 A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 
 > **Latest required version:** `1_1_35`  
@@ -62,7 +64,7 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 
 ## 3) Register your node & get the GUID
 
-1) [Visit registration page]([https://timpi.com/node/management](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md))
+1) https://timpi.com/node/management](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md
 
 ---
 
