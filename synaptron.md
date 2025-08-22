@@ -70,15 +70,18 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 
 1) **Download**: `synaptron_win_latest.zip` (from Timpi downloads).
 2) https://timpi.io/applications/windows/synaptron_win_latest.zip  
-3) **Extract** the ZIP (Explorer or WinRAR).  
+3) **Extract** the ZIP (Explorer or WinRAR).
+ 
 <img width="631" height="195" alt="Skärmavbild 2025-08-22 kl  18 27 12" src="https://github.com/user-attachments/assets/257a15ee-58f7-47b6-beb4-b37c941012f5" />
 
-4) Open the folder and **double‑click** `setup_ClickMe.exe`.  
+4) Open the folder and **double‑click** `setup_ClickMe.exe`.
+
 <img width="631" height="181" alt="Skärmavbild 2025-08-22 kl  18 27 20" src="https://github.com/user-attachments/assets/b0aa16f1-86c3-4826-8406-8a6c3444577a" />
 
 5) If Windows SmartScreen appears → **More info** → **Run anyway**.  
 
 <img width="444" height="181" alt="Skärmavbild 2025-08-22 kl  18 27 28" src="https://github.com/user-attachments/assets/240e6eb8-1409-43d4-a909-91ee30e75b95" />
+
 
 <img width="464" height="440" alt="Skärmavbild 2025-08-22 kl  18 27 35" src="https://github.com/user-attachments/assets/e5274b45-8e50-44b1-8ed8-56697ca000e3" />
 
