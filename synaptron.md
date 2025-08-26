@@ -68,10 +68,26 @@ A clean, click‑by‑click setup for **Timpi Synaptron** nodes on Windows.
 ---
 
 ## 4) Download & install Synaptron
+## 🔽 Which Version to Download (GPU Dependent)
 
-1) **Download**: `synaptron_win_latest.zip` (from Timpi downloads).
-2) https://timpi.io/applications/windows/synaptron_win_latest.zip  
-3) **Extract** the ZIP (Explorer or WinRAR).
+Timpi now maintains **two Windows installers** depending on your GPU family:
+
+* **`1_1_35 : synaptron:latest`**
+  👉 Use this for **Tier 1 & Tier 2 GPUs** (GTX 1060, RTX 2060, RTX 3060, RTX 4060, RTX 3090).
+  📥 [Download synaptron\_win\_latest.zip](https://timpi.io/applications/windows/synaptron_win_latest.zip)
+
+* **`1_2_7 : synaptron-t3-blackwell`**
+  👉 Use this if you have a **Tier 3 Ada Lovelace (RTX 4090)** or **Blackwell (RTX 5090)** GPU.
+  📥 [Download synaptron\_win\_latest\_blackwell.zip](https://timpi.io/applications/windows/synaptron_win_latest_blackwell.zip)
+
+> ℹ️ **Not sure which GPU you have?**
+>
+> 1. Press **Win + R**, type `dxdiag`, press Enter.
+> 2. Go to the **Display** tab → check **Display Device / Chip Type**.
+> 3. Match it to the list above.
+
+**1) Download the correct version for your GPU (see table above).**
+**2) Extract the ZIP, then run `setup_ClickMe.exe`.**
  
 <img width="631" height="195" alt="Skärmavbild 2025-08-22 kl  18 27 12" src="https://github.com/user-attachments/assets/257a15ee-58f7-47b6-beb4-b37c941012f5" />
 
