@@ -30,7 +30,7 @@ However, setting too many **workers** or **threads** can:
 
 ```bash
 sudo apt-get install -y dos2unix curl && \
-sudo curl -o Automated_collector_script.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/Automated_collector_script.sh && \
+sudo curl -o Automated_collector_script.sh https://raw.githubusercontent.com/johnolofs/timpi/main/Collector/Script/Automated_collector_script.sh && \
 sudo dos2unix Automated_collector_script.sh && \
 bash Automated_collector_script.sh
 ```
