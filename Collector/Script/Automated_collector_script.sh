@@ -29,11 +29,11 @@ echo "📦 Installing unrar..."
 sudo apt install -y unrar || handle_error
 
 echo "⬇️ Downloading the latest collector version (v0.10.0-A)..."
-sudo wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest-0.10.0-A.rar -O "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
+sudo wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest-0.10.0-A.rar -O "$INSTALL_DIR/TimpiCollectorLinuxLatest-0.10.0-A.rar" || handle_error
 
 echo "📂 Extracting collector files..."
 cd "$INSTALL_DIR" || handle_error
-sudo unrar x -y "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
+sudo unrar x -y "$INSTALL_DIR/TimpiCollectorLinuxLatest-0.10.0-A.rar" || handle_error
 
 if [ -d "$INSTALL_DIR/TimpiCollectorLinuxLatest" ]; then
     sudo mv "$INSTALL_DIR/TimpiCollectorLinuxLatest"/* "$INSTALL_DIR" || handle_error
@@ -104,7 +104,7 @@ EOF'
 fi
 
 echo "🧹 Cleaning up archive..."
-sudo rm -rf "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
+sudo rm -rf "$INSTALL_DIR/TimpiCollectorLinuxLatest-0.10.0-A.rar" || handle_error
 
 echo "🔄 Reloading and enabling services..."
 sudo systemctl daemon-reload || handle_error
