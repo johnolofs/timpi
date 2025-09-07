@@ -1,50 +1,60 @@
-## ✍️ Updated Guide (Markdown)
+# 📦 Timpi Collector Installation Guide – v0.10.0-A
 
-### ⚠️ Important Notice – Resource Usage in Timpi Collector v0.10.0-A
-
-Timpi Collector v0.10.0-A introduces major performance and stability improvements — **but still requires careful tuning** of workers/threads and system resources.
-
-> ⚠️ Too high values may **consume all your CPU, RAM, and bandwidth**, affecting your Guardian, Validator, Synaptron or other services.
-
-🛡️ The installer now includes:
-
-* **Memory limits** (RAM + swap) like a container
-* **Self-healing service setup**
-* Safe upgrade/removal options
-
-🔁 Start low and test performance:
-
-```
-http://localhost:5015/collector
-```
-
-Suggested: **1 Worker / 5 Threads**
+**Supports:** `Ubuntu 22.04.4 LTS or later`
+**Latest version:** [`TimpiCollectorLinuxLatest-0.10.0-A.rar`](https://timpi.io/applications/linux/TimpiCollectorLinuxLatest-0.10.0-A.rar)
+**Install method:** Automated script or manual
+**Dashboard:** [http://localhost:5015/collector](http://localhost:5015/collector)
 
 ---
 
-## 🚀 One-Line Installation for Timpi Collector v0.10.0-A
+## ⚠️ Important Notice – Resource Usage in v0.10.0-A
+
+Timpi Collector v0.10.0-A brings performance and stability improvements.
+However, setting too many **workers** or **threads** can:
+
+* Overload your **CPU**
+* Max out your **RAM**
+* Use all your **bandwidth**, affecting Guardian, Synaptron, and other services
+
+🛡️ That’s why this installer adds:
+
+* Auto-detected **RAM limits**
+* **Swap support** if RAM runs out
+* Self-healing systemd service files
+
+> 💡 Start small → Recommended: **1 Worker / 5 Threads**
+
+---
+
+## 🚀 Quick Auto-Installation (Recommended)
 
 ```bash
-
-sudo apt-get install -y dos2unix curl && sudo curl -o Automated_collector_script.sh https://raw.githubusercontent.com/johnolofs/timpi/blob/main/Collector/Script/Automated_collector_script.sh && sudo dos2unix Automated_collector_script.sh && bash Automated_collector_script.sh
-```
-
-🧼 **To wipe config and restart:**
-
-```bash
-sudo systemctl stop collector; sudo rm -f /opt/timpi/timpi.config; sudo systemctl start collector
+sudo apt-get install -y dos2unix curl && \
+sudo curl -o Automated_collector_script.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/Automated_collector_script.sh && \
+sudo dos2unix Automated_collector_script.sh && \
+bash Automated_collector_script.sh
 ```
 
 ---
 
-## 🧠 Resource Control (MemoryMax / MemorySwapMax)
+## 🧼 Reset Collector Config (Optional)
 
-🧠 Auto-detected & configurable:
+```bash
+sudo systemctl stop collector
+sudo rm -f /opt/timpi/timpi.config
+sudo systemctl start collector
+```
 
-* `MemoryMax`: RAM limit in GB (default 2)
-* `MemorySwapMax`: Auto-set to RAM + 1 GB
+---
 
-💡 Example:
+## 🧠 Resource Control – MemoryMax / MemorySwapMax
+
+The installer will ask you how much RAM the Collector can use.
+
+* `MemoryMax` → RAM usage limit (default: 2G)
+* `MemorySwapMax` → RAM + 1G (default: 3G)
+
+### ✅ Example
 
 ```ini
 MemoryMax=2G
@@ -53,7 +63,7 @@ MemorySwapMax=3G
 
 ---
 
-## 🔁 Full Manual Installation (Advanced)
+## 🛠️ Manual Installation (Advanced)
 
 ### Step 1: Remove Previous Collector
 
@@ -84,22 +94,22 @@ sudo apt install -y unrar
 ### Step 5: Download Collector
 
 ```bash
-sudo wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest-0.10.0-A.rar -O /opt/timpi/TimpiCollectorLinuxLatest-0.10.0-A.rar
+sudo wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest-0.10.0-A.rar -O /opt/timpi/TimpiCollectorLinuxLatest.rar
 ```
 
 ### Step 6: Extract Files
 
 ```bash
 cd /opt/timpi
-sudo unrar x -y /opt/timpi/TimpiCollectorLinuxLatest-0.10.0-A.rar
+sudo unrar x -y /opt/timpi/TimpiCollectorLinuxLatest.rar
 ```
 
 ### Step 7: Move Files (if needed)
 
 ```bash
-if [ -d "/opt/timpi/TimpiCollectorLinuxLatest-0.10.0-A.rar" ]; then
-    sudo mv /opt/timpi/TimpiCollectorLinuxLatest-0.10.0-A.rar/* /opt/timpi
-    sudo rm -rf /opt/timpi/TimpiCollectorLinuxLatest-0.10.0-A.rar
+if [ -d "/opt/timpi/TimpiCollectorLinuxLatest" ]; then
+  sudo mv /opt/timpi/TimpiCollectorLinuxLatest/* /opt/timpi
+  sudo rm -rf /opt/timpi/TimpiCollectorLinuxLatest
 fi
 ```
 
@@ -112,7 +122,7 @@ sudo chmod 755 /opt/timpi/TimpiUI
 
 ### Step 9: Create systemd Services
 
-Collector service:
+#### Collector service
 
 ```bash
 sudo nano /etc/systemd/system/collector.service
@@ -138,7 +148,7 @@ MemorySwapMax=3G
 WantedBy=multi-user.target
 ```
 
-Collector UI:
+#### UI service
 
 ```bash
 sudo nano /etc/systemd/system/collector_ui.service
@@ -162,13 +172,13 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-### Step 10: Cleanup
+### Step 10: Clean Up
 
 ```bash
 sudo rm -f /opt/timpi/TimpiCollectorLinuxLatest.rar
 ```
 
-### Step 11: Enable + Start
+### Step 11: Enable & Start Services
 
 ```bash
 sudo systemctl daemon-reload
@@ -189,13 +199,13 @@ sudo systemctl status collector_ui
 sudo systemctl restart collector
 sudo systemctl restart collector_ui
 
-# Logs
+# Logs (live)
 sudo journalctl -fu collector -o cat
 ```
 
 ---
 
-## ❌ Remove Timpi Collector Completely
+## ❌ Full Uninstall
 
 ```bash
 sudo systemctl stop collector collector_ui
@@ -205,3 +215,6 @@ sudo rm /etc/systemd/system/collector.service
 sudo rm /etc/systemd/system/collector_ui.service
 sudo systemctl daemon-reload
 ```
+
+---
+
