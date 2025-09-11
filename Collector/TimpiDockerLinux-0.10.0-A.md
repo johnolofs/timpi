@@ -50,10 +50,6 @@ docker pull timpiltd/timpi-collector:0.10.0-A
 sudo docker run -d \
   --name timpi_collector \
   --restart unless-stopped \
-  --ulimit nofile=65536:65536 \
-  --cpus="2" \
-  --memory="2g" \
-  --memory-swap="4g" \
   -v /etc/localtime:/etc/localtime:ro \
   -p 5015:5015 \
   timpiltd/timpi-collector:0.10.0-A
