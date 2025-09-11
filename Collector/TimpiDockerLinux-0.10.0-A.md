@@ -72,10 +72,6 @@ Example second instance on **5016**:
 sudo docker run -d \
   --name timpi_collector_5016 \
   --restart unless-stopped \
-  --ulimit nofile=65536:65536 \
-  --cpus="2" \
-  --memory="2g" \
-  --memory-swap="4g" \
   -v /etc/localtime:/etc/localtime:ro \
   -p 5016:5015 \
   timpiltd/timpi-collector:0.10.0-A
