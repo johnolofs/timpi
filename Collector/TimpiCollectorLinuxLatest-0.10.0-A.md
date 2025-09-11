@@ -141,8 +141,6 @@ User=root
 WorkingDirectory=/opt/timpi
 ExecStart=/opt/timpi/TimpiCollector
 Restart=always
-MemoryMax=2G
-MemorySwapMax=3G
 
 [Install]
 WantedBy=multi-user.target
