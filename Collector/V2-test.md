@@ -101,6 +101,8 @@ Your Collector will stay idle until your region becomes active.
 
 Everything now runs **directly from the terminal** using your GUID.
 
+🖥️ A new UI will be available on the Node Management Page soon.
+
 ---
 
 ### 🧪 Additional Info
