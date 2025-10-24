@@ -1,112 +1,220 @@
-## 🧭 Timpi Collector v2 — Linux Setup Guide (Testing Phase)
+# 🧭 Timpi Collector v2 — Manual Linux Setup Guide (as a Service)
 
-Hey everyone 👋
-Here are the current instructions for **Linux Collector v2 (testing version)**.
-This build is part of the testing phase before the **auto-updater** and **full release package** go live.
+This version runs **headless** (no UI) and **does not use `timpi.config`**.
+You only need these three files:
 
+```
+TimpiCollector
+CollectorSettings.json
+public_suffix_list.dat
+```
 
-### 🧹 Step 1 — Stop the Current Collector Services
+---
 
-Make sure your current Collector installation is **already present**, since we still need a few existing files for this test version.
+## 🧹 Step 1 — Stop and Remove Old Collector Services
 
-> Required files:
->
-> * `public_suffix_list.dat`
-> * `CollectorSettings.json`
-> * `TimpiCollector`
-
-Stop the current services before proceeding:
+Stop any old collector services that might still be running:
 
 ```bash
 sudo systemctl stop collector
 sudo systemctl stop collector_ui
 ```
 
-### 🧽 Step 2 — Clean Up the Old Collector Binary
-
-Before downloading the new version, remove any existing `TimpiCollector` binary to avoid version conflicts:
+Remove their service files completely:
 
 ```bash
+sudo rm -f /etc/systemd/system/collector.service
+sudo rm -f /etc/systemd/system/collector_ui.service
+sudo systemctl daemon-reload
+```
+
+✅ This prevents conflicts with the new v2 service.
+
+---
+
+## 🧽 Step 2 — Remove Old Files and Start Fresh
+
+```bash
+sudo rm -rf /opt/timpi
+sudo mkdir -p /opt/timpi
+sudo chown $USER:$USER /opt/timpi
 cd /opt/timpi
-sudo rm -r TimpiCollector
 ```
-
-*(Don’t worry — this only removes the executable, not your settings or data files.)*
-
-
-### 📦 Step 3 — Download the New Collector Binary
-
-```bash
-wget https://timpi.io/applications/linux/TimpiCollector
-```
-
-Make it executable:
-
-```bash
-sudo chmod +x TimpiCollector
-```
-
-### ▶️ Step 4 — Start the Collector with Your GUID
-
-Replace `YOUR-GUID` with your actual **Collector GUID**:
-
-```bash
-sudo ./TimpiCollector YOUR-GUID
-```
-
-### 🧩 Step 5 — Enable Verbose Logging (Optional)
-
-To see more detailed logs, open the settings file:
-
-```bash
-sudo nano CollectorSettings.json
-```
-
-And set:
-
-```json
-{
-  "LogLevel": "Verbose"
-}
-```
-
-Press **CTRL + O**, **Enter**, then **CTRL + X** to save and exit.
 
 ---
 
-### ⚠️ Step 6 — Common Error During Testing
+## 📦 Step 3 — Download and Extract the New Collector v2
 
-If you see something like this:
+Download the latest official `.rar` package:
 
-```
-[18:37:02 INF] Currently on version 1.0.0
-[18:37:02 INF] Logging level: Verbose
-[18:37:02 INF] Trying to send keep alive to http://tap29.timpi.network:4014
-[18:37:02 ERR] Error in sending keep alive to coordinator: The request was canceled due to the configured HttpClient.Timeout of 30 seconds elapsing.
-[18:37:02 ERR] Error in sending keep alive to coordinator. No Coordinator available or the information are wrong
+```bash
+wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest-v2.rar -O /opt/timpi/TimpiCollectorLinuxLatest-v2.rar
 ```
 
-🧠 Don’t worry — this just means you’re in a region that currently has **no active coordinators**.
-Joerg is still activating these region by region.
-Your Collector will stay idle until your region becomes active.
+Install `unrar` if needed:
+
+```bash
+sudo apt install unrar -y
+```
+
+Extract the files (this creates a subfolder):
+
+```bash
+sudo unrar x /opt/timpi/TimpiCollectorLinuxLatest-v2.rar /opt/timpi
+```
+
+Move everything into `/opt/timpi` and remove the extra folder:
+
+```bash
+sudo mv /opt/timpi/TimpiCollectorLinuxLatest/* /opt/timpi/
+sudo rm -rf /opt/timpi/TimpiCollectorLinuxLatest
+```
+
+Check the files:
+
+```bash
+ls -l /opt/timpi
+```
+
+Expected:
+
+```
+TimpiCollector
+CollectorSettings.json
+public_suffix_list.dat
+```
+
+Make the binary executable:
+
+```bash
+sudo chmod +x /opt/timpi/TimpiCollector
+```
 
 ---
 
-### 🧱 Step 7 — Important Notes
+## ▶️ Step 4 — Test Run Manually
 
-🚫 We **no longer use** the following with v2:
+Replace `YOUR-GUID` with your actual GUID (from the Node Management page):
 
-* `timpi.config` file
-* TimpiCollector_ui
+```bash
+sudo /opt/timpi/TimpiCollector YOUR-GUID
+```
 
-Everything now runs **directly from the terminal** using your GUID.
+Expected output:
 
-🖥️ A new UI will be available on the Node Management Page soon.
+```
+[INF] Currently on version 1.0.0
+[INF] Logging level: Verbose
+[INF] Trying to send keep alive…
+```
+
+If you see
+`Error in sending keep alive... No Coordinator available`
+🧠 That’s OK — your region just isn’t active yet.
 
 ---
 
-### 🧪 Additional Info
+## ⚙️ Step 5 — Create a New Systemd Service (Auto-Start)
 
-* This is a **testing-only version** — no auto-updates yet.
-* A full release package with integrated auto-updater and setup script will be available later.
-* You only need the files listed above for this phase.
+```bash
+sudo nano /etc/systemd/system/timpi-collector.service
+```
+
+Paste (this matches your original layout + GUID):
+
+```ini
+[Unit]
+Description=Timpi Collector Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/timpi
+ExecStart=/opt/timpi/TimpiCollector YOUR-GUID
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Save (**Ctrl + O**, **Enter**, **Ctrl + X**).
+
+---
+
+## 🔄 Step 6 — Enable and Start the New Service
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable timpi-collector
+sudo systemctl start timpi-collector
+```
+
+---
+
+## 🔍 Step 7 — Check Logs and Status
+
+Live logs:
+
+```bash
+sudo journalctl -u timpi-collector -f
+```
+
+Service status:
+
+```bash
+sudo systemctl status timpi-collector
+```
+
+Restart if needed:
+
+```bash
+sudo systemctl restart timpi-collector
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
