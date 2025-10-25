@@ -96,6 +96,8 @@ sudo chmod +x /opt/timpi/TimpiCollector
 
 Replace `YOUR-GUID` with your actual GUID (from the Node Management page):
 
+Must be in **/opt/timpi/** to do the command below
+
 ```bash
 sudo /opt/timpi/TimpiCollector YOUR-GUID
 ```
