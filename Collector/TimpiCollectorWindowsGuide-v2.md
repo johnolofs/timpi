@@ -129,9 +129,16 @@ You can uninstall the Timpi Collector just like any other Windows program.
 ### 🔹 Method 2 – Control Panel
 
 1. Press `Windows + R` → type `control` → press **Enter**
-2. Go to **Programs → Uninstall a Program**
-3. Find **Timpi Collector**
-4. Right-click → **Uninstall**
+<img width="393" height="203" alt="image" src="https://github.com/user-attachments/assets/8c57851c-cd32-41be-ad3a-85526ee4c491" />
+
+3. Go to **Programs → Uninstall a Program**
+<img width="1125" height="440" alt="Screenshot 2025-10-29 172710" src="https://github.com/user-attachments/assets/f190b96e-3f86-4c17-bc28-32bb8ef2ad7c" />
+
+5. Find **Timpi Collector**
+<img width="916" height="82" alt="image" src="https://github.com/user-attachments/assets/c54f2944-9e83-458f-a91c-eee4596d35d1" />
+
+7. Right-click → **Uninstall**
+<img width="1123" height="246" alt="image" src="https://github.com/user-attachments/assets/f47507c4-20e9-484f-a2ef-e30741482717" />
 
 ✅ This removes:
 
