@@ -32,7 +32,7 @@
 📦 **Installer type:** Native `.exe` (Windows Program)
 
 🔗 **Download:**
-[TimpiCollectorSetup_v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
+[TimpiCollectorSetup-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
 
 ---
 
@@ -43,13 +43,13 @@
 * Click the link above to download the compressed `.rar` file.
 * Extract it using [7-Zip](https://www.7-zip.org/) or Windows’ built-in extraction tool.
 * Inside the archive, you’ll find the installer:
-  👉 `TimpiCollectorSetup_v2.exe`
+  👉 `TimpiCollectorWindowsLatest-v2.exe`
 
 ---
 
 ### 🔹 2. Run the Installer
 
-* **Right-click** `TimpiCollectorSetup_v2.exe`
+* **Right-click** `TimpiCollectorWindowsLatest-v2.exe`
 * Select **“Run as Administrator”** (required for proper installation).
 * Follow the installation wizard until completion.
 
