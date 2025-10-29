@@ -62,6 +62,7 @@
 ### 🔹 3. What the Installer Does Automatically
 
 ✅ Installs Timpi Collector to:
+
 `C:\Program Files\Timpi Intl. LTD`
 <img width="499" height="390" alt="image" src="https://github.com/user-attachments/assets/d0905cce-369e-40d3-899c-58d559f7c07a" />
 
@@ -97,6 +98,9 @@ The web-based dashboard lets you:
 * Monitor Collector performance
 * Adjust worker/thread settings
 * Manage multiple nodes
+
+<img width="461" height="653" alt="Skärmavbild 2025-10-29 kl  19 23 37" src="https://github.com/user-attachments/assets/9cb31038-1707-4edf-8499-bc686e23a9be" />
+
 
 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
 
