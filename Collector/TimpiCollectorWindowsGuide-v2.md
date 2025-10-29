@@ -44,6 +44,8 @@
 * Extract it using [7-Zip](https://www.7-zip.org/) or Windows’ built-in extraction tool.
 * Inside the archive, you’ll find the installer:
   👉 `TimpiCollectorWindowsLatest-v2.exe`
+  <img width="709" height="204" alt="image" src="https://github.com/user-attachments/assets/d8688ced-0e98-4dd9-b47a-b3e310d5b8fc" />
+
 
 ---
 
@@ -52,6 +54,8 @@
 * **Right-click** `TimpiCollectorWindowsLatest-v2.exe`
 * Select **“Run as Administrator”** (required for proper installation).
 * Follow the installation wizard until completion.
+<img width="512" height="614" alt="image" src="https://github.com/user-attachments/assets/a94c163a-2557-47f5-b02c-664e3f58437d" />
+
 
 ---
 
@@ -59,6 +63,7 @@
 
 ✅ Installs Timpi Collector to:
 `C:\Program Files\Timpi Intl. LTD`
+<img width="499" height="390" alt="image" src="https://github.com/user-attachments/assets/d0905cce-369e-40d3-899c-58d559f7c07a" />
 
 ✅ Registers required runtime components
 
@@ -76,10 +81,11 @@
 
 1. **Double-click** the desktop icon **TimpiCollector**
 2. If prompted, choose **“Run as Administrator”**
-3. When launched for the first time, the program will **ask for your GUID**
+3. When launched, the program will **ask for your GUID**
+<img width="980" height="164" alt="image" src="https://github.com/user-attachments/assets/cfab4b1a-f604-4da1-aa5a-51ef0b992611" />
 
    * Paste or type your GUID (you can register or retrieve it using the link below)
-4. Once entered, the Collector will start automatically and begin operating in the background
+4. Once entered, the Collector will start automatically and begin operating and can be seen from **management dashboard**
 
 ---
 
