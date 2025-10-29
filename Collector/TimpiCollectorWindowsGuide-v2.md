@@ -108,7 +108,7 @@ If you haven’t registered yet, follow this simple guide to create your node an
 📘 **Guide:** [Register Your Timpi Node (GUID Setup)](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
 
 Once registered, your **GUID** appears in your account under the management dashboard.
-You’ll need this GUID the first time you start the Collector.
+You’ll need this GUID when you start the Collector.
 
 ---
 
