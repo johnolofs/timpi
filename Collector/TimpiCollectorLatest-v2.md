@@ -194,7 +194,7 @@ sudo ./TimpiCollector PASTE-YOUR-GUID
 ✅ **Expected output**
 
 ```
-[INF] Currently on version 2.X.X
+[INF] Currently on version 1.X.X
 [INF] Logging level: Verbose
 [INF] Trying to send keep alive…
 ```
