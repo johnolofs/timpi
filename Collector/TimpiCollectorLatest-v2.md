@@ -213,7 +213,7 @@ sudo ./TimpiCollector PASTE-YOUR-GUID
 <a name="step-6-create-the-collector-service-auto-start"></a>
 ## ⚙️ **Step 6 — Create the Collector Service (Auto-Start)**
 
-Keep the classic name so it’s familiar to existing users.
+Keeping the classic Service name.
 
 ```bash
 sudo nano /etc/systemd/system/collector.service
