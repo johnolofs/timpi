@@ -286,7 +286,7 @@ Your Collector should show as **Online** within a few minutes.
 * Modify **Workers** or **Threads** to tune performance.
 * Click **Save / Update Settings** — changes apply instantly.
 * Higher numbers use more CPU, RAM, and bandwidth.
-* 
+
 <img width="461" height="653" alt="Skärmavbild 2025-10-29 kl  19 23 37" src="https://github.com/user-attachments/assets/4660ab7c-6720-41c4-a1f2-42f1bf8b16da" />
 
 💡 Recommended: **1 Worker & 5 Threads** for most systems.
