@@ -95,6 +95,8 @@
 You can now view and control your Collector directly in your browser.
 The web-based dashboard lets you:
 
+👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
+
 * Monitor Collector performance
 * Adjust worker/thread settings
 * Manage multiple nodes
@@ -102,13 +104,12 @@ The web-based dashboard lets you:
 <img width="461" height="653" alt="Skärmavbild 2025-10-29 kl  19 23 37" src="https://github.com/user-attachments/assets/9cb31038-1707-4edf-8499-bc686e23a9be" />
 
 
-👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
-
 ---
 
 ### 🔹 6. Register or Retrieve Your GUID
 
 If you haven’t registered yet, follow this simple guide to create your node and receive your GUID:
+
 📘 **Guide:** [Register Your Timpi Node (GUID Setup)](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
 
 Once registered, your **GUID** appears in your account under the management dashboard.
