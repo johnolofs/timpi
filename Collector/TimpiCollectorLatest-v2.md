@@ -19,8 +19,8 @@ This system remains invisible from front-end services, safeguarding the security
 5. [Step 2 — Prepare a Clean Directory](#-step-2--prepare-a-clean-directory)
 6. [Step 3 — Download and Extract Collector v2](#-step-3--download-and-extract-collector-v2)
 7. [Step 4 — (Optional) Change Log Level](#-step-4--optional-change-log-level)
-8. [Step 5 — Run Collector Manually (With GUID)](#-step-5--run-collector-manually-with-guid)
-9. [Step 6 — Create the Collector Service (Auto-Start)](#-step-6--create-the-collector-service-auto-start)
+8. [Step 5 — Run Collector Manually (With GUID)](#step-5-run-collector-manually-with-guid)  
+9. [Step 6 — Create the Collector Service (Auto-Start)](#step-6-create-the-collector-service-auto-start)
 10. [Step 7 — Check Logs & Status](#-step-7--check-logs--status)
 11. [Step 8 — Verify Online Status & Adjust Workers](#-step-8--verify-online-status--adjust-workers)
 12. [File Summary](#-file-summary)
@@ -181,6 +181,7 @@ Then save (**Ctrl + O → Enter → Ctrl + X**) and restart the collector later 
 
 ---
 
+<a name="step-5-run-collector-manually-with-guid"></a>
 ## ▶️ **Step 5 — Run Collector Manually (With GUID)**
 
 > 🟢 You must run this **inside `/opt/timpi`**, or it won’t find the configuration files.
@@ -209,6 +210,7 @@ sudo ./TimpiCollector PASTE-YOUR-GUID
 
 ---
 
+<a name="step-6-create-the-collector-service-auto-start"></a>
 ## ⚙️ **Step 6 — Create the Collector Service (Auto-Start)**
 
 Keep the classic name so it’s familiar to existing users.
