@@ -54,7 +54,10 @@
 * **Right-click** `TimpiCollectorWindowsLatest-v2.exe`
 * Select **“Run as Administrator”** (required for proper installation).
 * Follow the installation wizard until completion.
-<img width="512" height="614" alt="image" src="https://github.com/user-attachments/assets/a94c163a-2557-47f5-b02c-664e3f58437d" />
+<img width="511" height="573" alt="image" src="https://github.com/user-attachments/assets/3e9b3b87-84a3-4086-9b43-869571bc883e" />
+
+**Paste/Enter your GUID**
+<img width="496" height="391" alt="image" src="https://github.com/user-attachments/assets/46313d5e-923a-4b04-b0a6-f732144d4559" />
 
 
 ---
@@ -64,11 +67,9 @@
 ✅ Installs Timpi Collector to:
 `C:\Program Files\Timpi Intl. LTD`
 
-<img width="499" height="390" alt="image" src="https://github.com/user-attachments/assets/d0905cce-369e-40d3-899c-58d559f7c07a" />
-
 ✅ Registers required runtime components
 
-✅ Creates a **desktop shortcut** named **TimpiCollector**
+✅ Creates a **desktop shortcut** named **TimpiCollector Logs**
 
 ✅ Adds **Timpi Collector** to Windows “Apps & Features” for easy removal
 
