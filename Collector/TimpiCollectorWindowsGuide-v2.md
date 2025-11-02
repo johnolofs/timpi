@@ -52,11 +52,13 @@
 ### 🔹 2. Run the Installer
 
 * **Right-click** `TimpiCollectorWindowsLatest-v2.exe`
+ <img width="511" height="573" alt="image" src="https://github.com/user-attachments/assets/3e9b3b87-84a3-4086-9b43-869571bc883e" />
+
 * Select **“Run as Administrator”** (required for proper installation).
 * Follow the installation wizard until completion.
-<img width="511" height="573" alt="image" src="https://github.com/user-attachments/assets/3e9b3b87-84a3-4086-9b43-869571bc883e" />
 
 **Paste/Enter your GUID**
+
 <img width="496" height="391" alt="image" src="https://github.com/user-attachments/assets/46313d5e-923a-4b04-b0a6-f732144d4559" />
 
 
