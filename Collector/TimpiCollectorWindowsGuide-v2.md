@@ -152,7 +152,7 @@ Example:
 5. Restart the Collector service to apply changes:
 
 ### 🔹 How to Start, Restart, or Stop the Collector Service
-1. Search for Services
+1. Search for Services, then press on services
 <img width="296" height="628" alt="image" src="https://github.com/user-attachments/assets/0a5b3980-575d-4e16-9ff3-f9189135258c" />
 
 2. Search for Timpi Collector and make your choice
@@ -161,8 +161,6 @@ Example:
 
 🧩 *Tip:* “Verbose” is great for troubleshooting or first-time setup —
 but switch back to “Info” afterward to reduce log size.
-
----
 
 ---
 
