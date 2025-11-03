@@ -18,8 +18,9 @@ By running a Collector, you help Timpi grow its decentralized data network — p
   * [2. Run the Installer](#-2-run-the-installer)
   * [3. What the Installer Does Automatically](#-3-what-the-installer-does-automatically)
 * [Using Timpi Collector](#-using-timpi-collector)
-
+  
   * [4. Viewing Collector Logs](#-4-viewing-collector-logs)
+  * [How to Start, Restart, or Stop the Collector Service](#-how-to-start-restart-or-stop-the-collector-service)
   * [5. Access the Management Dashboard](#-5-access-the-management-dashboard)
   * [6. Register or Retrieve Your GUID](#-6-register-or-retrieve-your-guid)
 * [Uninstallation Guide](#-uninstallation-guide)
@@ -117,6 +118,46 @@ C:\Program Files\Timpi Intl. LTD\logs\
 ```
 
 To stop viewing, press **Ctrl + C**.
+
+### Change Log Level (CollectorSettings.json)
+
+You can control how detailed the logs are by editing this file:
+
+📄 `C:\Program Files\Timpi Intl. LTD\CollectorSettings.json`
+
+1. **Right-click → Open with → Notepad**
+2. Look for the line that says `"LogLevel": "Error"`
+3. Change the value to one of the following:
+
+| Log Level   | Description                                     |
+| ----------- | ----------------------------------------------- |
+| `"Error"`   | Shows only errors (quiet mode)                  |
+| `"Info"`    | Default — shows basic activity                  |
+| `"Verbose"` | Shows everything, including debug-level details |
+
+Example:
+
+```json
+{
+  "LogLevel": "Error"
+}
+```
+
+4. Save the file. **(might need to change permission level to be able to change/save)**
+5. Restart the Collector service to apply changes:
+
+### 🔹 How to Start, Restart, or Stop the Collector Service
+1. Search for Services
+<img width="296" height="628" alt="image" src="https://github.com/user-attachments/assets/0a5b3980-575d-4e16-9ff3-f9189135258c" />
+
+2. Search for Timpi Collector and make your choice
+<img width="1229" height="214" alt="image" src="https://github.com/user-attachments/assets/90a37183-0893-4dd4-a934-4867503ec4b3" />
+
+
+🧩 *Tip:* “Verbose” is great for troubleshooting or first-time setup —
+but switch back to “Info” afterward to reduce log size.
+
+---
 
 ---
 
