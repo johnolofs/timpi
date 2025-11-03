@@ -26,7 +26,7 @@ By running a Collector, you help Timpi grow its decentralized data network — p
 
   * [Method 1 – Apps & Features](#-method-1--apps--features)
   * [Method 2 – Control Panel](#-method-2--control-panel)
-* [Community Help](#-community-help)
+
 
 ---
 
