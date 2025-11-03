@@ -1,6 +1,8 @@
-# 🔄 Timpi Collector Node for Windows 10 & 11 (v2)
+# 🌐 Timpi Collector Node for Windows 10 & 11 (v2)
 
-### The Timpi Collector is a decentralized “worker” that helps power the Timpi search engine by crawling and indexing the web. Each Collector contributes to Timpi’s global data network while remaining completely private and secure.
+### The Timpi Collector is part of the decentralized Timpi search network — it crawls and indexes the web, helping to build the world’s first community-powered search engine.
+
+By running a Collector, you help Timpi grow its decentralized data network — privately, securely, and without ads or tracking.
 
 ---
 
@@ -17,22 +19,20 @@
   * [3. What the Installer Does Automatically](#-3-what-the-installer-does-automatically)
 * [Using Timpi Collector](#-using-timpi-collector)
 
-  * [4. Start the Collector](#-4-start-the-collector)
+  * [4. Viewing Collector Logs](#-4-viewing-collector-logs)
   * [5. Access the Management Dashboard](#-5-access-the-management-dashboard)
   * [6. Register or Retrieve Your GUID](#-6-register-or-retrieve-your-guid)
 * [Uninstallation Guide](#-uninstallation-guide)
 
   * [Method 1 – Apps & Features](#-method-1--apps--features)
   * [Method 2 – Control Panel](#-method-2--control-panel)
+* [Community Help](#-community-help)
 
 ---
 
-**Version:** `2.0.0`
-
+**Version:** `v2`
 📦 **Installer type:** Native `.exe` (Windows Program)
-
-🔗 **Download:**
-[TimpiCollectorSetup-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
+🔗 **Download:** [TimpiCollectorWindowsLatest-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
 
 ---
 
@@ -41,96 +41,119 @@
 ### 🔹 1. Download the Installer
 
 * Click the link above to download the compressed `.rar` file.
-* Extract it using [7-Zip](https://www.7-zip.org/) or Windows’ built-in extraction tool.
-* Inside the archive, you’ll find the installer:
-  👉 `TimpiCollectorWindowsLatest-v2.exe`
-  <img width="709" height="204" alt="image" src="https://github.com/user-attachments/assets/d8688ced-0e98-4dd9-b47a-b3e310d5b8fc" />
+* Extract it using [7-Zip](https://www.7-zip.org/) or Windows’ built-in tool.
+* Inside the folder, you’ll see:
 
+  ```
+  TimpiCollectorWindowsLatest-v2.exe
+  ```
+
+   <img width="709" height="204" alt="image" src="https://github.com/user-attachments/assets/d8688ced-0e98-4dd9-b47a-b3e310d5b8fc" />
 
 ---
 
 ### 🔹 2. Run the Installer
 
-* **Right-click** `TimpiCollectorWindowsLatest-v2.exe`
+1. **Right-click** on `TimpiCollectorWindowsLatest-v2.exe`
+2. Select **Run as Administrator** (this is required)
  <img width="511" height="573" alt="image" src="https://github.com/user-attachments/assets/3e9b3b87-84a3-4086-9b43-869571bc883e" />
+ 
+3. When prompted, **paste or type your GUID**
+ <img width="496" height="391" alt="image" src="https://github.com/user-attachments/assets/46313d5e-923a-4b04-b0a6-f732144d4559" />
 
-* Select **“Run as Administrator”** (required for proper installation).
-* Follow the installation wizard until completion.
-
-**Paste/Enter your GUID**
-
-<img width="496" height="391" alt="image" src="https://github.com/user-attachments/assets/46313d5e-923a-4b04-b0a6-f732144d4559" />
-
+   *Your GUID connects this Collector to your Timpi account.*
+   
+5. Wait for the installer to complete — this usually takes under a minute.
 
 ---
 
 ### 🔹 3. What the Installer Does Automatically
 
-✅ Installs Timpi Collector to:
+✅ Installs the Timpi Collector to
 `C:\Program Files\Timpi Intl. LTD`
 
-✅ Registers required runtime components
+✅ Creates a **Windows background service**
+that runs automatically at startup and restarts if it ever crashes.
 
-✅ Creates a **desktop shortcut** named **TimpiCollector Logs**
+✅ Saves your **GUID** in `C:\Program Files\Timpi Intl. LTD\guid.txt`
 
-✅ Adds **Timpi Collector** to Windows “Apps & Features” for easy removal
+✅ Creates a **desktop shortcut** called **Timpi Collector Logs**
+to easily view live collector activity. (might take some time depending on what log lever you set in the CollectorSettings.json "Error", "Verbose" and "Info".
 
-🧩 *Note:* This version no longer includes the old Timpi Manager or system tray icon.
+✅ Adds Timpi Collector to Windows “Apps & Features” for easy uninstallation.
+
+🧩 *Note:* This new version **does not** include the old *Timpi Manager* or system tray icon — it runs completely in the background for better stability and performance.
 
 ---
 
 ## 🖥 Using Timpi Collector
 
-### 🔹 4. Start the Collector
+### 🔹 4. Viewing Collector Logs
 
-1. **Double-click** the desktop icon **TimpiCollector**
-2. If prompted, choose **“Run as Administrator”**
-3. When launched, the program will **ask for your GUID**
-<img width="980" height="164" alt="image" src="https://github.com/user-attachments/assets/cfab4b1a-f604-4da1-aa5a-51ef0b992611" />
+The Collector now runs silently in the background.
+You can check that it’s working by following the logs.
 
-   * Paste or type your GUID (you can register or retrieve it using the link below)
-4. Once entered, the Collector will start automatically and begin operating and can be seen from **management dashboard**
+#### 🪟 Option 1 – Desktop Shortcut (Recommended)
+
+Simply double-click the **“Timpi Collector Logs”** icon on your desktop.
+This opens a PowerShell window that continuously displays new log entries.
+<img width="1235" height="128" alt="image" src="https://github.com/user-attachments/assets/96f1fe6f-3f0d-492e-90d0-c6be41a929d4" />
+
+
+#### 🧑‍💻 Option 2 – Manually in PowerShell
+
+Run this command:
+
+```powershell
+Get-Content "C:\Program Files\Timpi Intl. LTD\logs\collector.out.log" -Tail 50 -Wait
+```
+
+📂 **Log location:**
+
+```
+C:\Program Files\Timpi Intl. LTD\logs\
+ ├── collector.out.log  ← Main log (shows normal activity)
+ └── collector.err.log  ← Error log (only if issues occur)
+```
+
+To stop viewing, press **Ctrl + C**.
 
 ---
 
 ### 🔹 5. Access the Management Dashboard
 
-You can now view and control your Collector directly in your browser.
-The web-based dashboard lets you:
+You can manage your node directly from your browser:
 
 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
 
-* Monitor Collector performance
+From here you can:
+
+* Monitor your Collector’s performance
 * Adjust worker/thread settings
-* Manage multiple nodes
-
+* View uptime, status, and logs
 <img width="461" height="653" alt="Skärmavbild 2025-10-29 kl  19 23 37" src="https://github.com/user-attachments/assets/9cb31038-1707-4edf-8499-bc686e23a9be" />
-
-
 ---
 
 ### 🔹 6. Register or Retrieve Your GUID
 
-If you haven’t registered yet, follow this simple guide to create your node and receive your GUID:
+If you haven’t set up your node yet, you can register to get your GUID here:
 
 📘 **Guide:** [Register Your Timpi Node (GUID Setup)](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
 
-Once registered, your **GUID** appears in your account under the management dashboard.
-You’ll need this GUID when you start the Collector.
+Your GUID will appear under your profile on the **Timpi Node Management Dashboard**.
+You only need to enter this GUID once during installation — it’s automatically saved.
 
 ---
 
 ## 🗑 Uninstallation Guide
 
-You can uninstall the Timpi Collector just like any other Windows program.
+You can uninstall the Timpi Collector just like any other Windows app.
 
 ### 🔹 Method 1 – Apps & Features
 
-1. Open **Start Menu → Settings**
-2. Go to **Apps → Installed Apps**
-3. Search for `Timpi`
-4. Click **Uninstall** on **Timpi Collector**
-5. Confirm removal
+1. Open **Start → Settings → Apps → Installed Apps**
+2. Search for **Timpi**
+3. Click **Uninstall** next to **Timpi Collector**
 
 ---
 
@@ -139,20 +162,20 @@ You can uninstall the Timpi Collector just like any other Windows program.
 1. Press `Windows + R` → type `control` → press **Enter**
 <img width="393" height="203" alt="image" src="https://github.com/user-attachments/assets/8c57851c-cd32-41be-ad3a-85526ee4c491" />
 
-3. Go to **Programs → Uninstall a Program**
+2. Go to **Programs → Uninstall a Program**
 <img width="1125" height="440" alt="Screenshot 2025-10-29 172710" src="https://github.com/user-attachments/assets/f190b96e-3f86-4c17-bc28-32bb8ef2ad7c" />
 
-5. Find **Timpi Collector**
+3. Find **Timpi Collector**
 <img width="916" height="82" alt="image" src="https://github.com/user-attachments/assets/c54f2944-9e83-458f-a91c-eee4596d35d1" />
 
-7. Right-click → **Uninstall**
+5. Right-click → **Uninstall**
 <img width="1123" height="246" alt="image" src="https://github.com/user-attachments/assets/f47507c4-20e9-484f-a2ef-e30741482717" />
 
 ✅ This removes:
 
-* All installed program files
+* All installed files
+* The background service
 * The desktop shortcut
-* Any system components related to the Collector
 
 ---
 
@@ -161,6 +184,6 @@ You can uninstall the Timpi Collector just like any other Windows program.
 | Feature                  | Description                                                                                                                        |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | 🧩 **No UI / Tray**      | The Collector now runs headless — no Timpi Manager or tray icon                                                                    |
-| 🧾 **GUID Prompt**       | You enter or paste your GUID at first startup                                                                                      |
+| 🧾 **GUID Prompt**       | You enter or paste your GUID at Installation proccess                                                                              |
 | 💻 **Web Dashboard**     | Manage threads, workers, and performance online                                                                                    |
 | 🌐 **GUID Registration** | Register and view your GUID at [RegisterNodes.md](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md) |
