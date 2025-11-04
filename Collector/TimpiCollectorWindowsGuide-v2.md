@@ -106,7 +106,7 @@ You can check that it’s working by following the logs.
 
 
 Simply double-click the **“Timpi Collector Logs”** icon on your desktop.
-This opens a PowerShell window that continuously displays new log entries **(This is shown as"Verbose" detailed mode.** (Yours might take up to 15-30 minutes to show any information)
+This opens a PowerShell window that continuously displays new log entries **(This is shown as"Verbose" detailed mode.** (Yours will show if any Error´s occurs))
 <img width="1235" height="128" alt="image" src="https://github.com/user-attachments/assets/96f1fe6f-3f0d-492e-90d0-c6be41a929d4" />
 
 
