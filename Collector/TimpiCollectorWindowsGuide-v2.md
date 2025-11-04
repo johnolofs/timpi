@@ -53,6 +53,10 @@ By running a Collector, you help Timpi grow its decentralized data network — p
 
    <img width="709" height="204" alt="image" src="https://github.com/user-attachments/assets/d8688ced-0e98-4dd9-b47a-b3e310d5b8fc" />
 
+* Extract to (I choosed desktop)
+<img width="709" height="262" alt="image" src="https://github.com/user-attachments/assets/d2f9a988-b2ce-4c12-86ab-56dd23eb422c" />
+
+
 ---
 
 ### 🔹 2. Run the Installer
