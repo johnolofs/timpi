@@ -159,7 +159,7 @@ Example:
 1. Search for Services, then press on services
 <img width="296" height="628" alt="image" src="https://github.com/user-attachments/assets/0a5b3980-575d-4e16-9ff3-f9189135258c" />
 
-2. Search for Timpi Collector and make your choice
+2. Search for Timpi Collector and here you can start, stop, restart and pause
 <img width="1229" height="214" alt="image" src="https://github.com/user-attachments/assets/90a37183-0893-4dd4-a934-4867503ec4b3" />
 
 
