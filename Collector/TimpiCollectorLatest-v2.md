@@ -257,6 +257,9 @@ sudo systemctl status collector
 ```bash
 sudo journalctl -u collector -f
 ```
+```bash
+sudo journalctl -u collector-updater -f
+```
 
 **Timer schedule:**
 
