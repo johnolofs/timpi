@@ -19,45 +19,56 @@ No scripts. No manual updates.
 
 ## 📑 **Table of Contents**
 
-1. [Get Your GUID & Manage Workers](#1-get-your-guid--manage-workers)
-2. [About Collector v2](#2-about-collector-v2)
-3. [System Requirements](#3-system-requirements)
-4. [Step 1 — Remove Old Versions](#4-step-1--remove-old-versions)
-5. [Step 2 — Prepare a Clean Directory](#5-step-2--prepare-a-clean-directory)
-6. [Step 3 — Download & Extract Collector v2](#6-step-3--download--extract-collector-v2)
-7. [Step 4 — Set Permissions](#7-step-4--set-permissions)
-8. [Step 5 — Create the Collector Service](#8-step-5--create-the-collector-service)
-9. [Step 6 — Add the Auto-Updater Service](#9-step-6--add-the-auto-updater-service)
-10. [Step 7 — Create and Enable the 6-Hour Timer](#10-step-7--create-and-enable-the-6-hour-timer)
-11. [Step 8 — Verify Everything Works](#11-step-8--verify-everything-works)
-12. [How the Auto-Updater Works](#12-how-the-auto-updater-works)
-13. [Manual Update / Emergency Hotfix](#13-manual-update--emergency-hotfix)
-14. [File Summary](#14-file-summary)
-15. [Troubleshooting](#15-troubleshooting)
+1. [Get Your GUID & Manage Workers](#guid)
+2. [About Collector v2](#about)
+3. [System Requirements](#requirements)
+4. [Step 1 — Remove Old Versions](#step1)
+5. [Step 2 — Prepare a Clean Directory](#step2)
+6. [Step 3 — Download & Extract Collector v2](#step3)
+7. [Step 4 — Set Permissions](#step4)
+8. [Step 5 — Create the Collector Service](#step5)
+9. [Step 6 — Add the Auto-Updater Service](#step6)
+10. [Step 7 — Create and Enable the 6-Hour Timer](#step7)
+11. [Step 8 — Verify Everything Works](#verify)
+12. [How the Auto-Updater Works](#autoupdater)
+13. [Manual Update / Emergency Hotfix](#manual-update)
+14. [File Summary](#files)
+15. [Troubleshooting](#troubleshooting)
 
 ---
+
+<a name="guid"></a>
 
 ## 1️⃣ Get Your GUID & Manage Workers
 
-👉 Visit [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
+👉 Visit **[https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)**
 
-Here you can register and copy your Collector GUID, adjust Workers/Threads, and verify online status.
-💡 Start with **1 Worker & 5 Threads** for stable performance.
+Here you can:
+
+* Register and copy your **Collector GUID**
+* Adjust **Workers** and **Threads**
+* See if your Collector is **online**
+
+💡 Recommended start: **1 Worker & 5 Threads** for stable performance.
 
 ---
+
+<a name="about"></a>
 
 ## 2️⃣ About Collector v2
 
-**Collector v2 for Linux is headless, auto-updating, and dashboard-managed.**
+Collector v2 for Linux is **headless**, **auto-updating**, and fully **dashboard-managed**.
 
-✅ Highlights
+✅ Highlights:
 
 * 🚫 No UI or tray icon
-* 🔄 Automatic updates through `CollectorAutoUpdater` + systemd timer
+* 🔄 Automatic updates via `CollectorAutoUpdater` + systemd timer
 * ⚙️ Managed from the Timpi Dashboard
-* 🧠 Stable 24/7 operation
+* 🧠 Built for stable 24/7 operation
 
 ---
+
+<a name="requirements"></a>
 
 ## 3️⃣ System Requirements
 
@@ -71,6 +82,8 @@ Here you can register and copy your Collector GUID, adjust Workers/Threads, and 
 
 ---
 
+<a name="step1"></a>
+
 ## 4️⃣ Step 1 — Remove Old Versions
 
 ```bash
@@ -83,6 +96,8 @@ sudo systemctl daemon-reload
 
 ---
 
+<a name="step2"></a>
+
 ## 5️⃣ Step 2 — Prepare a Clean Directory
 
 ```bash
@@ -93,6 +108,8 @@ cd /opt/timpi
 ```
 
 ---
+
+<a name="step3"></a>
 
 ## 6️⃣ Step 3 — Download & Extract Collector v2
 
@@ -106,7 +123,7 @@ rm -rf TimpiCollectorLinuxLatest TimpiCollectorLinuxLatest-v2.rar
 
 Expected contents:
 
-```
+```text
 /opt/timpi/
 ├── TimpiCollector
 ├── CollectorAutoUpdater
@@ -115,6 +132,8 @@ Expected contents:
 ```
 
 ---
+
+<a name="step4"></a>
 
 ## 7️⃣ Step 4 — Set Permissions
 
@@ -125,13 +144,15 @@ sudo chmod +x /opt/timpi/CollectorAutoUpdater
 
 ---
 
+<a name="step5"></a>
+
 ## 8️⃣ Step 5 — Create the Collector Service
 
 ```bash
 sudo nano /etc/systemd/system/collector.service
 ```
 
-Paste (and replace `YOUR-GUID`):
+Paste (replace `YOUR-GUID`):
 
 ```ini
 [Unit]
@@ -153,6 +174,8 @@ WantedBy=multi-user.target
 Save → `Ctrl + O`, `Enter`, `Ctrl + X`.
 
 ---
+
+<a name="step6"></a>
 
 ## 9️⃣ Step 6 — Add the Auto-Updater Service
 
@@ -184,6 +207,8 @@ ExecStart=/bin/bash -c '\
 ```
 
 ---
+
+<a name="step7"></a>
 
 ## 🔟 Step 7 — Create and Enable the 6-Hour Timer
 
@@ -219,29 +244,33 @@ sudo systemctl start collector-updater.timer
 
 ---
 
+<a name="verify"></a>
+
 ## 1️⃣1️⃣ Step 8 — Verify Everything Works
 
-Check status:
+**Check status:**
 
 ```bash
 sudo systemctl status collector
 ```
 
-Follow logs:
+**Follow logs:**
 
 ```bash
 sudo journalctl -u collector -f
 ```
 
-Timer schedule:
+**Timer schedule:**
 
 ```bash
 systemctl list-timers | grep collector-updater
 ```
 
-✅ `NEXT` and `LAST` should be ≈6 hours apart.
+✅ `NEXT` and `LAST` should be roughly 6 hours apart.
 
 ---
+
+<a name="autoupdater"></a>
 
 ## 1️⃣2️⃣ How the Auto-Updater Works
 
@@ -254,6 +283,8 @@ systemctl list-timers | grep collector-updater
 
 ---
 
+<a name="manual-update"></a>
+
 ## 1️⃣3️⃣ Manual Update / Emergency Hotfix
 
 ### 🟢 Force an update immediately
@@ -262,7 +293,7 @@ systemctl list-timers | grep collector-updater
 sudo systemctl start collector-updater.service
 ```
 
-Monitored with:
+Monitor:
 
 ```bash
 sudo journalctl -u collector-updater -f
@@ -298,12 +329,14 @@ sudo journalctl -u collector -n 20
 
 Look for:
 
-```
+```text
 [INF] Starting Timpi Collector (GUID=xxxx)
 [INF] The response was successful: Collector found on ...
 ```
 
 ---
+
+<a name="files"></a>
 
 ## 1️⃣4️⃣ File Summary
 
@@ -317,9 +350,13 @@ Look for:
 
 ---
 
+<a name="troubleshooting"></a>
+
 ## 1️⃣5️⃣ Troubleshooting
 
-**Collector shows “deactivating (stop-sigterm)”** → Normal while updating.
+**Collector shows “deactivating (stop-sigterm)”**
+→ Normal while updating.
+
 **Timer missing `NEXT`** → Reload and restart:
 
 ```bash
@@ -354,28 +391,10 @@ Your **Timpi Collector v2 (Linux)** is now:
 * Always running via systemd
 * Auto-updating every 6 hours
 * Restarting after updates
-* Managed through [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
+* Managed through **[https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)**
 
 For urgent patches, simply run:
 
 ```bash
 sudo systemctl start collector-updater.service
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
