@@ -67,8 +67,7 @@ Here you can register and copy your **Collector GUID**, manage workers & threads
 | 🔄 Auto-Updating     | Internal loop runs `CollectorAutoUpdater` every 6 hours |
 | ⚙️ Self-Healing      | Restarts automatically after updates                    |
 | 🧠 Dashboard Managed | All settings handled in the dashboard                   |
-| 📦 Lightweight       | ≈ 127 MB image                                          |
-| 🪶 Persistent Logs   | `/opt/timpi/auto_update.log` keeps update history        |
+| 🪶 Persistent Logs     | `/opt/timpi/auto_update.log` keeps update history        |
 
 ---
 
