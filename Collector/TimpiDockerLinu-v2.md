@@ -248,11 +248,11 @@ you can run multiple containers on the same host — one per GUID.
 
 ### Example: Run 3 Collectors on One Machine
 
-| Collector Name      | External Port (Optional) | GUID Example |
-| :------------------ | :----------------------- | :----------- |
-| `timpi-collector-1` | (default)                | `GUID1-xxxx` |
-| `timpi-collector-2` | 5016                     | `GUID2-yyyy` |
-| `timpi-collector-3` | 5017                     | `GUID3-zzzz` |
+| Collector Name      | GUID Example |
+| :------------------ | :----------- | 
+| `timpi-collector-1` | `GUID1-xxxx` |
+| `timpi-collector-2` | `GUID2-yyyy` |
+| `timpi-collector-3` |`GUID3-zzzz` |
 
 Commands:
 
