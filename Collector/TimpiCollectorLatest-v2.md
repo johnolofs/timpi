@@ -1,6 +1,6 @@
 # 🔄 **Timpi Collector v2 — Linux Installation Guide**
 
-*(Headless + Auto-Updating Systemd Edition — 6 Hour Cycle)*
+*(Auto-Updating Systemd Edition — 6 Hour Cycle)*
 
 Timpi Collectors are decentralized “workers” that crawl and index websites for the **Timpi Search Engine** — privately, securely, and without ads or tracking.
 This guide installs and configures both:
@@ -9,7 +9,6 @@ This guide installs and configures both:
 * 🔄 **CollectorAutoUpdater** – auto-updates the worker
 
 Everything runs automatically in the background via **systemd services + timer**, including across reboots.
-No scripts. No manual updates.
 
 ---
 
@@ -117,7 +116,6 @@ cd /opt/timpi
 wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest-v2.rar -O TimpiCollectorLinuxLatest-v2.rar
 sudo apt install -y unrar
 unrar x TimpiCollectorLinuxLatest-v2.rar
-mv TimpiCollectorLinuxLatest/* /opt/timpi/
 rm -rf TimpiCollectorLinuxLatest TimpiCollectorLinuxLatest-v2.rar
 ```
 
