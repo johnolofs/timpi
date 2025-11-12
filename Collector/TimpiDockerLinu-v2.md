@@ -164,7 +164,7 @@ You should see:
 2. Stops all `TimpiCollector` processes.
 3. Runs `CollectorAutoUpdater`.
 4. Restarts collector with the same GUID.
-5. Logs version and update status to both console and `auto_update.log`.
+5. Logs version and update status to both console and `TimpiCollectorLogsxxxx-xx-xx.log`.
 
 ✅ Container itself never stops.
 ✅ Only the collector process restarts.
@@ -205,7 +205,7 @@ Example output:
 View persistent history file:
 
 ```bash
-sudo docker exec timpi-collector cat /opt/timpi/auto_update.log
+sudo docker exec timpi-collector cat /opt/timpi/TimpiCollectorLogsxxxx-xx-xx.log
 ```
 
 ---
@@ -277,7 +277,7 @@ Each container runs independently:
 
 * Separate GUID
 * Separate internal auto-updater
-* Separate update log (`/opt/timpi/auto_update.log`)
+* Separate update log (`/opt/timpi/TimpiCollectorLogsxxxx-xx-xx.log`)
 * Safe to run on same machine
 
 💡 Tip: Give each collector a unique name (`timpi-collector-1`, `timpi-collector-2`, etc.)
@@ -340,7 +340,7 @@ Your **Timpi Collector v2 (Docker Edition)** now runs:
 
 * 📡 Always active with `--restart unless-stopped`
 * 🔄 Self-updating every 6 hours
-* 🧾 Logging update history to `/opt/timpi/auto_update.log`
+* 🧾 Logging update history to `/opt/timpi/TimpiCollectorLogsxxxx-xx-xx.log`
 * 🧠 Managed via [Timpi Dashboard](https://timpi.com/node/v2/management)
 * 🧩 Scalable for multiple NFTs — run one container per GUID
 
