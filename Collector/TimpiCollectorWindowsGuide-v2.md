@@ -144,17 +144,21 @@ During installation, a second shortcut is created on your desktop:
 
 When launched, it manually runs the **Auto-Updater** and displays its progress:
 
-<img width="959" height="514" alt="image" src="https://github.com/user-attachments/assets/7719548d-3d45-477f-8944-5ee8d9149cc1" />
+<img width="978" height="323" alt="image" src="https://github.com/user-attachments/assets/c7c8ad01-db4f-4593-953c-1cf3373e1567" />
+
 
 
 Example output:
 
 ```
-Killing TimpiCollector (PID: 12748)...
-Error stopping TimpiCollector: Access is denied.
+Killing TimpiCollector (PID: 10784)...
 Stopping Windows service: Timpi Collector
-Killing running TimpiCollector process (PID: 12748)...
+Service stopped.
 Downloading TimpiCollector from: https://timpi.io/applications/windows/TimpiCollectorWindowsLatestExecutable.zip
+Download completed. Extracting...
+Extraction completed.
+Starting service again...
+
 ```
 
 🧠 **What this does:**
