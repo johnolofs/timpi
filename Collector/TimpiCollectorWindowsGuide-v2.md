@@ -167,9 +167,6 @@ The updater stops the Collector service, downloads the latest build, updates the
 🔁 **Automatic on reboot:**
 The Auto-Updater also runs automatically whenever your computer restarts, ensuring your Collector always stays up to date even if you never open this shortcut manually.
 
-🔁 **Automatic updates every 6h:**
-The Auto-Updater also runs automatically every 6h on your computer, ensuring your Collector always stays up to date.
-
 ✅ **In summary:**
 The installer creates two helpful desktop shortcuts:
 
