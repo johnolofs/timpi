@@ -61,13 +61,13 @@ Here you can register and copy your **Collector GUID**, manage workers & threads
 
 ## 3️⃣ About Collector v2 (Docker Edition)
 
-| Feature              | Description                                             |
-| :------------------- | :------------------------------------------------------ |
-| 🧩 Headless          | Managed entirely from the Timpi Dashboard               |
-| 🔄 Auto-Updating     | Internal loop runs `CollectorAutoUpdater` every 6 hours |
-| ⚙️ Self-Healing      | Restarts automatically after updates                    |
-| 🧠 Dashboard Managed | All settings handled in the dashboard                   |
-| 🪶 Persistent Logs     | `/opt/timpi/auto_update.log` keeps update history        |
+| Feature              | Description                                                                 |
+| :------------------- | :------------------------------------------------------                     |
+| 🧩 Headless          | Managed entirely from the Timpi Dashboard                                   |
+| 🔄 Auto-Updating     | Internal loop runs `CollectorAutoUpdater` every 6 hours                     |
+| ⚙️ Self-Healing      | Restarts automatically after updates                                        |
+| 🧠 Dashboard Managed | All settings handled in the dashboard                                       |
+| 🪶 Persistent Logs     | `/opt/timpi/TimpiCollectorLogsxxxx-xx-xx.log` keeps update history        |
 
 ---
 
