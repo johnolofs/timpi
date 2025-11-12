@@ -118,7 +118,7 @@ sudo systemctl status docker
 
 ![Important](https://img.shields.io/badge/IMPORTANT-Replace%20YOUR--GUID--HERE-red?style=for-the-badge)
 
-> ⚠️ **Replace** <span style="color:red; font-weight:bold">YOUR-GUID-HERE</span> **with your actual GUID from your Timpi dashboard before running the command below.**
+> ⚠️ **Replace** <span style="color:red; font-weight:bold">YOUR-GUID-HERE</span> **with your actual GUID from your Timpi dashboard https://timpi.com/node/v2/management before running the command below.**
 
 ```bash
 sudo docker rm -f timpi-collector 2>/dev/null || true
