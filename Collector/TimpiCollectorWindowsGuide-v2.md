@@ -39,6 +39,20 @@ By running a Collector, you help Timpi grow its decentralized data network — p
 
 ## 📥 Installation Guide
 
+---
+
+> ⚠️ **Support Policy**
+>
+> Timpi officially supports installations on **Windows 10/11**, **native Linux (Ubuntu)**, and **Docker running on native Linux**.  
+>  
+> Other environments — including **Proxmox**, **LXC containers**, **nested virtualization**, or **emulated systems** — are considered **unsupported**.  
+>  
+> You are free to experiment with these setups, but please note that **technical support and helpdesk tickets are only available for supported platforms**.  
+> For the best performance and reliability, always use a fully supported operating system.
+
+---
+
+
 ### 🔹 1. Download the Installer
 
 * Click the link above to download the compressed `.rar` file.
