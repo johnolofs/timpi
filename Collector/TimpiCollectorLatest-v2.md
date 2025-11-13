@@ -87,6 +87,7 @@ Collector v2 for Linux is **headless**, **auto-updating**, and fully **dashboard
 
 ```bash
 sudo systemctl stop collector 2>/dev/null || true
+sudo systemctl stop collector_ui 2>/dev/null || true
 sudo systemctl stop collector-updater.timer 2>/dev/null || true
 sudo systemctl stop collector-updater 2>/dev/null || true
 sudo rm -f /etc/systemd/system/collector*.service /etc/systemd/system/collector*.timer
