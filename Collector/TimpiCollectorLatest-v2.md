@@ -34,7 +34,20 @@ Everything runs automatically in the background via **systemd services + timer**
 14. [File Summary](#files)
 15. [Troubleshooting](#troubleshooting)
 
+
 ---
+
+> ⚠️ **Support Policy**
+>
+> Timpi officially supports installations on **Windows 10/11**, **native Linux (Ubuntu)**, and **Docker running on native Linux**.  
+>  
+> Other environments — including **Proxmox**, **LXC containers**, **nested virtualization**, or **emulated systems** — are considered **unsupported**.  
+>  
+> You are free to experiment with these setups, but please note that **technical support and helpdesk tickets are only available for supported platforms**.  
+> For the best performance and reliability, always use a fully supported operating system.
+
+---
+
 
 <a name="guid"></a>
 
