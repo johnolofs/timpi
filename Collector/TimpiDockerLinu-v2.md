@@ -140,7 +140,7 @@ sudo docker rm -f timpi-collector 2>/dev/null || true
 sudo docker run -d --name timpi-collector \
   --restart unless-stopped \
   -e GUID=YOUR-GUID-HERE \
-  johnolofs/timpi-collector:latest
+  timpiltd/timpi-collector:latest
 ```
 
 ---
@@ -279,17 +279,17 @@ Commands:
 sudo docker run -d --name timpi-collector-1 \
   --restart unless-stopped \
   -e GUID=GUID1-xxxx \
-  johnolofs/timpi-collector:latestt
+  timpiltd/timpi-collector:latest
 
 sudo docker run -d --name timpi-collector-2 \
   --restart unless-stopped \
   -e GUID=GUID2-yyyy \
-  johnolofs/timpi-collector:latest
+  timpiltd/timpi-collector:latest
 
 sudo docker run -d --name timpi-collector-3 \
   --restart unless-stopped \
   -e GUID=GUID3-zzzz \
-  johnolofs/timpi-collector:latest
+  timpiltd/timpi-collector:latest
 ```
 
 Each container runs independently:
