@@ -29,15 +29,6 @@ By running a Collector, you help Timpi grow its decentralized data network — p
   * [Method 1 – Apps & Features](#-method-1--apps--features)
   * [Method 2 – Control Panel](#-method-2--control-panel)
 
----
-
-**Version:** `v2`
-📦 **Installer type:** Native `.exe` (Windows Program)
-🔗 **Download:** [TimpiCollectorWindowsLatest-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
-
----
-
-## 📥 Installation Guide
 
 ---
 
@@ -52,6 +43,13 @@ By running a Collector, you help Timpi grow its decentralized data network — p
 
 ---
 
+**Version:** `v2`
+📦 **Installer type:** Native `.exe` (Windows Program)
+🔗 **Download:** [TimpiCollectorWindowsLatest-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
+
+---
+
+## 📥 Installation Guide
 
 ### 🔹 1. Download the Installer
 
