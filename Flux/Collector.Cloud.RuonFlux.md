@@ -1,7 +1,7 @@
 # 🚀 Timpi Collector — FluxCloud Deployment Guide (2025 Edition)
 
 Deploy and run your **Timpi Collector Node** easily using **FluxCloud** — the decentralized cloud infrastructure powered by Flux.
-This guide covers the full process from selecting the app in the marketplace to confirming deployment via ZelCore.
+This guide walks through the full process from selecting the app in the marketplace to confirming deployment via ZelCore.
 
 ---
 
@@ -13,60 +13,71 @@ This guide covers the full process from selecting the app in the marketplace to 
 
 1. [Overview](#overview)
 2. [Requirements](#requirements)
-3. [Step 1 – Find Timpi Collector in Flux Marketplace](#step-1-find-timpi-collector-in-flux-marketplace)
-4. [Step 2 – Configure Your App](#step-2-configure-your-app)
-5. [Step 3 – Add Your GUID](#step-3-add-your-guid)
-6. [Step 4 – Set Deployment Location](#step-4-set-deployment-location)
-7. [Step 5 – Email Alerts](#step-5-email-alerts)
-8. [Step 6 – Sign and Register](#step-6-sign-and-register)
-9. [Step 7 – Payment Options](#step-7-payment-options)
-10. [Step 8 – ZelCore Payment Example](#step-8-zelcore-payment-example)
-11. [Step 9 – Deployment Confirmation](#step-9-deployment-confirmation)
-12. [Step 10 – Verify and Manage Your Collector](#step-10-verify-and-manage-your-collector)
+3. [Step 1 – Find Timpi Collector in Flux Marketplace](#step-1--find-timpi-collector-in-flux-marketplace)
+4. [Step 2 – Configure Your App](#step-2--configure-your-app)
+5. [Step 3 – Add Your GUID](#step-3--add-your-guid)
+6. [Step 4 – Set Deployment Location](#step-4--set-deployment-location)
+7. [Step 5 – Email Alerts](#step-5--email-alerts)
+8. [Step 6 – Sign and Register](#step-6--sign-and-register)
+9. [Step 7 – Payment Options](#step-7--payment-options)
+10. [Step 8 – ZelCore Payment Example](#step-8--zelcore-payment-example)
+11. [Step 9 – Deployment Confirmation](#step-9--deployment-confirmation)
+12. [Step 10 – Verify and Manage Your Collector](#step-10--verify-and-manage-your-collector)
 13. [Support](#support)
 
 ---
 
-## 🧭 Overview
+## Overview
 
 Timpi Collectors are decentralized “workers” that crawl and index the web for the **Timpi Search Engine** — privately, securely, and without ads or tracking.
 Running one on FluxCloud lets you contribute to the Timpi network without needing your own hardware.
 
 ---
 
-## ⚙️ Requirements
+## Requirements
 
-✅ Timpi wallet address with a valid **Collector NFT**
-✅ FluxCloud account — [https://cloud.runonflux.com](https://cloud.runonflux.com)
+✅ A Timpi wallet address with a valid **Collector NFT**
+✅ A FluxCloud account — [https://cloud.runonflux.com](https://cloud.runonflux.com)
 ✅ ZelCore wallet with FLUX for payment (or PayPal / Stripe)
 
 ---
 
-## 🪙 Step 1 – Find Timpi Collector in Flux Marketplace
+## Step 1 – Find Timpi Collector in Flux Marketplace
 
 1. Visit [https://cloud.runonflux.com](https://cloud.runonflux.com)
-2. Log in with **FluxID / ZelID / Google / Apple / Email**
-3. In the sidebar, go to **Marketplace → Applications**
+
+2. Log in via **FluxID / ZelID / Google / Apple / Email**
+
+3. Go to **Marketplace → Applications**
+
 4. Search for **Timpi Collector**
+
    ![Timpi Collector Marketplace](https://github.com/user-attachments/assets/6f124cdf-35ac-4318-9cbb-c11a8bc3a63c)
+
 5. Click **Install**
 
 ---
 
-## ⚙️ Step 2 – Configure Your App
+## Step 2 – Configure Your App
 
-1. Choose **CPU: 2 cores**, **Memory: 2000 MB**, **Storage: 1 GB**
-2. Select **Subscription Duration** (1, 3, 6, or 12 months)
-3. Deployment defaults to **3 instances** for redundancy
-4. Accept **Terms of Service**
+1. Select hardware:
+
+   * **CPU:** 2 cores
+   * **Memory:** 2000 MB
+   * **Storage:** 1 GB
+2. Select **Subscription Duration**
+3. Confirm that Flux defaults to **3 instances**
+4. Accept Terms of Service
+
    ![Config](https://github.com/user-attachments/assets/40c98dc5-5bae-4a06-abad-09ea56c1981c)
 
 ---
 
-## 🧩 Step 3 – Add Your GUID
+## Step 3 – Add Your GUID
 
-Paste your **Collector GUID** (from your Timpi Dashboard).
-Example:
+Paste your **Collector GUID** from the Timpi Dashboard.
+
+Example GUID:
 
 ```
 f0b8c8c5-d59e-445d-aa68-87d8354b8d81
@@ -76,22 +87,27 @@ f0b8c8c5-d59e-445d-aa68-87d8354b8d81
 
 ---
 
-## 🌍 Step 4 – Set Deployment Location
+## Step 4 – Set Deployment Location
 
-* Recommended: **Global (All Continents)**
-* Optional: add or restrict specific continents/countries
+Recommended:
+
+* **Global (All Continents)**
+
+Optional:
+
+* Restrict deployment to specific continents or countries
 
 <img width="937" height="648" alt="Location" src="https://github.com/user-attachments/assets/5d3bb7b0-73ce-4692-be78-297b33f5d0aa" />
 
 ---
 
-## 📧 Step 5 – Email Alerts
+## Step 5 – Email Alerts
 
-Enter your email to receive:
+Enter your email for:
 
-* App launch confirmation
-* Node change alerts
-* Subscription expiration reminders
+* Deployment confirmation
+* Node movement notifications
+* Subscription expiration alerts
 
 Example: `johnolofs@timpi.com`
 
@@ -99,96 +115,97 @@ Example: `johnolofs@timpi.com`
 
 ---
 
-## 🔏 Step 6 – Sign and Register
+## Step 6 – Sign and Register
 
-FluxCloud will now sign and register your app on-chain.
-Wait for ✅ “Signing and Registration Complete.”
+FluxCloud will now sign and register your application on the network.
+Wait for the green checkmark:
+
+**Signing and Registration Complete**
 
 <img width="964" height="643" alt="Sign" src="https://github.com/user-attachments/assets/e9f560e2-fe50-4b9b-8f58-943c479282b0" />
 
 ---
 
-## 💳 Step 7 – Payment Options
+## Step 7 – Payment Options
 
-Choose your preferred method:
+You can pay via:
 
-* 💳 **Stripe** (Credit Card)
-* 🅿️ **PayPal**
-* 💠 **ZelCore / SSP** (Pay with FLUX, **5% discount**)
+* **Stripe** (Credit Card)
+* **PayPal**
+* **ZelCore / SSP** (FLUX — **5% discount**)
 
 <img width="971" height="707" alt="Payment Options" src="https://github.com/user-attachments/assets/248ed5b6-058c-4570-8403-65b5bfc8b54e" />
 
 ---
 
-## 💠 Step 8 – ZelCore Payment Example
+## Step 8 – ZelCore Payment Example
 
-1. Click **Open ZelCore** to send your FLUX
+### 1. Open ZelCore
 
-   <img width="598" height="315" alt="ZelCore Instructions" src="https://github.com/user-attachments/assets/3b8fd524-ec18-4efb-812d-069d84d42b15" />
+<img width="598" height="315" alt="ZelCore Instructions" src="https://github.com/user-attachments/assets/3b8fd524-ec18-4efb-812d-069d84d42b15" />
 
-2. A **Payment Address** and **Payment Message** appear:
+### 2. Copy the payment details provided
 
-   ```
-   Address: t3NryfAQLGeFs9jEoeqsxmBN2QLRaRKFLUX  
-   Message: bb89b543068ff21ffc890dd21f0c23c2c71dafa590fbe33c43311a8420336db
-   ```
+```
+Address: t3NryfAQLGeFs9jEoeqsxmBN2QLRaRKFLUX
+Message: bb89b543068ff21ffc890dd21f0c23c2c71dafa590fbe33c43311a8420336db
+```
 
-   <img width="1352" height="710" alt="ZelCore Send" src="https://github.com/user-attachments/assets/d51d128b-4b34-4513-9c5a-162ccd0886c7" />
+<img width="1352" height="710" alt="ZelCore Send" src="https://github.com/user-attachments/assets/d51d128b-4b34-4513-9c5a-162ccd0886c7" />
 
-3. In ZelCore, confirm:
+### 3. Confirm the amount & message
 
-   * Amount: **28.28 FLUX**
-   * Note: same message string
+<img width="1037" height="400" alt="Payment Confirm" src="https://github.com/user-attachments/assets/8a830e05-5ee3-4609-bed6-c76db4f8a69c" />
 
-   <img width="1037" height="400" alt="Payment Confirm" src="https://github.com/user-attachments/assets/8a830e05-5ee3-4609-bed6-c76db4f8a69c" />
+### 4. Send
 
-4. Confirm → ✅ **Transaction Sent!**
+<img width="1074" height="520" alt="TX Sent" src="https://github.com/user-attachments/assets/8275bdc9-7181-4176-94a1-7328bc70f671" />
 
-   <img width="1074" height="520" alt="TX Sent" src="https://github.com/user-attachments/assets/8275bdc9-7181-4176-94a1-7328bc70f671" />
+### 5. Wait for confirmation (can take up to 45 minutes)
 
-5. Return to FluxCloud → wait for **Payment Confirmation** (up to 45 minutes)
-
-   <img width="980" height="645" alt="Waiting Payment" src="https://github.com/user-attachments/assets/8c55c7af-d744-4519-861a-8551c2bb0d93" />
+<img width="980" height="645" alt="Waiting Payment" src="https://github.com/user-attachments/assets/8c55c7af-d744-4519-861a-8551c2bb0d93" />
 
 ---
 
-## 🚀 Step 9 – Deployment Confirmation
+## Step 9 – Deployment Confirmation
 
-Once payment is received, your Timpi Collector automatically deploys across 3 Flux instances.
-✅ You’ll see **Payment Confirmed** and **App Running**.
+Once payment is confirmed, Flux automatically launches all 3 containers.
+
+You will see:
+
+**Payment Confirmed — Application Running**
 
 <img width="1018" height="704" alt="Deployment" src="https://github.com/user-attachments/assets/6c9c13d0-a5f0-44ac-969d-59d923733058" />
 
 ---
 
-## 🧠 Step 10 – Verify and Manage Your Collector
+## Step 10 – Verify and Manage Your Collector
 
-Go to **Applications → Management → My Active Apps → Manage**
+Go to:
 
-1. Under **Specifications**, verify:
+**Applications → Management → My Active Apps → Manage**
 
-   * Status: ✅ Running
-   * Instances: `3`
-   * Ports: `5015`
-   * Container: `timpiltd/timpi-collector:latest`
-   * GUID: matches your Collector
+Check:
 
-   <img width="1219" height="623" alt="Specs 1" src="https://github.com/user-attachments/assets/027f8764-b9a7-4a7b-b993-cc7b67314c4e" />
-   <img width="1205" height="590" alt="Specs 2" src="https://github.com/user-attachments/assets/dcadaab5-8705-490c-ab38-f286d5d2e0e1" />
+* Status: **Running**
+* Instances: **3**
+* Port: **5015** (legacy but still displayed)
+* Container: `timpiltd/timpi-collector:latest`
+* GUID matches your Collector NFT
 
-2. Click the [**Timpi Node Dashboard**](https://timpi.com/node/v2/management) to open your live Collector management panel.
+<img width="1219" height="623" alt="Specs 1" src="https://github.com/user-attachments/assets/027f8764-b9a7-4a7b-b993-cc7b67314c4e" />
 
----
+<img width="1205" height="590" alt="Specs 2" src="https://github.com/user-attachments/assets/dcadaab5-8705-490c-ab38-f286d5d2e0e1" />
 
-## 💡 Tips
+To configure or monitor your Collector:
 
-* **Auto-Updates:** FluxCloud automatically redeploys updates via Watchtower.
-* **Scaling:** You can run multiple Collector instances using different GUIDs.
-* **Expiration:** You’ll get notified via email before renewal is due.
+👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
 
 ---
 
-## 🆘 Support
+## Support
 
-* 💬 **Timpi Discord:** [https://discord.gg/timpi](https://discord.gg/timpi)
-* 🌐 **Flux Support:** [https://support.runonflux.io](https://support.runonflux.io)
+🟦 **Timpi Discord:** [https://discord.gg/timpi](https://discord.gg/timpi)
+🟩 **Flux Support:** [https://support.runonflux.io](https://support.runonflux.io)
+
+---
