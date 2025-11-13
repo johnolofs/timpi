@@ -151,7 +151,10 @@ sudo chmod +x /opt/timpi/CollectorAutoUpdater
 sudo nano /etc/systemd/system/collector.service
 ```
 
-Paste (replace `YOUR-GUID`):
+![Important](https://img.shields.io/badge/IMPORTANT-Replace%20YOUR--GUID--HERE-red?style=for-the-badge)
+
+> ⚠️ **Replace** <span style="color:red; font-weight:bold">YOUR-GUID-HERE</span> **with your actual GUID from your Timpi dashboard https://timpi.com/node/v2/management before running the command below.**
+
 
 ```ini
 [Unit]
@@ -162,7 +165,7 @@ After=network.target
 Type=simple
 User=root
 WorkingDirectory=/opt/timpi
-ExecStart=/opt/timpi/TimpiCollector YOUR-GUID
+ExecStart=/opt/timpi/TimpiCollector YOUR-GUID-HERE
 Restart=always
 RestartSec=5
 
