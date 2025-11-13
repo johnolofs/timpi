@@ -37,6 +37,20 @@ No scripts. No manual updates. Fully automated and verified by logs.
 
 ## 1️⃣ Overview
 
+---
+
+> ⚠️ **Support Policy**
+>
+> Timpi officially supports installations on **Windows 10/11**, **native Linux (Ubuntu)**, and **Docker running on native Linux**.  
+>  
+> Other environments — including **Proxmox**, **LXC containers**, **nested virtualization**, or **emulated systems** — are considered **unsupported**.  
+>  
+> You are free to experiment with these setups, but please note that **technical support and helpdesk tickets are only available for supported platforms**.  
+> For the best performance and reliability, always use a fully supported operating system.
+
+---
+
+
 The **Timpi Collector v2 (Docker Edition)** contains:
 
 * 🧠 `TimpiCollector` — main worker process
