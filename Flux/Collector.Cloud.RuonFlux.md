@@ -131,7 +131,7 @@ Choose your preferred method:
 3. A **Payment Address** and **Payment Message** appear:
 
    ```
-   Address: t3NryfAQLTeFs9jEoeqfxmVV2QLRaRKFLUX  
+   Address: t3NryfAQ......jEoeqfxmVV2QLRaRKFLUX  
    Message: bb89b443168ff21ffc...8420336db
    ```
    <img width="1352" height="710" alt="Skärmavbild 2025-11-13 kl  20 20 42" src="https://github.com/user-attachments/assets/d51d128b-4b34-4513-9c5a-162ccd0886c7" />
