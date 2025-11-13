@@ -4,6 +4,9 @@ Deploy and run your **Timpi Collector Node** easily using **FluxCloud** — the 
 This guide covers the full process from selecting the app in the marketplace to confirming deployment via ZelCore.
 
 ---
+<img width="1024" height="576" alt="TimpiCollector" src="https://github.com/user-attachments/assets/8dcd810f-fa30-4912-ac11-c63417ec15bc" />
+
+---
 
 ## 📑 Table of Contents
 
