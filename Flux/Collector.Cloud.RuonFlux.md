@@ -181,7 +181,7 @@ Go to **Applications → Management → My Active Apps → Manage**
      <img width="1205" height="590" alt="Skärmavbild 2025-11-13 kl  20 25 22" src="https://github.com/user-attachments/assets/dcadaab5-8705-490c-ab38-f286d5d2e0e1" />
 
 
-2. Click the **[Timpi Dashboard](https://timpi.com/node/v2/management)** to open your live Timpi Collector dashboard.
+2. Click the **[Link](https://timpi.com/node/v2/management)** to open your live Timpi Collector dashboard.
 
 ---
 
