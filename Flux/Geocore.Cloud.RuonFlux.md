@@ -39,25 +39,26 @@ Running GeoCore on FluxCloud allows you to deploy globally without maintaining y
 
 ## Requirements
 
-✅ A **registered GeoCore GUID** [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
+✅ A **registered GeoCore GUID** – manage it here:
+[https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
 
-✅ A **FluxCloud account** — [https://cloud.runonflux.com](https://cloud.runonflux.com)
+✅ A **FluxCloud account** – [https://cloud.runonflux.com](https://cloud.runonflux.com)
 
-✅ FLUX in **ZelCore**, or **PayPal/Stripe** for payment
+✅ FLUX in **ZelCore**, or **PayPal / Stripe** for payment
 
-✅ (Optional) email for alerts
+✅ (Optional) Email address for alerts
 
 ---
 
-# Step 1 – Log In to FluxCloud
+## Step 1 – Log In to FluxCloud
 
-1. Go to: **[https://cloud.runonflux.com](https://cloud.runonflux.com)**
+1. Go to **[https://cloud.runonflux.com](https://cloud.runonflux.com)**
 
 2. You will see the login screen:
 
-<img width="2378" alt="Screenshot 2025-11-14 194303" src="https://github.com/user-attachments/assets/a7981685-a6e7-4e7e-8921-4ace7a816c72" />
+   <img width="2378" alt="Screenshot 2025-11-14 194303" src="https://github.com/user-attachments/assets/a7981685-a6e7-4e7e-8921-4ace7a816c72" />
 
-3. Log in using any of these:
+3. Log in using any of:
 
    * **Google**
    * **Apple**
@@ -66,57 +67,60 @@ Running GeoCore on FluxCloud allows you to deploy globally without maintaining y
 
 ---
 
-# Step 2 – Find Timpi GeoCore in Marketplace
+## Step 2 – Find Timpi GeoCore in Marketplace
 
-1. Go to **Marketplace → Applications**
+1. In the left sidebar, go to **Marketplace → Applications**
+
 2. Search for **Timpi Geocore**
 
-<img width="2529" alt="Screenshot 2025-11-14 193445" src="https://github.com/user-attachments/assets/390bca25-aa8d-41e3-afae-97f0845707aa" />
+   <img width="2529" alt="Screenshot 2025-11-14 193445" src="https://github.com/user-attachments/assets/390bca25-aa8d-41e3-afae-97f0845707aa" />
 
 3. Click **Install**
 
 ---
 
-# Step 3 – Configure Your GeoCore App
+## Step 3 – Configure Your GeoCore App
 
 Flux will open the configuration window:
 
 <img width="1293" alt="Screenshot 2025-11-14 193521" src="https://github.com/user-attachments/assets/be50dc81-88c9-4c10-9c10-ad593dfaf3ed" />
 
-### Select:
+1. Review the **hardware requirements** (locked by Timpi):
 
-* **Subscription Duration**
-* **Instance Count** (Flux normally deploys 3)
-* **Hardware Requirements** (locked by Timpi)
-  * **CPU:** 4 cores
-  * **Memory:** 8000 MB
-  * **Storage:** 3 GB
-* Accept **Terms of Use**
+   * **CPU:** 4 cores
+   * **Memory:** 8000 MB
+   * **Storage:** 3 GB
+
+2. Select **Subscription Duration** (1 / 3 / 6 / 12 months)
+
+3. Confirm the **Instance Count** (Flux normally deploys 3)
+
+4. Tick the checkbox to **accept the Terms of Use**
 
 Scroll down:
 
 <img width="1353" alt="Screenshot 2025-11-14 193559" src="https://github.com/user-attachments/assets/08a408ed-02f6-4df5-9485-bfe6d7d76d6c" />
 
-Click **Next →**
+5. Click **Next →**
 
 ---
 
-# Step 4 – Add Location & GUID
+## Step 4 – Add Location & GUID
 
-Add your registered **GeoCore GUID**.
+Now you connect this deployment to your GeoCore GUID.
 
 <img width="1331" alt="Screenshot 2025-11-14 193620" src="https://github.com/user-attachments/assets/73c2bea3-0e14-4517-a6e3-11b25cb7722a" />
 
-### Required:
+### Required fields:
 
-* **Location** (auto-selected by Flux)
-* **GeoCore GUID**
+* **Location** – auto-selected by Flux
+* **GeoCore GUID** – paste from your Timpi Node Dashboard
 
 Click **Next →**
 
 ---
 
-# Step 5 – Set Deployment Location
+## Step 5 – Set Deployment Location
 
 Choose where Flux is allowed to host your GeoCore nodes.
 
@@ -124,128 +128,155 @@ Choose where Flux is allowed to host your GeoCore nodes.
 
 ### Recommended:
 
-* **Allowed Locations: Global (All Continents)**
+* **Allowed Locations:** `Global (All Continents)` – best availability
+
+You usually don’t need to set **Forbidden Locations** unless you must avoid specific regions.
 
 Click **Next →**
 
 ---
 
-# Step 6 – Email Alerts
+## Step 6 – Email Alerts
 
-Enter your desired alert email.
+Enter the email address that should receive GeoCore notifications.
 
 <img width="1311" alt="Screenshot 2025-11-14 193807" src="https://github.com/user-attachments/assets/99910263-a5d6-40df-b944-1d5f3717f0ca" />
 
-Flux will notify you when:
+Flux will email you when:
 
-* Your GeoCore finishes deployment
-* Your app moves between Flux nodes
-* Your subscription is about to expire
+* The GeoCore deployment is completed
+* Your primary server changes / instance migrates
+* Your app subscription is close to expiry
 
 Click **Next →**
 
 ---
 
-# Step 7 – Sign and Register
+## Step 7 – Sign and Register
 
-Flux will now perform the secure signing & registration.
+Flux now performs secure signing and registers the app on the network.
 
 <img width="1406" alt="Screenshot 2025-11-14 193837" src="https://github.com/user-attachments/assets/ab71c2a5-a2c6-4591-a5f5-424f9cf45ea5" />
 
-Wait for:
+Wait until you see:
 
-✔️ **Signing and Registration Complete**
+**✔️ Signing and Registration Complete**
 
-You will be redirected automatically.
+You will be redirected automatically to the payment step.
 
 ---
 
-# Step 8 – Payment Options
+## Step 8 – Payment Options
 
-Choose your payment method:
+Choose how you want to pay for the GeoCore deployment.
 
 <img width="1334" alt="Screenshot 2025-11-14 193907" src="https://github.com/user-attachments/assets/e3c8ad0c-8d83-44f5-83c0-996ad0721cc7" />
 
-### Available options:
+### Available options
 
-* **Stripe** (Credit Card)
-* **PayPal**
-* **ZelCore (FLUX)** → *5% discount*
-* **SSP (FLUX)** → *5% discount*
+* **Stripe** – pay with credit card
+* **PayPal** – pay with PayPal
+* **ZelCore (FLUX)** – *5% discount*
+* **SSP (FLUX)** – *5% discount*
 
-If paying with FLUX:
+If paying with **FLUX**:
 
-* Copy the **Payment Address**
-* Copy the **Payment Message**
-* Click **Open ZelCore**
+1. Copy the **Payment Address**
+2. Copy the **Payment Message** (must be included)
+3. Click **Open ZelCore** and complete the transaction
 
 After payment is confirmed, click **Next →**
 
 ---
 
-# Step 9 – Deployment Confirmation
+## Step 9 – Deployment Confirmation
 
-Once payment is processed, Flux deploys all instances.
+Once payment is processed, Flux deploys all instances of your GeoCore app.
 
-![Deployment](attachment:/mnt/data/Screenshot%202025-11-14%20193759.png)
-
-Deployment takes:
+Deployment time is usually:
 
 ⏱ **10–30 minutes**
 
-Flux will automatically set up **3 instances**.
+Flux will automatically set up **3 instances** across the network.
+
+You’ll see that the application is **launched and running**.
 
 ---
 
-# Step 10 – Verify and Manage Your GeoCore
+## Step 10 – Verify and Manage Your GeoCore
 
-Go to:
+To check status and manage the running instances:
 
-**Applications → Management → My Active Apps → Manage**
-
-![Manage](attachment:/mnt/data/Screenshot%202025-11-14%20193445.png)
+1. Go to **Applications → Management → My Active Apps**
+2. Click **Manage** on your Timpi GeoCore app
 
 You will see:
 
 * **3 Running Instances**
-* **App** button → opens UI for each GeoCore container
+* An **App** button for each instance – click to open the GeoCore UI in your browser
 
-> 💡 IPs rotate on redeploy
-> Always use the **App** button to access the active instance’s UI.
+> 💡 **Important:** IP addresses may change on redeploy.
+> Always use the **App** button to open the currently active instance.
+
+For high-level GeoCore management, you still use your Timpi Node Dashboard:
+[https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
 
 ---
 
-# 🛠 Troubleshooting
+## Troubleshooting
 
 ### ❌ GUID Rejected
 
-Ensure the GUID matches your GeoCore GUID exactly.
+* Make sure the pasted GUID is **exactly** your GeoCore GUID from the Timpi Dashboard.
+* Check for extra spaces or hidden characters.
+
+---
 
 ### ❌ App Not Opening
 
-Use the **App** button — Flux may have moved your container.
+* Always use the **App** button under *Running Instances*.
+* If one instance is down, try another App button.
+* Wait a few minutes after initial deployment or redeploy.
+
+---
 
 ### ⏳ Update Delays
 
-Flux’s **Watchtower** updater can take up to **10 hours**.
-Use **Soft Redeploy** for faster updating.
+* Flux’s **Watchtower** handles container updates automatically.
+* A full rollout can take **up to 10 hours**.
+* If you need a faster update, perform a **Soft Redeploy** from the Flux app management panel.
+
+---
 
 ### ❌ Payment Not Detected
 
-* Ensure the **Message** is sent when using FLUX
-* For Stripe/PayPal, refresh after 1–2 minutes
+* For FLUX payments, ensure you included the **exact Payment Message**.
+* For Stripe / PayPal, refresh the payment screen after 1–2 minutes.
+* Check your ZelCore or bank/PayPal transaction history if in doubt.
 
 ---
 
-# 🤝 Support
+## Support
 
-### **Timpi Community**
+### Timpi
 
-💬 Discord — [https://discord.gg/timpi](https://discord.gg/timpi)
+🟦 **Timpi Discord:** [https://discord.gg/timpi](https://discord.gg/timpi)
 
-### **Flux Support**
+Use this for:
 
-🔧 [https://runonflux.zendesk.com](https://runonflux.zendesk.com)
+* GeoCore / Timpi-specific questions
+* GUID / node / reward questions
 
 ---
 
+### Flux
+
+🟩 **Flux Support:** [https://runonflux.zendesk.com](https://runonflux.zendesk.com)
+
+Use this for:
+
+* FluxCloud deployment issues
+* Billing / payment problems
+* Flux node / infrastructure questions
+
+---
