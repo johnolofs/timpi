@@ -88,9 +88,9 @@ Flux will open the configuration window:
 * **Subscription Duration**
 * **Instance Count** (Flux normally deploys 3)
 * **Hardware Requirements** (locked by Timpi)
-  * **CPU:** 2 cores
-  * **Memory:** 2000 MB
-  * **Storage:** 1 GB
+  * **CPU:** 4 cores
+  * **Memory:** 8000 MB
+  * **Storage:** 3 GB
 * Accept **Terms of Use**
 
 Scroll down:
