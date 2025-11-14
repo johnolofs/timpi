@@ -193,9 +193,9 @@ After payment is confirmed, click **Next →**
 
 Once payment is processed, Flux deploys all instances of your GeoCore app.
 
-Deployment time is usually:
+Deployment time is up to:
 
-⏱ **10–30 minutes**
+⏱ **45 minutes**
 
 Flux will automatically set up **3 instances** across the network.
 
