@@ -36,8 +36,10 @@ Running one on FluxCloud lets you contribute to the Timpi network without needin
 
 ## Requirements
 
-✅ A Timpi wallet address with a valid **Collector NFT**
+✅ A Timpi wallet address with a valid **Collector NFT**  [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
+
 ✅ A FluxCloud account — [https://cloud.runonflux.com](https://cloud.runonflux.com)
+
 ✅ ZelCore wallet with FLUX for payment (or PayPal / Stripe)
 
 ---
