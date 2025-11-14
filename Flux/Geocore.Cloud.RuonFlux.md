@@ -5,7 +5,7 @@ This guide walks you through the full process — from selecting the GeoCore app
 
 ---
 
-<img width="1024" height="576" alt="TimpiGeocore" src="https://github.com/user-attachments/assets/8dcd810f-fa30-4912-ac11-c63417ec15bc" />
+<img width="1509" height="850" alt="Screenshot_2025-07-23_182616_upscayl_3x_realesrgan-x4plus-anime" src="https://github.com/user-attachments/assets/7b69280a-a77b-46d3-85d0-88b517c097bb" />
 
 ---
 
