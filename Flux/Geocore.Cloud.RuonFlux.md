@@ -39,7 +39,7 @@ Running GeoCore on FluxCloud allows you to deploy globally without maintaining y
 
 ## Requirements
 
-✅ A **registered GeoCore GUID** [(https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
+✅ A **registered GeoCore GUID** [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
 
 ✅ A **FluxCloud account** — [https://cloud.runonflux.com](https://cloud.runonflux.com)
 
