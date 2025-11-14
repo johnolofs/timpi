@@ -39,9 +39,12 @@ Running GeoCore on FluxCloud allows you to deploy globally without maintaining y
 
 ## Requirements
 
-✅ A **registered GeoCore GUID** (from the Timpi Node Dashboard)
+✅ A **registered GeoCore GUID** [from the Timpi Node Dashboard](https://timpi.com/node/v2/management)
+
 ✅ A **FluxCloud account** — [https://cloud.runonflux.com](https://cloud.runonflux.com)
+
 ✅ FLUX in **ZelCore**, or **PayPal/Stripe** for payment
+
 ✅ (Optional) email for alerts
 
 ---
