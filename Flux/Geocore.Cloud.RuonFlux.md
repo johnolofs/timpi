@@ -232,30 +232,6 @@ For high-level GeoCore management, you still use your Timpi Node Dashboard:
 
 ---
 
-### ❌ App Not Opening
-
-* Always use the **App** button under *Running Instances*.
-* If one instance is down, try another App button.
-* Wait a few minutes after initial deployment or redeploy.
-
----
-
-### ⏳ Update Delays
-
-* Flux’s **Watchtower** handles container updates automatically.
-* A full rollout can take **up to 10 hours**.
-* If you need a faster update, perform a **Soft Redeploy** from the Flux app management panel.
-
----
-
-### ❌ Payment Not Detected
-
-* For FLUX payments, ensure you included the **exact Payment Message**.
-* For Stripe / PayPal, refresh the payment screen after 1–2 minutes.
-* Check your ZelCore or bank/PayPal transaction history if in doubt.
-
----
-
 ## Support
 
 ### Timpi
