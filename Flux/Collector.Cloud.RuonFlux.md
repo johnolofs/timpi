@@ -54,7 +54,8 @@ Running one on FluxCloud lets you contribute to the Timpi network without needin
 
 4. Search for **Timpi Collector**
 
-   ![Timpi Collector Marketplace](https://github.com/user-attachments/assets/6f124cdf-35ac-4318-9cbb-c11a8bc3a63c)
+  <img width="1413" height="621" alt="Skärmavbild 2025-11-17 kl  20 58 04" src="https://github.com/user-attachments/assets/60826442-92fd-4083-a42a-baaca9c6032f" />
+
 
 5. Click **Install**
 
@@ -62,16 +63,18 @@ Running one on FluxCloud lets you contribute to the Timpi network without needin
 
 ## Step 2 – Configure Your App
 
-1. Select hardware:
+1. Select hardware (locked):
 
    * **CPU:** 2 cores
    * **Memory:** 2000 MB
    * **Storage:** 1 GB
 2. Select **Subscription Duration**
-3. Confirm that Flux defaults to **3 instances**
+3. Leave this at the default value of 3.
+(Changing the number of instances has no benefit for the collector.)
 4. Accept Terms of Service
 
-   ![Config](https://github.com/user-attachments/assets/40c98dc5-5bae-4a06-abad-09ea56c1981c)
+   <img width="924" height="653" alt="Skärmavbild 2025-11-17 kl  20 58 58" src="https://github.com/user-attachments/assets/50073cc4-ad2c-4be5-a220-eedd6bbc94a8" />
+
 
 ---
 
@@ -136,7 +139,8 @@ You can pay via:
 * **PayPal**
 * **ZelCore / SSP** (FLUX — **5% discount**)
 
-<img width="971" height="707" alt="Payment Options" src="https://github.com/user-attachments/assets/248ed5b6-058c-4570-8403-65b5bfc8b54e" />
+<img width="923" height="648" alt="Skärmavbild 2025-11-17 kl  21 00 33" src="https://github.com/user-attachments/assets/6e3e72b5-912c-40f4-bbe5-8473ede5e4ec" />
+
 
 ---
 
