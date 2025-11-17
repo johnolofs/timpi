@@ -1,191 +1,270 @@
-*Only Support · For Native Windows 10/11*
+# 🧊 Timpi Docker Collector Setup (Windows 10 & 11)
 
-** 🚀Quick Start (if Docker is already installed)**
-Paste this in Powershell to install and launch Timpi Collector:
-```shell
-docker run -d `
---name timpi_collector `
---restart unless-stopped `
---init `
---ulimit nofile=65536:65536 `
---cpus="2" `
---memory="2g" `
---memory-swap="4g" `
--e TZ=UTC `
--p 5015:5015 `
-timpiltd/timpi-collector:latest
+🔧 With login fix, file extension warning, and Docker verification.
+
+---
+
+### 🧪 Optional Pre-check: See if Virtualization is Already Enabled
+
+Before entering BIOS, check if virtualization is already enabled:
+
+1. Press `Ctrl + Shift + Esc` to open Task Manager
+2. Go to the **Performance > CPU** tab
+3. Look for:
 
 ```
-**⚠️ Important Tip!**
-Do not allocate 100% of your system’s CPU or RAM.
-**Recommended:** Use max 75–80% of total available resources.
+Virtualization: Enabled
+```
+![image](https://github.com/user-attachments/assets/cb2b34cd-9621-464c-9248-50c2576aed0c)
 
-⚙️ Why these limits?
-Adjust how much CPU and memory the container can use:
+✅ If enabled, you can skip entering BIOS.
 
-✅ `` --cpus="2"`` – Limits the container to 2 logical CPU cores
-✅ ``--memory="2g"`` – Allows up to 2 GB RAM
-✅ ``--memory-swap="4g"`` – Adds 2 GB swap if RAM runs out (total = 2g RAM + 2g swap)
+---
 
-⚙️ You can change these values to match your system’s capacity.
+## ✅ Step 1: Enable Virtualization in BIOS
 
-# ❗ Don't have Docker installed yet?
-Follow this guide first:
+1. Restart your PC
 
-## **WSL2 + Docker Setup in Windows 10/11 VM on Proxmox**
-*A step-by-step guide for running Docker natively in WSL2 inside a Windows VM*
+2. Enter BIOS (`DEL`, `F2`, `ESC`, or `F10`)
 
-### **Step 0: Enable Virtualization in BIOS (Important!)**
+3. Enable virtualization:
 
-Before doing anything in Windows or Proxmox, make sure **virtualization is enabled** in your BIOS/UEFI.
+   * **Intel**: `Intel VT-x`
+   * **AMD**: `SVM Mode` or `AMD-V`
 
-1. **Restart your PC / VM Host** and enter BIOS by pressing the right key (usually `DEL`, `F2`, `F10`, or `ESC`).
-2. Go to **Advanced Settings** or **CPU Configuration**.
-3. Look for **Intel VT-x**, **AMD-V**, or **SVM Mode** (for AMD).
-4. Set it to **Enabled**.
-5. Save and exit (usually **F10**).
-6. After boot, check it's enabled:
-   - Press **Ctrl+Shift+Esc** → go to **Performance** tab → Select **CPU** → Make sure **Virtualization = Enabled**
+4. Save & Exit (usually `F10`)
 
-> **Bonus tip for Windows 11 users**:  
-Go to **Settings > System > Recovery > Advanced Startup > Restart Now** →  
-Select **UEFI Firmware Settings** to access BIOS from inside Windows.  
-Make sure **Hyper-V** is also enabled if needed.
+🧪 **Verify after boot**:
+Press `Ctrl + Shift + Esc` → Go to **Performance > CPU**
+Check for:
 
-```markdown
-Step 1: Prep the Proxmox VM
-> Skip this if not using Proxmox.
-
-1. Shut down your **Windows 10/11 VM** in Proxmox.
-2. In **Proxmox → Hardware → CPU**, change **Type** to: `host`
-3. Start the VM again.
+```
+Virtualization: Enabled
 ```
 
-### **Step 2: Enable WSL + Virtual Machine Platform**
+---
 
-1. Open **"Turn Windows features on or off"**
-2. Enable these:
-   - ✅ **Virtual Machine Platform**
-   - ✅ **Windows Subsystem for Linux**
-3. Click OK → Reboot when prompted.
+## 💡 Bonus Tip (Windows 11 Only)
 
-### **Step 3: Install WSL2 Kernel and Set Default**
+You can enter BIOS without restarting manually:
 
-1. Open **PowerShell as Admin** and run:
-   ```powershell
-   dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-   ```
-2. Reboot again.
-3. Download and install:
-   [WSL2 Kernel Update (MSI)](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
-4. Open **CMD** and run:
-   ```shell
-   wsl --update
-   wsl --set-default-version 2
-   ```
+> **Settings > System > Recovery > Advanced Startup > Restart Now**
+> → **Troubleshoot > Advanced Options > UEFI Firmware Settings**
 
-### **Step 4: Install Ubuntu 24.04 in WSL**
+---
 
-1. Download Ubuntu 24.04:
-   [Ubuntu 24.04 AppxBundle](https://wslstorestorage.blob.core.windows.net/wslblob/Ubuntu2404-240425.AppxBundle)
-2. Rename it:  
-   `Ubuntu2404-240425.AppxBundle` → `Ubuntu2404-240425.zip`
-3. Extract it. Then rename:
-   `Ubuntu_2404.0.5.0_x64.appx` → `Ubuntu_2404.0.5.0_x64.zip`  
-   → Extract again to `D:\WSL\Ubuntu_2404`
-4. Run `ubuntu2404.exe`. Click **More Info > Run Anyway** if SmartScreen appears.
-5. Create your Linux username and password when prompted.
+## ✅ Step 2: Enable Required Windows Features
 
-### **Step 5: Confirm WSL is Working**
+1. Open `Turn Windows features on or off`
 
-In CMD, check:
-```shell
-wsl -l -v
-```
-You should see:
-```
-Ubuntu-24.04      Running      2
-```
+3. Enable:
 
-### **Step 6: Install Docker in Ubuntu WSL2**
+   * ✅ Windows Subsystem for Linux
+   * ✅ Virtual Machine Platform
+   * ✅ Hyper-V
 
-Paste these line by line in WSL terminal:
-```shell
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-```
+     ![Screenshot 2025-06-08 171711](https://github.com/user-attachments/assets/176eab1d-17d8-4da5-a525-aac199b23b08)
 
-Add Docker repo:
-```shell
-echo \
-"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
+4. Click **OK** and reboot when prompted
 
-Update & install:
-```shell
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-```
+---
 
-### **Step 7: Run Test Container**
+## ✅ Step 3: Install Docker Desktop
 
-```shell
-sudo docker run hello-world
-```
+1. Download:
+   🔗 [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 
-If you see a success message, **Docker is working inside WSL2!**
+2. Install with default settings:
 
-### Download Docker Desktop for Windows 10/11
-https://www.docker.com/
+   * ✅ WSL2 backend
+   * ✅ Hyper-V
 
-### 💡 Set up your Global and why`.wslconfig`?
+3. Reboot after installation
 
-Setting a `.wslconfig` file helps **optimize performance** when running Docker on Windows using WSL 2.
+---
 
-Without it, WSL might:
-- Use **too much memory** without releasing it 🧠  
-- Run with **default CPU and RAM limits** (which may be too low) ⚠️
+## ✅ Step 4: Fix File Extensions Setting (IMPORTANT for .wslconfig)
 
-With it, you **control** how much:
-- RAM (`memory`)
-- CPU cores (`processors`)
-- Swap space (`swap`)
+To correctly save `.wslconfig`, ensure Windows shows file extensions:
 
-And enable:
-- `autoMemoryReclaim` 🧹 – releases unused memory back to Windows
+1. Press `Windows Key + E` to open File Explorer
+2. Click **View > Options**
+3. Under **View tab**:
 
-### 🛠️ Quick setup
+   * ❌ Uncheck **“Hide extensions for known file types”**
+   * 
+![Screenshot 2025-06-08 172328](https://github.com/user-attachments/assets/51fe4bdf-cf9a-4d46-ad5f-1bcacaa6fd9c)
 
-1. **Open Notepad**  
-   Paste this or any value you want:
+     
+4. Click **Apply > OK**
+
+---
+
+## ✅ Step 5: Create `.wslconfig` (Required for Stability)
+
+1. Open **Notepad**
+
+2. Paste:
 
    ```ini
    [wsl2]
    memory=2GB
    processors=2
-   swap=4GB
+   swap=3GB
+   localhostForwarding=true
+   pageReporting=true
+   nestedVirtualization=false
+   debugConsole=false
 
    [experimental]
    autoMemoryReclaim=dropCache
+   sparseVhd=true
    ```
 
-2. **Save as**  
-   `C:\Users\<YourUsername>\.wslconfig`  
-   *(Make sure it's not `.txt`)*
+3. Save as:
 
-3. **Restart**  
+   ```
+   C:\Users\YourUsername\.wslconfig
+   ```
 
-### 🧠 Difference between `.wslconfig` and Docker limits:
+   ![Screenshot 2025-06-08 172635](https://github.com/user-attachments/assets/bc396c3c-52c8-45aa-8e60-58841d157fe3)
 
-- **`.wslconfig`** = Sets **global limits** for all WSL2/Docker use (CPU, RAM, swap)
-- **`--cpus` / `--memory`** = Sets **per-container limits**
 
-> ✅ Set `.wslconfig` to give WSL enough power  
-> ✅ Use Docker flags to control how much each container uses
+   ⚠️ It must be named exactly `.wslconfig` (with no `.txt` at the end).
 
-✅ Done! WSL will now respect these limits every time it runs — keeping Docker smoother and more stable 💪
+4. Reboot your PC again
+
+---
+
+## ✅ Step 6: Log In to Docker Hub (Required)
+
+Windows users **must log in to Docker Hub** via CLI **and** GUI.
+
+### 🧭 Method A: Login via Docker Desktop (GUI)
+
+1. Open Docker Desktop
+2. Click your profile icon (top-right)
+
+![Screenshot 2025-06-08 173714](https://github.com/user-attachments/assets/698631b4-9ae5-4d2a-b006-7c25adbc347e)
+
+ 4. Sign in with your Docker Hub account ( Verification from email - Confirm)
+
+![Screenshot 2025-06-08 173804](https://github.com/user-attachments/assets/623d283a-2fb1-4b05-b64b-894733bf5ec6)
+![Screenshot 2025-06-08 173831](https://github.com/user-attachments/assets/4d3186a8-2555-409e-b1c7-a34867af491f)
+
+   * Or create one: [https://hub.docker.com/signup](https://hub.docker.com/signup)
+
+### 🧭 Method B: Login via PowerShell (Required)
+
+```powershell
+docker login
+```
+Follow onscreen instructions.
+
+![Screenshot 2025-06-08 173126](https://github.com/user-attachments/assets/88b59694-71c8-4806-8a5b-4ce12b06a270)
+
+
+```powershell
+docker login -u <username>
+```
+It will prompt:
+
+```
+Password: <your password>
+```
+
+✅ After successful login, you will see:
+
+```
+Login Succeeded
+```
+
+![Screenshot 2025-06-08 173236](https://github.com/user-attachments/assets/203d3db9-83c4-4382-9fd2-aa26e2f509cf)
+
+
+> 🔐 This prevents the error: `401 Unauthorized – failed to fetch oauth token`
+
+---
+
+## ✅ Step 7: Verify Docker Works
+
+Run the official Docker test image:
+
+```powershell
+docker run hello-world
+```
+
+If successful, you will see:
+
+> **Hello from Docker!**
+
+📸 Expected output: *Hello from Docker!*
+
+![image](https://github.com/user-attachments/assets/62aeca8f-fe3f-44c4-83e4-19920cc3ba66)
+
+
+---
+
+## ✅ Step 8: Run Timpi Collector
+
+Paste this into **PowerShell**:
+
+```powershell
+docker run -d `
+--name timpi_collector `
+--restart unless-stopped `
+--ulimit nofile=65536:65536 `
+--cpus="2" `
+--memory="2g" `
+--memory-swap="4g" `
+-p 5015:5015 `
+timpiltd/timpi-collector:latest
+```
+---
+🧱 **Windows Defender Firewall may prompt you with a security alert.**
+
+### ✅ What to do:
+
+1. When prompted, allow Docker access on:
+
+   * ✅ **Private networks** (your home/work network)
+   * ❌ It’s OK to leave **Public networks** unchecked
+2. Click **Allow access**
+
+⚠️ If you accidentally denied it, you can fix it later:
+
+> `Control Panel > System and Security > Windows Defender Firewall > Allow an app through Firewall`
+> → Find **Docker Desktop** and make sure **Private** is enabled
+---
+
+![Screenshot 2025-06-08 174622](https://github.com/user-attachments/assets/c40f67da-d321-461a-800b-2603c8143746)
+
+
+🌐 Visit by pressing port 5015:5015 and your webbrowser will open up the dashboard:
+
+![Screenshot 2025-06-08 175257](https://github.com/user-attachments/assets/13982dd5-d64b-4ec6-b254-eabdbc903c08)
+
+
+```
+http://localhost:5015/collector
+```
+
+![Screenshot 2025-06-08 175627](https://github.com/user-attachments/assets/a77a5ff9-9a8c-4e7c-b774-e5867dcf713c)
+
+Paste your Wallet address:
+
+![Screenshot 2025-06-08 175718](https://github.com/user-attachments/assets/8cbf9002-98eb-44c8-9df3-186270809dd3)
+
+
+---
+
+## 🧯 Common Issues & Fixes
+
+| Error                    | Fix                                                             |
+| ------------------------ | --------------------------------------------------------------- |
+| `401 Unauthorized`       | Run `docker login` in PowerShell                                |
+| `.wslconfig` not working | Uncheck “Hide extensions for known file types” in File Explorer |
+| `Unable to find image`   | Ensure you're signed into Docker                                |
+| UI not loading           | Wait 30–60 seconds after container starts                       |
+
+---
