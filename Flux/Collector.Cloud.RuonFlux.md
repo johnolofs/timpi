@@ -88,7 +88,8 @@ Example GUID:
 f0b8c8c5-d59e-445d-aa68-87d8354b8d81
 ```
 
-<img width="944" height="648" alt="GUID" src="https://github.com/user-attachments/assets/3dc941d7-fc82-4248-a8b2-816fc4228e93" />
+<img width="912" height="651" alt="Skärmavbild 2025-11-17 kl  20 59 34" src="https://github.com/user-attachments/assets/b4da0945-21f7-4f9d-8037-92b3809b35ce" />
+
 
 ---
 
@@ -102,7 +103,8 @@ Optional:
 
 * Restrict deployment to specific continents or countries
 
-<img width="937" height="648" alt="Location" src="https://github.com/user-attachments/assets/5d3bb7b0-73ce-4692-be78-297b33f5d0aa" />
+<img width="920" height="644" alt="Skärmavbild 2025-11-17 kl  21 14 56" src="https://github.com/user-attachments/assets/6d46d5a3-9d93-4919-9218-38c9be12d727" />
+
 
 ---
 
@@ -116,7 +118,8 @@ Enter your email for:
 
 Example: `johnolofs@timpi.com`
 
-<img width="953" height="647" alt="Alerts" src="https://github.com/user-attachments/assets/276dae6a-e696-4aa8-b853-68d3788265df" />
+<img width="908" height="646" alt="Skärmavbild 2025-11-17 kl  21 15 15" src="https://github.com/user-attachments/assets/03aa424f-0fc2-4411-9f67-13a349fa11a6" />
+
 
 ---
 
@@ -127,7 +130,8 @@ Wait for the green checkmark:
 
 **Signing and Registration Complete**
 
-<img width="964" height="643" alt="Sign" src="https://github.com/user-attachments/assets/e9f560e2-fe50-4b9b-8f58-943c479282b0" />
+<img width="946" height="647" alt="Skärmavbild 2025-11-17 kl  21 18 04" src="https://github.com/user-attachments/assets/c9ffd444-1df7-48a8-8dc2-eaccaff613c2" />
+
 
 ---
 
