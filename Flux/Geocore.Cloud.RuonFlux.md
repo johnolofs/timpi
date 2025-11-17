@@ -73,7 +73,8 @@ Running GeoCore on FluxCloud allows you to deploy globally without maintaining y
 
 2. Search for **Timpi Geocore**
 
-   <img width="2529" alt="Screenshot 2025-11-14 193445" src="https://github.com/user-attachments/assets/390bca25-aa8d-41e3-afae-97f0845707aa" />
+   <img width="1243" height="622" alt="Skärmavbild 2025-11-17 kl  21 22 20" src="https://github.com/user-attachments/assets/13204e6c-bb20-4833-bab3-06735b3c5415" />
+
 
 3. Click **Install**
 
@@ -83,7 +84,8 @@ Running GeoCore on FluxCloud allows you to deploy globally without maintaining y
 
 Flux will open the configuration window:
 
-<img width="1293" alt="Screenshot 2025-11-14 193521" src="https://github.com/user-attachments/assets/be50dc81-88c9-4c10-9c10-ad593dfaf3ed" />
+<img width="908" height="650" alt="Skärmavbild 2025-11-17 kl  21 22 31" src="https://github.com/user-attachments/assets/911f37a6-9d37-4485-9966-b78f5d4de47f" />
+
 
 1. Review the **hardware requirements** (locked by Timpi):
 
@@ -99,7 +101,8 @@ Flux will open the configuration window:
 
 Scroll down:
 
-<img width="1353" alt="Screenshot 2025-11-14 193559" src="https://github.com/user-attachments/assets/08a408ed-02f6-4df5-9485-bfe6d7d76d6c" />
+<img width="932" height="648" alt="Skärmavbild 2025-11-17 kl  21 22 49" src="https://github.com/user-attachments/assets/d0d68203-746c-4397-a8f7-4e9cf56e4428" />
+
 
 5. Click **Next →**
 
@@ -109,7 +112,8 @@ Scroll down:
 
 Now you connect this deployment to your GeoCore GUID.
 
-<img width="1331" alt="Screenshot 2025-11-14 193620" src="https://github.com/user-attachments/assets/73c2bea3-0e14-4517-a6e3-11b25cb7722a" />
+<img width="948" height="655" alt="Skärmavbild 2025-11-17 kl  21 23 09" src="https://github.com/user-attachments/assets/af204712-d8d1-4bb8-bdf6-be4e02974266" />
+
 
 ### Required fields:
 
@@ -124,7 +128,8 @@ Click **Next →**
 
 Choose where Flux is allowed to host your GeoCore nodes.
 
-<img width="1332" alt="Screenshot 2025-11-14 193735" src="https://github.com/user-attachments/assets/ad795efc-5703-4589-a6e6-ff0ff20d716c" />
+<img width="919" height="645" alt="Skärmavbild 2025-11-17 kl  21 24 07" src="https://github.com/user-attachments/assets/715ef3ee-f881-4b1b-8871-a2b50af850f3" />
+
 
 ### Recommended:
 
@@ -140,7 +145,8 @@ Click **Next →**
 
 Enter the email address that should receive GeoCore notifications.
 
-<img width="1311" alt="Screenshot 2025-11-14 193807" src="https://github.com/user-attachments/assets/99910263-a5d6-40df-b944-1d5f3717f0ca" />
+<img width="911" height="652" alt="Skärmavbild 2025-11-17 kl  21 24 34" src="https://github.com/user-attachments/assets/21ae054b-7028-4e20-92a6-4367ae5b467f" />
+
 
 Flux will email you when:
 
@@ -156,7 +162,8 @@ Click **Next →**
 
 Flux now performs secure signing and registers the app on the network.
 
-<img width="1406" alt="Screenshot 2025-11-14 193837" src="https://github.com/user-attachments/assets/ab71c2a5-a2c6-4591-a5f5-424f9cf45ea5" />
+<img width="917" height="646" alt="Skärmavbild 2025-11-17 kl  21 24 48" src="https://github.com/user-attachments/assets/54b5de58-ad5b-49b6-b8a9-da1f8ff48ae2" />
+
 
 Wait until you see:
 
@@ -170,7 +177,8 @@ You will be redirected automatically to the payment step.
 
 Choose how you want to pay for the GeoCore deployment.
 
-<img width="1334" alt="Screenshot 2025-11-14 193907" src="https://github.com/user-attachments/assets/e3c8ad0c-8d83-44f5-83c0-996ad0721cc7" />
+<img width="930" height="657" alt="Skärmavbild 2025-11-17 kl  21 25 02" src="https://github.com/user-attachments/assets/0de2a914-752e-488a-8fd9-79202ad4e3f1" />
+
 
 ### Available options
 
