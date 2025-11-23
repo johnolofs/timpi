@@ -174,7 +174,7 @@ rm -rf ~/Synaptron
 
 ---
 
-# 🟢 **That’s it. This is all the user needs to do.**
+# 🟢 **That’s all folks!**
 
 Forget the complicated NVIDIA driver stuff —
 the installer **already checks everything automatically**
