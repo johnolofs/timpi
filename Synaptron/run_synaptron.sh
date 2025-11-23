@@ -4,7 +4,6 @@ set -euo pipefail
 ###########################################################
 # Timpi Synaptron – Auto Installer / Runner (Linux Only)
 # Ubuntu 22.04+ with NVIDIA GPU
-# Maintainer: johnolofs (private pre-release)
 #
 # This script:
 #  - Blocks Snap Docker
@@ -14,9 +13,10 @@ set -euo pipefail
 #  - Detects CUDA version -> ARCH (t3_cuda24 / t3_cuda28)
 #  - Selects matching Docker image tag (cuda24 / cuda28)
 #  - Verifies GPU access inside Docker
-#  - Prompts for NAME (>=16 chars) if needed
-#  - Auto-patches docker-compose.yml
+#  - Patches ARCH + image tag in docker-compose.yml
 #  - Starts Synaptron stack (neo4j + watchtower + synaptron)
+#
+# NAME and GUID are handled in install.sh (not here).
 ###########################################################
 
 REPO_BASE="https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron"
@@ -201,45 +201,13 @@ fi
 echo "✅ GPU is accessible from inside Docker."
 
 ###########################################################
-# Prompt for NAME (>=16 characters) if needed
-###########################################################
-echo
-echo "🧾 Checking Synaptron node NAME..."
-
-CURRENT_NAME_LINE="$(grep -E '^\s*NAME:' "$YML_FILE" | head -n1 || true)"
-CURRENT_NAME=""
-
-if [[ -n "$CURRENT_NAME_LINE" ]]; then
-  CURRENT_NAME="${CURRENT_NAME_LINE#*:}"
-  CURRENT_NAME="${CURRENT_NAME#" "}"
-  CURRENT_NAME="${CURRENT_NAME%\"}"
-  CURRENT_NAME="${CURRENT_NAME#\"}"
-fi
-
-if [[ -z "$CURRENT_NAME" || "$CURRENT_NAME" == "<YOUR NODE NAME>" || ${#CURRENT_NAME} -lt 16 ]]; then
-  echo "Your Synaptron node needs a NAME of at least 16 characters."
-  echo "This will be visible in Timpi tools / logs."
-  while true; do
-    read -r -p "Enter Synaptron node name (>=16 chars, you can paste it here): " NODE_NAME
-    NODE_NAME="${NODE_NAME#" "}"
-    NODE_NAME="${NODE_NAME%" "}"
-    if [[ ${#NODE_NAME} -lt 16 ]]; then
-      echo "❌ Name too short (${#NODE_NAME} chars). Please enter at least 16 characters."
-      continue
-    fi
-    break
-  done
-  echo "✅ Using node name: $NODE_NAME"
-  # Update NAME line in YAML (keep two-space indent)
-  sed -i "s#^\s*NAME:.*#  NAME: \"${NODE_NAME}\"#" "$YML_FILE"
-else
-  echo "✅ Existing node name detected: $CURRENT_NAME"
-fi
-
-###########################################################
 # Patch ARCH + image tag in YAML
 ###########################################################
+# Update ARCH line under x-synaptron-vars
 sed -i "s/^  ARCH:.*/  ARCH: ${ARCH}/" "$YML_FILE" || true
+
+# Update image tag for timpi-synaptron-universal
+# Replace any ':cudaXX' with the chosen CUDA_TAG
 sed -i "s#timpiltd/timpi-synaptron-universal:cuda[0-9]\+#timpiltd/timpi-synaptron-universal:${CUDA_TAG}#g" "$YML_FILE"
 
 ###########################################################
