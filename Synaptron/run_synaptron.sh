@@ -9,6 +9,7 @@ set -euo pipefail
 # This script:
 #  - Blocks Snap Docker
 #  - Validates Docker & Docker Compose >= 2.23
+#  - Checks that your user can talk to the Docker daemon
 #  - Detects CUDA version and selects ARCH (t3_cuda24 / t3_cuda28)
 #  - Automatically patches docker-compose.yml
 #  - Auto-downloads docker-compose.yml if missing
@@ -84,6 +85,56 @@ if ! version_ge "$REQUIRED_COMPOSE" "$COMPOSE_VERSION"; then
 fi
 
 echo "✅ Docker Compose OK: ${COMPOSE_VERSION}"
+
+
+###########################################################
+# 3b) Check Docker daemon + permissions
+###########################################################
+DOCKER_PS_OUTPUT=""
+DOCKER_PS_STATUS=0
+
+# Try a simple docker command
+if ! DOCKER_PS_OUTPUT="$(docker ps >/dev/null 2>&1)"; then
+  DOCKER_PS_STATUS=$?
+else
+  DOCKER_PS_STATUS=0
+fi
+
+if [[ $DOCKER_PS_STATUS -ne 0 ]]; then
+  echo
+  echo "❌ ERROR: Cannot talk to the Docker daemon as user '$USER'."
+  echo
+
+  # Check if user is in 'docker' group
+  if id -nG "$USER" | grep -qw docker; then
+    echo "It looks like your user IS in the 'docker' group."
+    echo "This usually means the Docker daemon is not running."
+    echo
+    echo "➡ Check Docker service:"
+    echo "   sudo systemctl status docker"
+    echo
+    echo "➡ Start Docker if needed:"
+    echo "   sudo systemctl start docker"
+    echo
+  else
+    echo "Your user is NOT in the 'docker' group."
+    echo "You must add yourself to the group so you can run Docker without sudo."
+    echo
+    echo "➡ Add your user to the docker group:"
+    echo "   sudo usermod -aG docker $USER"
+    echo
+    echo "➡ Then log out and back in, OR run:"
+    echo "   newgrp docker"
+    echo
+  fi
+
+  echo "After fixing this, run the installer again:"
+  echo "  ./run_synaptron.sh"
+  echo
+  exit 1
+fi
+
+echo "✅ Docker daemon is reachable and permissions look OK."
 
 
 ###########################################################
