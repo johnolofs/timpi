@@ -11,6 +11,7 @@ set -euo pipefail
 #  - Validates Docker & Docker Compose >= 2.23
 #  - Checks that your user can talk to the Docker daemon
 #  - Detects CUDA version and selects ARCH (t3_cuda24 / t3_cuda28)
+#  - Chooses matching Docker image tag (cuda24 / cuda28)
 #  - Automatically patches docker-compose.yml
 #  - Auto-downloads docker-compose.yml if missing
 #  - Starts full stack with auto-update (watchtower)
@@ -90,22 +91,11 @@ echo "✅ Docker Compose OK: ${COMPOSE_VERSION}"
 ###########################################################
 # 3b) Check Docker daemon + permissions
 ###########################################################
-DOCKER_PS_OUTPUT=""
-DOCKER_PS_STATUS=0
-
-# Try a simple docker command
-if ! DOCKER_PS_OUTPUT="$(docker ps >/dev/null 2>&1)"; then
-  DOCKER_PS_STATUS=$?
-else
-  DOCKER_PS_STATUS=0
-fi
-
-if [[ $DOCKER_PS_STATUS -ne 0 ]]; then
+if ! docker ps >/dev/null 2>&1; then
   echo
   echo "❌ ERROR: Cannot talk to the Docker daemon as user '$USER'."
   echo
 
-  # Check if user is in 'docker' group
   if id -nG "$USER" | grep -qw docker; then
     echo "It looks like your user IS in the 'docker' group."
     echo "This usually means the Docker daemon is not running."
@@ -138,16 +128,17 @@ echo "✅ Docker daemon is reachable and permissions look OK."
 
 
 ###########################################################
-# 4) Detect Docker API version (for DOCKER_API_VERSION=1.44)
+# 4) Detect Docker API version (for info)
 ###########################################################
 API_VERSION="$(docker version -f '{{.Server.APIVersion}}' 2>/dev/null || echo "unknown")"
 echo "ℹ️  Docker API version: ${API_VERSION}"
 
 
 ###########################################################
-# 5) Detect CUDA version → Set ARCH (t3_cuda24 / t3_cuda28)
+# 5) Detect CUDA version → Set ARCH + CUDA_TAG
 ###########################################################
-ARCH="t3_cuda24"  # fallback default
+ARCH="t3_cuda24"     # fallback default
+CUDA_TAG="cuda24"    # matching Docker image tag
 CUDA_INFO=""
 
 if command -v nvidia-smi >/dev/null 2>&1; then
@@ -160,33 +151,41 @@ if command -v nvidia-smi >/dev/null 2>&1; then
 
     echo "🔎 Detected CUDA version: ${CUDA_INFO}"
 
-    # Selecting ARCH:
-    # CUDA 12.8+  => t3_cuda28
-    # CUDA 12.0–12.7 => t3_cuda24
+    # Selecting ARCH + image tag:
+    # CUDA 12.8+      => t3_cuda28  + cuda28
+    # CUDA 12.0–12.7  => t3_cuda24  + cuda24
     if [[ "$CUDA_MAJOR" -gt 12 ]] || { [[ "$CUDA_MAJOR" -eq 12 ]] && [[ "$CUDA_MINOR" -ge 8 ]]; }; then
       ARCH="t3_cuda28"
+      CUDA_TAG="cuda28"
     else
       ARCH="t3_cuda24"
+      CUDA_TAG="cuda24"
     fi
   else
-    echo "⚠️  No CUDA version reported by nvidia-smi. Using ARCH=${ARCH}"
+    echo "⚠️  No CUDA version reported by nvidia-smi. Using ARCH=${ARCH}, image tag=${CUDA_TAG}"
   fi
 else
   echo "⚠️  NVIDIA driver not detected (nvidia-smi missing)."
-  echo "    Using fallback ARCH=${ARCH}"
+  echo "    Using fallback ARCH=${ARCH}, image tag=${CUDA_TAG}"
 fi
 
 echo "🏗  Using Synaptron ARCH: ${ARCH}"
+echo "🏗  Using Synaptron Docker image tag: ${CUDA_TAG}"
 
 
 ###########################################################
-# 6) Patch ARCH line inside docker-compose.yml
+# 6) Patch ARCH + image line inside docker-compose.yml
 ###########################################################
+# Update ARCH
 if grep -q '^  ARCH:' "$YML_FILE"; then
   sed -i "s/^  ARCH:.*/  ARCH: ${ARCH}/" "$YML_FILE"
 else
   sed -i "s/ARCH: .*/ARCH: ${ARCH}/" "$YML_FILE" || true
 fi
+
+# Update image tag for timpi-synaptron-universal
+# Replace any ':cudaXX' with the chosen CUDA_TAG
+sed -i "s#\(timpiltd/timpi-synaptron-universal:\)cuda[0-9]\+#\1${CUDA_TAG}#g" "$YML_FILE"
 
 
 ###########################################################
