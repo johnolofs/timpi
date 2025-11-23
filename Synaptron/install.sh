@@ -1,54 +1,138 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-#############################################
-# Timpi Synaptron - One-Line Installer
-# Usage:
-#   curl -s https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/install.sh | bash
-#############################################
+###########################################################
+# Timpi Synaptron – Installer (Linux)
+# - Creates ~/Synaptron
+# - Downloads run_synaptron.sh + docker-compose.yml
+# - Prompts user for:
+#     NAME (>=16 chars, A–Z, a–z, 0–9, _ and -)
+#     GUID (single GUID)
+# - Patches docker-compose.yml
+# - Runs run_synaptron.sh
+###########################################################
 
 REPO_BASE="https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron"
 INSTALL_DIR="${HOME}/Synaptron"
+YML_FILE="docker-compose.yml"
+RUN_FILE="run_synaptron.sh"
 
 echo "===== Timpi Synaptron – Installer ====="
 echo
 echo "Install directory: ${INSTALL_DIR}"
 echo
 
-# 1) Check that curl exists
-if ! command -v curl >/dev/null 2>&1; then
-  echo "❌ ERROR: 'curl' is not installed."
-  echo "Install it with:"
-  echo "  sudo apt update && sudo apt install -y curl"
-  exit 1
-fi
-
-# 2) Create install directory
 mkdir -p "${INSTALL_DIR}"
 cd "${INSTALL_DIR}"
 
 echo "📂 Using directory: ${INSTALL_DIR}"
 echo
 
-# 3) Download run_synaptron.sh
-echo "📥 Downloading run_synaptron.sh..."
-curl -fsS -o run_synaptron.sh "${REPO_BASE}/run_synaptron.sh"
+echo "📥 Downloading ${RUN_FILE}..."
+curl -fsS -o "${RUN_FILE}" "${REPO_BASE}/${RUN_FILE}"
 
-# 4) Download docker-compose.yml
-echo "📥 Downloading docker-compose.yml..."
-curl -fsS -o docker-compose.yml "${REPO_BASE}/docker-compose.yml"
+echo "📥 Downloading ${YML_FILE}..."
+curl -fsS -o "${YML_FILE}" "${REPO_BASE}/${YML_FILE}"
 
-# 5) Make launcher executable
-chmod +x run_synaptron.sh
+chmod +x "${RUN_FILE}"
+
+###########################################################
+# Helper: read from /dev/tty so it works even with curl | bash
+###########################################################
+read_from_tty() {
+  local prompt="$1"
+  local varname="$2"
+  local value
+
+  while true; do
+    # Print prompt to the real terminal
+    printf "%s" "${prompt}" > /dev/tty
+    # Read from the real terminal
+    if ! IFS= read -r value < /dev/tty; then
+      echo >&2 "❌ Could not read input from terminal."
+      exit 1
+    fi
+    value="${value#" "}"
+    value="${value%" "}"
+    eval "$varname=\"\$value\""
+    return 0
+  done
+}
+
+###########################################################
+# Ask for NAME (>=16 chars, safe characters only)
+###########################################################
+echo
+echo "🧾 Configure your Synaptron node identity"
+echo "Your node will need:"
+echo "  - A NAME (at least 16 characters)"
+echo "  - A GUID (provided by Timpi)"
+echo
+
+NODE_NAME=""
+while true; do
+  read_from_tty "Enter Synaptron node NAME (>=16 chars, A–Z, a–z, 0–9, _ and - only): " NODE_NAME
+
+  # Remove all characters except A–Z, a–z, 0–9, _ and -
+  SAFE_NAME="$(printf "%s" "$NODE_NAME" | tr -cd 'A-Za-z0-9_-')"
+
+  if [[ -z "$SAFE_NAME" ]]; then
+    echo "❌ Name became empty after removing invalid characters. Try again." > /dev/tty
+    continue
+  fi
+
+  if [[ ${#SAFE_NAME} -lt 16 ]]; then
+    echo "❌ Name too short (${#SAFE_NAME} chars). Must be at least 16 characters." > /dev/tty
+    continue
+  fi
+
+  echo "✅ Using node NAME: ${SAFE_NAME}" > /dev/tty
+  NODE_NAME="$SAFE_NAME"
+  break
+done
+
+###########################################################
+# Ask for GUID (simple sanitization)
+###########################################################
+NODE_GUID=""
+while true; do
+  read_from_tty "Paste your Synaptron GUID: " NODE_GUID
+
+  # Keep only A–Z, a–z, 0–9 and dash
+  SAFE_GUID="$(printf "%s" "$NODE_GUID" | tr -cd 'A-Za-z0-9-')"
+
+  if [[ -z "$SAFE_GUID" ]]; then
+    echo "❌ GUID became empty after removing invalid characters. Try again." > /dev/tty
+    continue
+  fi
+
+  if [[ ${#SAFE_GUID} -lt 16 ]]; then
+    echo "⚠ GUID looks very short (${#SAFE_GUID} chars). Are you sure it's correct?" > /dev/tty
+    # Still allow – GUID formats can vary
+  fi
+
+  echo "✅ Using GUID: ${SAFE_GUID}" > /dev/tty
+  NODE_GUID="$SAFE_GUID"
+  break
+done
+
+###########################################################
+# Patch NAME and GUID into docker-compose.yml
+###########################################################
+# We know these lines exist under x-synaptron-vars:
+#   NAME: <YOUR NODE NAME>
+#   GUID: <YOUR GUID>
 
 echo
+echo "✏ Updating docker-compose.yml with your NAME and GUID..."
+sed -i "s#^\s*NAME:.*#  NAME: ${NODE_NAME}#" "${YML_FILE}"
+sed -i "s#^\s*GUID:.*#  GUID: ${NODE_GUID}#" "${YML_FILE}"
+
+echo "✅ Configuration written."
+echo
+
+###########################################################
+# Hand over to run_synaptron.sh
+###########################################################
 echo "🚀 Starting Synaptron setup..."
-./run_synaptron.sh
-
-echo
-echo "✅ Installation script finished."
-echo "   If everything went well, your Synaptron is now running."
-echo "   You can return later with:"
-echo "     cd ${INSTALL_DIR}"
-echo "     ./run_synaptron.sh"
-echo
+./"${RUN_FILE}"
