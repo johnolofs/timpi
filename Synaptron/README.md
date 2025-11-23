@@ -1,234 +1,181 @@
-# 🧬 **Timpi Synaptron – EASY Installation Guide (2025)**
+# 🧬 **TIMPI SYNAPTRON – OFFICIAL INSTALLATION GUIDE (LINUX-DOCKER)**
 
-Welcome to the **Synaptron Linux installer** for Ubuntu 22.04+.
-This guide is designed for ALL users — beginners, experts, GPU nerds, Proxmox VM users, and home servers.
-
-### ✔ One-line installer
-
-### ✔ Auto-detects your CUDA version
-
-### ✔ Auto-configures everything
-
-### ✔ Auto-updates itself
-
-### ✔ No file editing
-
-### ✔ Works on ANY Ubuntu 22.04+ VM or hardware
-
-> **Windows users:** Synaptron Windows has its own installer (separate guide).
+### *Simple. Safe. One command. Works on Ubuntu & Proxmox VM.*
 
 ---
 
-# 🚀 **1. Quick Install (Recommended)**
+# ✅ **1. Before you start**
 
-Just run this one command:
+Make sure you:
+
+### ✔ Are using **a normal Linux user** (NOT root)
+
+### ✔ Have **Docker installed** (Debian-style), NOT Snap Docker
+
+### ✔ Have an **NVIDIA GPU** in a normal machine or Proxmox VM
+
+### ✔ Have your **Synaptron GUID** ready
+
+If unsure — just continue. The installer will tell you if something is missing.
+
+---
+
+# 🚀 **2. One-line installation (run this as your normal user)**
 
 ```bash
 curl -s https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/install.sh | bash
 ```
 
-That’s it.
+You will be asked:
 
-The installer will:
+### 1️⃣ **Node NAME**
 
-* Download everything it needs
-* Detect your GPU & CUDA version
-* Choose the correct Synaptron architecture
-* Check Docker & Docker Compose
-* Block snap-installed Docker
-* Start Synaptron, Neo4j, Watchtower
-* Keep your node constantly updated
+* Must be **≥16 characters**
+* Letters, numbers, `_` and `-` allowed
+* Example:
 
-💡 **Installation time:** ~ 15–45 seconds.
+  ```
+  SynaptronNodeProxmox001
+  ```
 
----
+### 2️⃣ **GUID**
 
-# 🧠 **2. What You Need**
-
-| Requirement | Description                                         |
-| ----------- | --------------------------------------------------- |
-| **OS**      | Ubuntu 22.04 LTS or newer (VM or bare-metal)        |
-| **GPU**     | NVIDIA GPU with CUDA support                        |
-| **Drivers** | `nvidia-smi` must work                              |
-| **Docker**  | Installed via APT, NOT snap                         |
-| **Compose** | Docker Compose v2.23.0 or newer                     |
-| **Toolkit** | NVIDIA Container Toolkit (installer checks runtime) |
-
-If something is missing, the installer gives a clear error and tells you what to fix.
+Paste your Synaptron GUID (one GUID).
 
 ---
 
-# 🖥 **3. Supported Environments**
+# 🧠 **3. What happens automatically**
 
-### ✔ Fully supported (works perfectly)
+The installer:
 
-* Ubuntu 22.04 LTS
-* Ubuntu 22.04 inside **Proxmox VM** (with GPU passthrough)
-* Bare-metal NVIDIA systems
-* Cloud VMs with NVIDIA GPU passthrough
+* Creates `~/Synaptron/`
+* Downloads the correct `docker-compose.yml`
+* Downloads `run_synaptron.sh`
+* Embeds your **NAME** and **GUID** into the YAML
+* Detects your **CUDA version**
+* Chooses the correct **ARCH + image tag**
+* Checks:
 
-### ⚠ Works but not officially supported
+  * Docker
+  * Docker permissions
+  * NVIDIA driver
+  * GPU visibility in Docker
+  * NVIDIA Container Toolkit
+* Starts the full stack:
 
-* Debian 12
-* Pop!_OS / Mint / Zorin OS
-* Fedora with NVIDIA toolkit installed
+  * Synaptron
+  * Neo4j
+  * Watchtower
 
-### ❌ Not supported (will not work)
+You will see:
 
-* Proxmox **LXC containers**
-* Snap Docker
-* macOS
-* Windows WSL
-* ARM CPUs (Raspberry Pi, Graviton, etc.)
-
----
-
-# 🏗 **4. What Gets Installed**
-
-The installer launches a complete Docker stack:
-
-| Container               | Purpose                                      |
-| ----------------------- | -------------------------------------------- |
-| **synaptron_universal** | The actual Synaptron AI node                 |
-| **neo4jtest**           | Local graph database used internally         |
-| **watchtower**          | Auto-update service (checks every 5 minutes) |
-
-All of this runs automatically in the background.
-
----
-
-# 🔧 **5. After Installation**
-
-### Check containers:
-
-```bash
-docker ps
+```
+=========================================
+   ✅ Synaptron is now running
+=========================================
 ```
 
-### View Synaptron logs:
+This means **you’re done** 🎉
+
+---
+
+# 📡 **4. Check Synaptron logs**
+
+If you want to see what it’s doing:
 
 ```bash
 docker logs -f synaptron_universal
 ```
 
-### View auto-update logs:
+First run will:
 
-```bash
-docker logs -f watchtower
+* Install PyTorch
+* Install CUDA libs
+* Download model files
+  (only happens once)
+
+When ready you will see:
+
 ```
-
-### Restart Synaptron manually:
-
-```bash
-cd ~/Synaptron
-./run_synaptron.sh
-```
-
-### Stop everything:
-
-```bash
-docker compose down
+Connected to Wilson...
+Waiting for tasks...
 ```
 
 ---
 
-# 🧩 **6. Troubleshooting**
+# 🔁 **5. Updating Synaptron**
 
-### ❌ Snap Docker detected
+Watchtower auto-updates Synaptron.
 
-Installer shows:
+To force update manually:
 
+```bash
+cd ~/Synaptron
+docker compose pull
+docker compose up -d
 ```
-ERROR: Snap Docker detected
-```
+
+---
+
+# 🧹 **6. Fix permissions (ONLY if you ran Synaptron with sudo in the past)**
+
+If you used `sudo docker compose up` previously, you may get permission errors.
 
 Fix:
 
 ```bash
-sudo snap remove docker
-curl -fsSL https://get.docker.com | sudo bash
+sudo chown -R $USER:$USER ~/Synaptron
 ```
 
-### ❌ NVIDIA driver missing
-
-If `nvidia-smi` doesn’t work:
-
-* install drivers
-* reboot
-* try again
-
-### ❌ Synaptron not updating
-
-Check Watchtower:
+Then reinstall:
 
 ```bash
-docker logs -f watchtower
+curl -s https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/install.sh | bash
 ```
 
 ---
 
-# 🧪 **7. How It Works Under the Hood**
+# 🆘 **7. If the installer stops with an error**
 
-The installer:
+The new installer now **detects**:
 
-### ✔ Auto-detects CUDA:
+* Broken NVIDIA driver
+* Missing NVIDIA toolkit
+* Docker permissions
+* Snap Docker
+* No GPU in container
+* Missing CUDA
+* Wrong environment
 
-* CUDA 12.0–12.7 → `t3_cuda24`
-* CUDA 12.8+ → `t3_cuda28`
-
-### ✔ Auto-patches docker-compose.yml:
-
-```
-ARCH: t3_cuda24
-```
-
-or
+If anything is wrong, it will show a **red error message** that looks like:
 
 ```
-ARCH: t3_cuda28
+❌ Docker CANNOT access your NVIDIA GPU.
+Fix steps:
+  sudo apt install nvidia-container-toolkit
+  sudo nvidia-ctk runtime configure --runtime=docker
+  sudo systemctl restart docker
 ```
 
-### ✔ Auto-updates via Watchtower:
+**Just follow the lines the installer shows.**
+Everything is copy-paste.
 
-Runs every **5 minutes**, restarts only Synaptron, cleans old images.
+If you still can’t fix it → open a ticket or ask in Discord.
 
-### ✔ Runs everything with:
+---
+
+# 🪛 **8. Uninstall Synaptron**
 
 ```bash
-docker compose up --pull=always -d
+cd ~/Synaptron
+docker compose down
+rm -rf ~/Synaptron
 ```
 
 ---
 
-# 🧬 **8. Files in the Installer**
+# 🟢 **That’s it. This is all the user needs to do.**
 
-The installer downloads the latest versions of:
-
-### **install.sh**
-
-* Simple bootstrapper
-* Creates `~/Synaptron`
-* Downloads launcher + compose
-* Runs the main script
-
-### **run_synaptron.sh**
-
-* Smart installer
-* Checks drivers, Docker, versions
-* Detects CUDA → ARCH
-* Patches YAML
-* Launches stack
-
-### **docker-compose.yml**
-
-* Defines Synaptron + Neo4j + Watchtower
-
-All stored in:
-
-```
-~/Synaptron/
-```
-
----
-
-# 🎉 **9. Installation Complete**
+Forget the complicated NVIDIA driver stuff —
+the installer **already checks everything automatically**
+and only shows GPU fix commands when necessary.
