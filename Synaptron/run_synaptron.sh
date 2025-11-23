@@ -4,20 +4,19 @@ set -euo pipefail
 ###########################################################
 # Timpi Synaptron – Auto Installer / Runner (Linux Only)
 # Ubuntu 22.04+ with NVIDIA GPU
-# Maintainer: johnolofs (Private repo pre-release)
+# Maintainer: johnolofs (private pre-release)
 #
 # This script:
 #  - Blocks Snap Docker
 #  - Validates Docker & Docker Compose
 #  - Checks Docker daemon permissions
-#  - Detects CUDA version and selects ARCH (t3_cuda24 / t3_cuda28)
-#  - Detects NVIDIA driver/library mismatch
-#  - Detects missing/broken toolkit
-#  - Detects GPU visibility inside Docker
-#  - Chooses matching Docker image tag (cuda24 / cuda28)
-#  - Auto-downloads docker-compose.yml
+#  - Runs NVIDIA diagnostics (driver + NVML)
+#  - Detects CUDA version -> ARCH (t3_cuda24 / t3_cuda28)
+#  - Selects matching Docker image tag (cuda24 / cuda28)
+#  - Verifies GPU access inside Docker
+#  - Prompts for NAME (>=16 chars) if needed
 #  - Auto-patches docker-compose.yml
-#  - Launches full Synaptron stack (watchtower + neo4j + synaptron)
+#  - Starts Synaptron stack (neo4j + watchtower + synaptron)
 ###########################################################
 
 REPO_BASE="https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron"
@@ -111,15 +110,22 @@ echo "✅ Docker daemon is reachable."
 ###########################################################
 # NVIDIA DRIVER DIAGNOSTICS
 ###########################################################
-
 echo
 echo "🔍 Running NVIDIA diagnostics..."
 
-# 1) Does nvidia-smi work at all?
-NVIDIA_ERROR=""
-if ! NVIDIA_ERROR="$(nvidia-smi 2>&1 | grep -i 'Failed' || true)"; then
-  echo ""
+# 1) Check that nvidia-smi exists at all
+if ! command -v nvidia-smi >/dev/null 2>&1; then
+  echo "❌ nvidia-smi not found — NVIDIA driver not installed correctly or GPU not detected."
+  echo
+  echo "Install / fix driver (recommended 550+), then reboot, for example:"
+  echo "  sudo apt install -y nvidia-driver-550"
+  echo "  sudo reboot"
+  echo
+  exit 1
 fi
+
+# 2) Check for NVML / driver mismatch errors
+NVIDIA_ERROR="$(nvidia-smi 2>&1 | grep -i 'Failed' || true)"
 
 if [[ -n "$NVIDIA_ERROR" ]]; then
   echo
@@ -129,7 +135,7 @@ if [[ -n "$NVIDIA_ERROR" ]]; then
   echo "This means your NVIDIA installation is corrupted or mismatched."
   echo "Synaptron CANNOT run until this is fixed."
   echo
-  echo "Fix steps:"
+  echo "Suggested fix:"
   echo "  sudo apt remove --purge '^nvidia-.*'"
   echo "  sudo apt remove --purge '^libnvidia-.*'"
   echo "  sudo apt autoremove -y"
@@ -146,7 +152,9 @@ fi
 
 echo "✅ NVIDIA driver appears present."
 
-# 2) Extract CUDA version
+###########################################################
+# CUDA detection -> ARCH + image tag
+###########################################################
 CUDA_LINE="$(nvidia-smi | grep 'CUDA Version' || true)"
 CUDA_INFO=""
 ARCH="t3_cuda24"
@@ -159,6 +167,8 @@ if [[ -n "$CUDA_LINE" ]]; then
 
   echo "   Detected CUDA: $CUDA_INFO"
 
+  # CUDA 12.8+ => t3_cuda28 + cuda28
+  # CUDA 12.0–12.7 => t3_cuda24 + cuda24
   if [[ "$CUDA_MAJOR" -gt 12 ]] || { [[ "$CUDA_MAJOR" -eq 12 ]] && [[ "$CUDA_MINOR" -ge 8 ]]; }; then
     ARCH="t3_cuda28"
     CUDA_TAG="cuda28"
@@ -189,6 +199,42 @@ if ! docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi >
 fi
 
 echo "✅ GPU is accessible from inside Docker."
+
+###########################################################
+# Prompt for NAME (>=16 characters) if needed
+###########################################################
+echo
+echo "🧾 Checking Synaptron node NAME..."
+
+CURRENT_NAME_LINE="$(grep -E '^\s*NAME:' "$YML_FILE" | head -n1 || true)"
+CURRENT_NAME=""
+
+if [[ -n "$CURRENT_NAME_LINE" ]]; then
+  CURRENT_NAME="${CURRENT_NAME_LINE#*:}"
+  CURRENT_NAME="${CURRENT_NAME#" "}"
+  CURRENT_NAME="${CURRENT_NAME%\"}"
+  CURRENT_NAME="${CURRENT_NAME#\"}"
+fi
+
+if [[ -z "$CURRENT_NAME" || "$CURRENT_NAME" == "<YOUR NODE NAME>" || ${#CURRENT_NAME} -lt 16 ]]; then
+  echo "Your Synaptron node needs a NAME of at least 16 characters."
+  echo "This will be visible in Timpi tools / logs."
+  while true; do
+    read -r -p "Enter Synaptron node name (>=16 chars, you can paste it here): " NODE_NAME
+    NODE_NAME="${NODE_NAME#" "}"
+    NODE_NAME="${NODE_NAME%" "}"
+    if [[ ${#NODE_NAME} -lt 16 ]]; then
+      echo "❌ Name too short (${#NODE_NAME} chars). Please enter at least 16 characters."
+      continue
+    fi
+    break
+  done
+  echo "✅ Using node name: $NODE_NAME"
+  # Update NAME line in YAML (keep two-space indent)
+  sed -i "s#^\s*NAME:.*#  NAME: \"${NODE_NAME}\"#" "$YML_FILE"
+else
+  echo "✅ Existing node name detected: $CURRENT_NAME"
+fi
 
 ###########################################################
 # Patch ARCH + image tag in YAML
