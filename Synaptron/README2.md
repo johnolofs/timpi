@@ -51,20 +51,22 @@ If you installed Synaptron manually or with an older script, remove old containe
 ### Stop & remove old containers
 
 ```bash
-docker stop synaptron_universal 2>/dev/null
-docker rm synaptron_universal 2>/dev/null
-docker stop neo4jtest 2>/dev/null
-docker rm neo4jtest 2>/dev/null
-docker stop watchtower 2>/dev/null
-docker rm watchtower 2>/dev/null
+sudo docker stop timpi-synaptron 2>/dev/null
+sudo docker rm timpi-synaptron 2>/dev/null 
+sudo docker stop synaptron_universal 2>/dev/null
+sudo docker rm synaptron_universal 2>/dev/null
+sudo docker stop neo4jtest 2>/dev/null
+sudo docker rm neo4jtest 2>/dev/null
+sudo docker stop watchtower 2>/dev/null
+sudo docker rm watchtower 2>/dev/null
 ````
 
 ### Remove old images
 
 ```bash
-docker images | grep timpi
-docker rmi timpiltd/timpi-synaptron-universal:latest 2>/dev/null
-docker rmi timpiltd/timpi-synaptron:latest 2>/dev/null
+sudo docker images | grep timpi
+sudo docker rmi timpiltd/timpi-synaptron-universal:latest 2>/dev/null
+sudo docker rmi timpiltd/timpi-synaptron:latest 2>/dev/null
 ```
 
 ### Check manually so all **old** containers/images are removed
