@@ -228,19 +228,13 @@ sudo systemctl restart docker
 
 Run *one* of these depending on your CUDA version from `nvidia-smi`:
 
-### Your driver says: **CUDA 12.4**
+### Ex. If Your driver says: **CUDA 12.4**
 
 ```bash
 docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi
 ```
 
-### Your driver says: **CUDA 12.8**
-
-```bash
-docker run --rm --gpus all nvidia/cuda:12.8.0-base-ubuntu22.04 nvidia-smi
-```
-
-### Your driver says: **CUDA XX.X.X**
+### Your driver says: **CUDA XX.X.X** (Fill in correct Value Instead Of X:es)
 ```bash
 docker run --rm --gpus all nvidia/cuda:XX.X.X-base-ubuntu22.04 nvidia-smi
 ```
