@@ -4,10 +4,11 @@ set -euo pipefail
 ###########################################################
 # Timpi Synaptron – Installer (Linux)
 # - Creates ~/Synaptron
+# - Fixes permissions ONLY if needed
 # - Downloads run_synaptron.sh + docker-compose.yml
 # - Prompts user for:
-#     NAME (>=16 chars, A–Z, a–z, 0–9, _ and -)
-#     GUID (single GUID)
+#     NAME (>=16 chars)
+#     GUID
 # - Patches docker-compose.yml
 # - Runs run_synaptron.sh
 ###########################################################
@@ -23,6 +24,17 @@ echo "Install directory: ${INSTALL_DIR}"
 echo
 
 mkdir -p "${INSTALL_DIR}"
+
+###########################################################
+# CONDITIONAL PERMISSION FIX (only if needed)
+###########################################################
+if [ ! -w "${INSTALL_DIR}" ]; then
+  echo "⚠ Permission issue detected for ${INSTALL_DIR}"
+  echo "🔧 Fixing ownership..."
+  sudo chown -R "$USER:$USER" "${INSTALL_DIR}"
+  echo "✔ Permissions fixed."
+fi
+
 cd "${INSTALL_DIR}"
 
 echo "📂 Using directory: ${INSTALL_DIR}"
@@ -37,7 +49,7 @@ curl -fsS -o "${YML_FILE}" "${REPO_BASE}/${YML_FILE}"
 chmod +x "${RUN_FILE}"
 
 ###########################################################
-# Helper: read from /dev/tty so it works even with curl | bash
+# Helper: read input from TTY (works with curl | bash)
 ###########################################################
 read_from_tty() {
   local prompt="$1"
@@ -45,9 +57,7 @@ read_from_tty() {
   local value
 
   while true; do
-    # Print prompt to the real terminal
     printf "%s" "${prompt}" > /dev/tty
-    # Read from the real terminal
     if ! IFS= read -r value < /dev/tty; then
       echo >&2 "❌ Could not read input from terminal."
       exit 1
@@ -73,7 +83,6 @@ NODE_NAME=""
 while true; do
   read_from_tty "Enter Synaptron node NAME (>=16 chars, A–Z, a–z, 0–9, _ and - only): " NODE_NAME
 
-  # Remove all characters except A–Z, a–z, 0–9, _ and -
   SAFE_NAME="$(printf "%s" "$NODE_NAME" | tr -cd 'A-Za-z0-9_-')"
 
   if [[ -z "$SAFE_NAME" ]]; then
@@ -98,7 +107,6 @@ NODE_GUID=""
 while true; do
   read_from_tty "Paste your Synaptron GUID: " NODE_GUID
 
-  # Keep only A–Z, a–z, 0–9 and dash
   SAFE_GUID="$(printf "%s" "$NODE_GUID" | tr -cd 'A-Za-z0-9-')"
 
   if [[ -z "$SAFE_GUID" ]]; then
@@ -107,8 +115,7 @@ while true; do
   fi
 
   if [[ ${#SAFE_GUID} -lt 16 ]]; then
-    echo "⚠ GUID looks very short (${#SAFE_GUID} chars). Are you sure it's correct?" > /dev/tty
-    # Still allow – GUID formats can vary
+    echo "⚠ GUID looks short (${#SAFE_GUID} chars). Are you sure it's correct?" > /dev/tty
   fi
 
   echo "✅ Using GUID: ${SAFE_GUID}" > /dev/tty
@@ -119,10 +126,6 @@ done
 ###########################################################
 # Patch NAME and GUID into docker-compose.yml
 ###########################################################
-# We know these lines exist under x-synaptron-vars:
-#   NAME: <YOUR NODE NAME>
-#   GUID: <YOUR GUID>
-
 echo
 echo "✏ Updating docker-compose.yml with your NAME and GUID..."
 sed -i "s#^\s*NAME:.*#  NAME: ${NODE_NAME}#" "${YML_FILE}"
@@ -132,7 +135,7 @@ echo "✅ Configuration written."
 echo
 
 ###########################################################
-# Hand over to run_synaptron.sh
+# Launch installer
 ###########################################################
 echo "🚀 Starting Synaptron setup..."
 ./"${RUN_FILE}"
