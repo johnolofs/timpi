@@ -270,7 +270,7 @@ docker run --rm --gpus all nvidia/cuda:12.8.0-base-ubuntu22.04 nvidia-smi
 
 ## 🚀 **ONE-LINE SYNAPTRON INSTALLATION**
 
-Run as **normal user**, NOT root:
+Run as **normal user**:
 
 ```bash
 curl -s https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/install.sh | bash
