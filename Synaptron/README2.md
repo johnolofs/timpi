@@ -234,9 +234,9 @@ Run *one* of these depending on your CUDA version from `nvidia-smi`:
 docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi
 ```
 
-### Your driver says: **CUDA XX.X.X** (Fill in correct Value Instead Of X:es)
+### Your driver says: **CUDA 12.8.0**
 ```bash
-docker run --rm --gpus all nvidia/cuda:XX.X.X-base-ubuntu22.04 nvidia-smi
+docker run --rm --gpus all nvidia/cuda:12.8.0-base-ubuntu22.04 nvidia-smi
 ```
 
 ---
