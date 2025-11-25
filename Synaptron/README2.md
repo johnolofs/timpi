@@ -274,12 +274,19 @@ Paste your Synaptron GUID.
 The installer:
 
 ✔ Creates `~/Synaptron/`
+
 ✔ Fixes permissions **only if needed**
+
 ✔ Downloads fresh `docker-compose.yml`
+
 ✔ Downloads `run_synaptron.sh`
+
 ✔ Injects NAME + GUID into YAML
+
 ✔ Detects your CUDA version
-✔ Selects correct image (`cuda24` / `cuda26` / `cuda28`)
+
+✔ Selects correct image (`cuda24` / `cuda28`)
+
 ✔ Validates:
 
 * Docker
