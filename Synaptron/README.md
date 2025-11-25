@@ -1,7 +1,5 @@
 # 🧬 **TIMPI SYNAPTRON — OFFICIAL INSTALLATION GUIDE**
 
-### *Simple. Safe. One Command. Works on Ubuntu & Proxmox (VM).*
-
 <img width="1480" height="862" src="https://github.com/user-attachments/assets/b0749433-3720-4422-a14d-26c4dec067c3" />
 
 ---
@@ -33,13 +31,6 @@ This is the **simplest and safest way** to install a Synaptron node on:
 * **Ubuntu 22.04 LTS**
 * **Proxmox VM with GPU passthrough**
 * **Any Debian-based Linux with NVIDIA support**
-
-✔ Fully automated  
-✔ No manual configuration  
-✔ No YAML editing  
-✔ No driver version guessing  
-✔ No permission errors  
-✔ Auto-updates via Watchtower  
 
 ---
 
@@ -196,6 +187,30 @@ or
 ```text
 Failed to initialize NVML
 ```
+---
+
+## 🔧 **CUDA Compatibility Recommendation**
+
+Before continuing, check the **CUDA Version** reported by:
+
+```bash
+nvidia-smi
+```
+
+Synaptron has been **tested and validated** on:
+
+* **CUDA 12.8+** → Recommended for **Blackwell GPUs**
+* **CUDA 12.4** → Recommended for **all other NVIDIA architectures**
+  (Ada, Ampere, Turing, Pascal, etc.)
+
+Other CUDA versions (like **12.6** or **13.x**) usually work,
+but they are **not officially tested**, so performance may vary.
+
+You may still continue with any version — this is only a **recommendation**, not a requirement.
+
+
+---
+
 
 Download the correct driver for your GPU:
 
@@ -222,29 +237,6 @@ sudo apt install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 ```
-
----
-
-
-## 🔧 **CUDA Compatibility Recommendation**
-
-Before continuing, check the **CUDA Version** reported by:
-
-```bash
-nvidia-smi
-```
-
-Synaptron has been **tested and validated** on:
-
-* **CUDA 12.8+** → Recommended for **Blackwell GPUs**
-* **CUDA 12.4** → Recommended for **all other NVIDIA architectures**
-  (Ada, Ampere, Turing, Pascal, etc.)
-
-Other CUDA versions (like **12.6** or **13.x**) usually work,
-but they are **not officially tested**, so performance may vary.
-
-You may still continue with any version — this is only a **recommendation**, not a requirement.
-
 
 ---
 
