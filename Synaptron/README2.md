@@ -223,6 +223,31 @@ sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 ```
 
+---
+
+
+## 🔧 **CUDA Compatibility Recommendation**
+
+Before continuing, check the **CUDA Version** reported by:
+
+```bash
+nvidia-smi
+```
+
+Synaptron has been **tested and validated** on:
+
+* **CUDA 12.8+** → Recommended for **Blackwell GPUs**
+* **CUDA 12.4** → Recommended for **all other NVIDIA architectures**
+  (Ada, Ampere, Turing, Pascal, etc.)
+
+Other CUDA versions (like **12.6** or **13.x**) usually work,
+but they are **not officially tested**, so performance may vary.
+
+You may still continue with any version — this is only a **recommendation**, not a requirement.
+
+
+---
+
 
 ## 🧪 **Test NVIDIA GPU inside Docker (choose ONE)**
 
@@ -234,7 +259,7 @@ Run *one* of these depending on your CUDA version from `nvidia-smi`:
 docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi
 ```
 
-### Your driver says: **CUDA 12.8.0**
+### Your driver says: **CUDA 12.8**
 ```bash
 docker run --rm --gpus all nvidia/cuda:12.8.0-base-ubuntu22.04 nvidia-smi
 ```
