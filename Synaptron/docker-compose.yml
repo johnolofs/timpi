@@ -43,10 +43,10 @@ services:
     restart: always
     container_name: synaptron_universal
     dns:
-    - 100.42.180.29   # ns1.timpi.com
-    - 100.42.180.99   # ns2.timpi.com
-    - 8.8.8.8         # Google
-    - 1.1.1.1         # Cloudflare
+      - 100.42.180.29   # ns1.timpi.com
+      - 100.42.180.99   # ns2.timpi.com
+      - 8.8.8.8         # Google
+      - 1.1.1.1         # Cloudflare
     ports:
       - "8000:8000"
     environment: *synaptron-vars
