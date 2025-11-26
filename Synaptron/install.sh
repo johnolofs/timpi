@@ -7,7 +7,7 @@ set -euo pipefail
 # - Fixes permissions ONLY if needed
 # - Downloads run_synaptron.sh + docker-compose.yml
 # - Prompts user for:
-#     NAME (>=16 chars)
+#     NAME (>=17 chars, safe charset)
 #     GUID
 # - Patches docker-compose.yml
 # - Runs run_synaptron.sh
@@ -30,7 +30,7 @@ mkdir -p "${INSTALL_DIR}"
 ###########################################################
 if [ ! -w "${INSTALL_DIR}" ]; then
   echo "⚠ Permission issue detected for ${INSTALL_DIR}"
-  echo "🔧 Fixing ownership..."
+  echo "🔧 Fixing ownership (sudo chown -R ${USER}:${USER} ${INSTALL_DIR})..."
   sudo chown -R "$USER:$USER" "${INSTALL_DIR}"
   echo "✔ Permissions fixed."
 fi
@@ -70,19 +70,20 @@ read_from_tty() {
 }
 
 ###########################################################
-# Ask for NAME (>=16 chars, safe characters only)
+# Ask for NAME (>=17 chars, safe characters only)
 ###########################################################
 echo
 echo "🧾 Configure your Synaptron node identity"
 echo "Your node will need:"
-echo "  - A NAME (at least 16 characters)"
+echo "  - A NAME (at least 17 characters)"
 echo "  - A GUID (provided by Timpi)"
 echo
 
 NODE_NAME=""
 while true; do
-  read_from_tty "Enter Synaptron node NAME (>=16 chars, A–Z, a–z, 0–9, _ and - only): " NODE_NAME
+  read_from_tty "Enter Synaptron node NAME (>=17 chars, A–Z, a–z, 0–9, _ and - only): " NODE_NAME
 
+  # Keep only safe characters
   SAFE_NAME="$(printf "%s" "$NODE_NAME" | tr -cd 'A-Za-z0-9_-')"
 
   if [[ -z "$SAFE_NAME" ]]; then
@@ -90,8 +91,8 @@ while true; do
     continue
   fi
 
-  if [[ ${#SAFE_NAME} -lt 16 ]]; then
-    echo "❌ Name too short (${#SAFE_NAME} chars). Must be at least 16 characters." > /dev/tty
+  if [[ ${#SAFE_NAME} -lt 17 ]]; then
+    echo "❌ Name too short (${#SAFE_NAME} chars). Must be at least 17 characters." > /dev/tty
     continue
   fi
 
@@ -107,6 +108,7 @@ NODE_GUID=""
 while true; do
   read_from_tty "Paste your Synaptron GUID: " NODE_GUID
 
+  # Keep only A–Z, a–z, 0–9 and dash
   SAFE_GUID="$(printf "%s" "$NODE_GUID" | tr -cd 'A-Za-z0-9-')"
 
   if [[ -z "$SAFE_GUID" ]]; then
@@ -116,6 +118,7 @@ while true; do
 
   if [[ ${#SAFE_GUID} -lt 16 ]]; then
     echo "⚠ GUID looks short (${#SAFE_GUID} chars). Are you sure it's correct?" > /dev/tty
+    # still allow – some GUID formats may vary
   fi
 
   echo "✅ Using GUID: ${SAFE_GUID}" > /dev/tty
@@ -135,7 +138,7 @@ echo "✅ Configuration written."
 echo
 
 ###########################################################
-# Launch installer
+# Launch main Synaptron runner
 ###########################################################
 echo "🚀 Starting Synaptron setup..."
 ./"${RUN_FILE}"
