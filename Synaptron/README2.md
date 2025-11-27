@@ -326,7 +326,7 @@ NVIDIA-SMI table appears **inside Docker**.
 
 # 8. **One-Line Synaptron Installation**
 
-Run as normal user (not root):
+Run as normal user:
 
 ```bash
 curl -s https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/install.sh | bash
