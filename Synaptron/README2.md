@@ -1,142 +1,192 @@
 # 🧬 **TIMPI SYNAPTRON — OFFICIAL INSTALLATION GUIDE**
 
-### *Simple. Safe. One Command. Works on Ubuntu & Proxmox (VM).*
-
-<img width="1480" height="862" src="https://github.com/user-attachments/assets/b0749433-3720-4422-a14d-26c4dec067c3" />
+<img width="1480" height="862" src="https://github.com/user-attachments/assets/b0749433-3720-4422-a14d-26c4dec067c3"/>
 
 ---
 
 # 📑 **Table of Contents**
 
-1. [Overview](#overview)
-2. [Remove Older Synaptron Installations](#remove-older-synaptron-installations)
-3. [System Requirements](#system-requirements)
-4. [Install Docker](#install-docker)
-5. [Install Docker Compose](#install-docker-compose)
-6. [Install NVIDIA Drivers (Universal & Safe)](#install-nvidia-drivers-universal--safe)
-7. [Install NVIDIA Container Toolkit](#install-nvidia-container-toolkit)
-8. [One-Line Synaptron Installation](#one-line-synaptron-installation)
-9. [What the Installer Does Automatically](#what-the-installer-does-automatically)
-10. [Checking Logs](#checking-logs)
-11. [Updating Synaptron](#updating-synaptron)
-12. [Uninstall Synaptron](#uninstall-synaptron)
-13. [Troubleshooting](#troubleshooting)
+1. [Overview](#1-overview)
+2. [Remove Older Synaptron Installations](#2-remove-older-synaptron-installations)
+3. [System Requirements](#3-system-requirements)
+4. [Install Docker](#4-install-docker)
 
+   * 4.1 [Check if Docker is installed](#41-check-if-docker-is-installed)
+   * 4.2 [Install Docker CE](#42-install-docker-ce)
+5. [Install Docker Compose](#5-install-docker-compose)
+
+   * 5.1 [Install Docker Compose plugin](#51-install-docker-compose-plugin)
+   * 5.2 [Verify Docker Compose version](#52-verify-docker-compose-version)
+6. [Install NVIDIA Drivers](#6-install-nvidia-drivers)
+
+   * 6.1 [Check if driver works](#61-check-if-driver-works)
+   * 6.2 [Fix missing/broken driver](#62-fix-missingbroken-driver)
+   * 6.3 [CUDA compatibility recommendation](#63-cuda-compatibility-recommendation)
+7. [Install NVIDIA Container Toolkit](#7-install-nvidia-container-toolkit)
+
+   * 7.1 [Test GPU inside Docker](#71-test-gpu-inside-docker)
+8. [One-Line Synaptron Installation](#8-one-line-synaptron-installation)
+9. [What the Installer Does Automatically](#9-what-the-installer-does-automatically)
+10. [Checking Logs](#10-checking-logs)
+11. [Updating Synaptron](#11-updating-synaptron)
+12. [Uninstall Synaptron](#12-uninstall-synaptron)
+13. [Troubleshooting](#13-troubleshooting)
 
 ---
 
-<a id="overview"></a>
-## 🧭 **Overview**
+# 1. **Overview**
 
-This is the **simplest and safest way** to install a Synaptron node on:
+This guide provides the **official, stable, GPU-verified** installation method for:
 
 * **Ubuntu 22.04 LTS**
-* **Proxmox VM with GPU passthrough**
-* **Any Debian-based Linux with NVIDIA support**
-
-✔ Fully automated  
-✔ No manual configuration  
-✔ No YAML editing  
-✔ No driver version guessing  
-✔ No permission errors  
-✔ Auto-updates via Watchtower  
+* **Proxmox VMs with GPU passthrough**
+* **Debian-based systems with NVIDIA support**
 
 ---
 
-<a id="remove-older-synaptron-installations"></a>
-## ⚠️ **Remove Older Synaptron Installations**
+## 1.1 **Choose the correct path**
 
-If you installed Synaptron manually or with an older script, remove old containers first:
+### 🟩 **You are upgrading from an older Synaptron**
 
-### Stop & remove old containers
+Do this:
+
+1. Go to **Section 2 — Remove Older Installations**
+2. Then jump directly to **Section 8 — One-Line Installer**
+
+### 🟦 **Brand-new install / fresh server**
+
+Follow everything in order:
+
+2 → 3 → 4 → 5 → 6 → 7 → 8
+
+---
+
+# 2. **Remove Older Synaptron Installations**
+
+### 2.1 Stop & remove old containers
 
 ```bash
-sudo docker stop timpi-synaptron 2>/dev/null
-sudo docker rm timpi-synaptron 2>/dev/null 
-sudo docker stop synaptron_universal 2>/dev/null
-sudo docker rm synaptron_universal 2>/dev/null
-sudo docker stop neo4jtest 2>/dev/null
-sudo docker rm neo4jtest 2>/dev/null
-sudo docker stop watchtower 2>/dev/null
-sudo docker rm watchtower 2>/dev/null
-````
+sudo docker stop timpi-synaptron synaptron_universal neo4jtest watchtower 2>/dev/null
+sudo docker rm timpi-synaptron synaptron_universal neo4jtest watchtower 2>/dev/null
+```
 
-### Remove old images
+### 2.2 Remove old images
 
 ```bash
-sudo docker images | grep timpi
 sudo docker rmi timpiltd/timpi-synaptron-universal:latest 2>/dev/null
 sudo docker rmi timpiltd/timpi-synaptron:latest 2>/dev/null
 ```
 
-### Check manually so all **old** containers/images are removed
+### 2.3 Confirm everything is gone
 
 ```bash
-sudo docker ps
 sudo docker ps -a
 sudo docker images
 ```
 
+If anything remains:
+
 ```bash
-sudo docker rm containerID
-sudo docker rmi imageID
+sudo docker rm <containerID>
+sudo docker rmi <imageID>
 ```
 
-### Remove old folder
+### 2.4 Remove old folders
 
 ```bash
 rm -rf ~/Synaptron
 ```
 
-💡 The new installer automatically fixes permissions **only when needed**.
+---
+
+# 3. **System Requirements**
+
+| Component | Requirement                      |
+| --------- | -------------------------------- |
+| CPU       | 4 cores                          |
+| RAM       | 12 GB minimum                    |
+| GPU       | NVIDIA (Compute Capability 6.1+) |
+| VRAM      | 4 GB+                            |
+| Storage   | 250 GB SSD/NVMe                  |
+| OS        | Ubuntu 22.04 / Proxmox VM        |
 
 ---
 
-<a id="system-requirements"></a>
+# 4. **Install Docker**
 
-## 🖥 **System Requirements**
+<a id="41-check-if-docker-is-installed"></a>
 
-| Component | Minimum                              |
-| --------- | ------------------------------------ |
-| CPU       | 4 cores                              |
-| RAM       | 12 GB                                |
-| GPU       | NVIDIA GPU (Compute Capability 6.1+) |
-| VRAM      | 4 GB+                                |
-| Storage   | 250 GB SSD/NVMe                      |
-| OS        | Ubuntu 22.04 / Proxmox VM            |
+## 4.1 **Check if Docker is installed**
 
----
-
-<a id="install-docker"></a>
-
-## 🐳 **Install Docker**
-
-Test if Docker already works:
+### Command:
 
 ```bash
 docker version
 ```
 
-If yes → skip to next section.
+### Expected output:
 
-Otherwise install Docker CE:
+If Docker works, you should see:
+
+```
+Client: Docker Engine - Community
+ Version:           27.x.x
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          27.x.x
+```
+
+If you see:
+
+```
+command not found
+```
+
+→ Docker is not installed.
+
+### Optional check (beginner-friendly)
+
+```bash
+sudo systemctl status docker
+```
+
+Expected:
+
+```
+Active: active (running)
+```
+
+If both checks pass → Skip to section **5**.
+
+---
+
+<a id="42-install-docker-ce"></a>
+
+## 4.2 **Install Docker CE**
 
 ```bash
 sudo apt update
 sudo apt install -y ca-certificates curl gnupg lsb-release
 ```
 
+Add Docker GPG key:
+
 ```bash
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 ```
+
+Add repository:
 
 ```bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
-  https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
+
+Install:
 
 ```bash
 sudo apt update
@@ -144,78 +194,106 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl enable docker && sudo systemctl start docker
 ```
 
+Re-test:
+
+```bash
+docker version
+```
+
 ---
 
-<a id="install-docker-compose"></a>
+# 5. **Install Docker Compose**
 
-## 📦 **Install Docker Compose**
+<a id="51-install-docker-compose-plugin"></a>
 
-Synaptron requires Docker Compose v2.23+
+## 5.1 Install Compose v2 plugin
 
 ```bash
 sudo apt install -y docker-compose-plugin
 ```
 
-Check version:
+<a id="52-verify-docker-compose-version"></a>
+
+## 5.2 Verify version
 
 ```bash
 docker compose version
 ```
 
----
+Expected:
 
-<a id="install-nvidia-drivers-universal--safe"></a>
-
-## 🎮 **Install NVIDIA Drivers (Universal & Safe)**
-
-This guide **does NOT force any specific driver version**
-(because different GPUs require different drivers).
+```
+Docker Compose version v2.23.x  or newer
+```
 
 ---
 
-### ✔ Step 1 — Check if driver is already working
+# 6. **Install NVIDIA Drivers**
+
+<a id="61-check-if-driver-works"></a>
+
+## 6.1 Test if driver is working
 
 ```bash
 nvidia-smi
 ```
 
-If you see your GPU → **Drivers OK. Continue to next step.**
+Expected:
+
+```
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 555.xx.xx  Driver Version: 555.xx  CUDA Version: 12.x           |
+```
+
+If your GPU appears → driver is fine.
 
 ---
 
-### ✔ Step 2 — Driver missing or broken?
+<a id="62-fix-missingbroken-driver"></a>
 
-If you get:
+## 6.2 If driver is missing or broken
 
-```text
+You may see:
+
+```
 nvidia-smi: command not found
 ```
 
 or
 
-```text
+```
 Failed to initialize NVML
 ```
 
-Download the correct driver for your GPU:
-
-👉 [https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/)
-
-Install, reboot, then test:
-
-```bash
-nvidia-smi
-```
+→ Install or repair your driver.
 
 ---
 
-<a id="install-nvidia-container-toolkit"></a>
+<a id="63-cuda-compatibility-recommendation"></a>
 
-## 🧩 **Install NVIDIA Container Toolkit**
+## 6.3 CUDA compatibility recommendation
 
-Required for GPU support inside Docker.
+From `nvidia-smi`, check:
 
-If your installer complains about GPU access, run:
+```
+CUDA Version: 12.8
+```
+
+**Recommended:**
+
+| Your GPU                                 | Use            |
+| ---------------------------------------- | -------------- |
+| Blackwell                                | CUDA **12.8+** |
+| All others (Ada, Ampere, Turing, Pascal) | CUDA **12.4**  |
+
+Other versions (12.6, 13.x) usually work but are **not tested**.
+
+Official driver install guide:
+[https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/)
+
+---
+
+# 7. **Install NVIDIA Container Toolkit**
 
 ```bash
 sudo apt install -y nvidia-container-toolkit
@@ -225,146 +303,107 @@ sudo systemctl restart docker
 
 ---
 
+<a id="71-test-gpu-inside-docker"></a>
 
-## 🔧 **CUDA Compatibility Recommendation**
+## 7.1 Test GPU inside Docker
 
-Before continuing, check the **CUDA Version** reported by:
-
-```bash
-nvidia-smi
-```
-
-Synaptron has been **tested and validated** on:
-
-* **CUDA 12.8+** → Recommended for **Blackwell GPUs**
-* **CUDA 12.4** → Recommended for **all other NVIDIA architectures**
-  (Ada, Ampere, Turing, Pascal, etc.)
-
-Other CUDA versions (like **12.6** or **13.x**) usually work,
-but they are **not officially tested**, so performance may vary.
-
-You may still continue with any version — this is only a **recommendation**, not a requirement.
-
-
----
-
-
-## 🧪 **Test NVIDIA GPU inside Docker (choose ONE)**
-
-Run *one* of these depending on your CUDA version from `nvidia-smi`:
-
-### Ex. If Your driver says: **CUDA 12.4**
+### CUDA 12.4
 
 ```bash
 docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi
 ```
 
-### Your driver says: **CUDA 12.8**
+### CUDA 12.8+
+
 ```bash
 docker run --rm --gpus all nvidia/cuda:12.8.0-base-ubuntu22.04 nvidia-smi
 ```
 
+Expected output:
+NVIDIA-SMI table appears **inside Docker**.
+
 ---
 
-<a id="one-line-synaptron-installation"></a>
+# 8. **One-Line Synaptron Installation**
 
-## 🚀 **ONE-LINE SYNAPTRON INSTALLATION**
-
-Run as **normal user**:
+Run as normal user (not root):
 
 ```bash
 curl -s https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/install.sh | bash
 ```
 
-Installer will ask:
+Installer asks:
 
-### 1️⃣ Node NAME (≥16 characters)
+### 1️⃣ Enter your Node NAME
 
-Example:
+(At least 17 characters)
 
-```text
-SynaptronNodeProxmox001
-```
-
-### 2️⃣ GUID
-
-Paste your Synaptron GUID.
+### 2️⃣ Enter your GUID
 
 ---
 
-<a id="what-the-installer-does-automatically"></a>
+## ⏳ Important Note
 
-## 🤖 **What the Installer Does Automatically**
+Model downloads & OLLAMA setup may take **20–40 minutes** depending on system speed.
 
-The installer:
+Do **not** interrupt it.
 
-✔ Creates `~/Synaptron/`
+---
 
-✔ Fixes permissions **only if needed**
-
-✔ Downloads fresh `docker-compose.yml`
-
-✔ Downloads `run_synaptron.sh`
-
-✔ Injects NAME + GUID into YAML
-
-✔ Detects your CUDA version
-
-✔ Selects correct image (`cuda24` / `cuda28`)
-
-✔ Validates:
-
-* Docker
-* Docker Compose
-* NVIDIA drivers
-* Toolkit
-* GPU inside Docker
-
-✔ Starts all containers:
-
-* `synaptron_universal`
-* `neo4jtest`
-* `watchtower`
-
-You will see:
+## When the installation is finished, you will see:
 
 ```text
 Synaptron is now running
 ```
 
+This is the final success confirmation.
+
 ---
 
-<a id="checking-logs"></a>
+# 9. **What the Installer Does Automatically**
 
-## 📡 **Checking Logs**
+✔ Creates `~/Synaptron/`
+✔ Fixes permissions
+✔ Downloads latest `docker-compose.yml`
+✔ Adds correct **DNS servers**
+✔ Injects NAME + GUID
+✔ Detects CUDA version
+✔ Selects correct container image
+✔ Validates Docker, Compose, Drivers, Toolkit
+✔ Starts:
 
-To view real-time node output:
+* `synaptron_universal`
+* `neo4jtest`
+* `watchtower`
+
+---
+
+# 10. **Checking Logs**
 
 ```bash
 docker logs -f synaptron_universal
 ```
 
-Initial run will:
+Ready when you see:
 
-* Install PyTorch
-* Install CUDA libs
-* Download models
-* Prepare NLP tools
-
-It’s ready when you see:
-
-```text
+```
 Connected to Wilson...
 Waiting for tasks...
 ```
 
+During maintenance you may temporarily see:
+
+```
+TAP Warning could not connect to any Coordinators...
+```
+
+This is normal.
+
 ---
 
-<a id="updating-synaptron"></a>
+# 11. **Updating Synaptron**
 
-## 🔄 **Updating Synaptron**
-
-Synaptron updates automatically via Watchtower.
+Auto-updated by **Watchtower**.
 
 Manual update:
 
@@ -376,9 +415,7 @@ docker compose up -d
 
 ---
 
-<a id="uninstall-synaptron"></a>
-
-## ❌ **Uninstall Synaptron**
+# 12. **Uninstall Synaptron**
 
 ```bash
 cd ~/Synaptron
@@ -388,23 +425,21 @@ rm -rf ~/Synaptron
 
 ---
 
-<a id="troubleshooting"></a>
+# 13. **Troubleshooting**
 
-## 🆘 **Troubleshooting**
-
-The installer detects:
+The installer automatically detects:
 
 * Missing GPU access
 * Broken NVIDIA drivers
 * Missing container toolkit
-* Snap docker installation
-* Permission errors
-* Old versions blocking install
+* Snap Docker issues
+* Wrong permissions
+* Old files blocking installation
 * Incorrect CUDA environment
 
-Example fix message:
+Example fix:
 
-```text
+```
 Docker CANNOT access your NVIDIA GPU.
 Fix steps:
   sudo apt install nvidia-container-toolkit
@@ -412,4 +447,9 @@ Fix steps:
   sudo systemctl restart docker
 ```
 
+If errors persist, include:
 
+* Your `nvidia-smi` output
+* Your Docker GPU test output
+* Your GUID
+* The last 20 lines of Synaptron log
