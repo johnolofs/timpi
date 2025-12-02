@@ -58,7 +58,7 @@ GeoCore is lightweight, Docker-based, and ideal for 24/7 operation.
 | Storage   | 3 GB                          |
 | Bandwidth | 50 Mbps                       |
 | Uptime    | 95%+                          |
-| Port      | **4100/TCP (default)**        |
+| Port      | **4014/TCP (default)**        |
 | Docker    | Required                      |
 
 ---
@@ -263,7 +263,7 @@ bash <(curl -sSL https://raw.githubusercontent.com/johnolofs/Geocore/main/GC-Aut
 
 ## 3.3 **Manual Install (Any Port)**
 
-GeoCore does not require port 4100.
+GeoCore does not require port 4014.
 You may use any free port — here is a working example using **4006**:
 
 ```bash
