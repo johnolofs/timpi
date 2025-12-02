@@ -10,7 +10,11 @@ set -euo pipefail
 #  - Validates Docker & Docker Compose
 #  - Checks Docker daemon permissions
 #  - Runs NVIDIA diagnostics (driver + NVML)
-#  - Detects GPU model -> ARCH (t3_cuda24 / t3_cuda28)
+#  - Lets user choose:
+#       1) Automatic (GPU-based)
+#       2) Force cuda24 (t3_cuda24)
+#       3) Force cuda28 (t3_cuda28)
+#  - If Automatic: Detects GPU model -> ARCH (t3_cuda24 / t3_cuda28)
 #  - Selects matching Docker image tag (cuda24 / cuda28)
 #  - Verifies GPU access inside Docker
 #  - Patches ARCH + image tag in docker-compose.yml
@@ -19,7 +23,7 @@ set -euo pipefail
 # NAME and GUID are handled in install.sh (not here).
 ###########################################################
 
-REPO_BASE="https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron"
+REPO_BASE="https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron"
 YML_FILE="docker-compose.yml"
 
 echo "===== Timpi Synaptron – Linux Installer ====="
@@ -34,7 +38,7 @@ cd "$(dirname "$0")"
 # Ensure docker-compose.yml exists
 ###########################################################
 if [[ ! -f "$YML_FILE" ]]; then
-  echo "No docker-compose.yml found — downloading..."
+  echo "📄 No docker-compose.yml found — downloading..."
   curl -fsS -O "${REPO_BASE}/${YML_FILE}"
 fi
 
@@ -43,8 +47,8 @@ fi
 ###########################################################
 if command -v snap >/dev/null 2>&1 && snap list 2>/dev/null | grep -q "^docker "; then
   echo
-  echo "ERROR: Snap Docker detected."
-  echo "Snap Docker cannot be used with Synaptron (GPU access will fail)."
+  echo "❌ ERROR: Snap Docker detected!"
+  echo "Snap Docker CANNOT be used with Synaptron (GPU access will fail)."
   echo
   echo "Fix:"
   echo "  sudo snap remove docker"
@@ -57,14 +61,14 @@ fi
 # Validate Docker + Docker Compose
 ###########################################################
 if ! command -v docker >/dev/null 2>&1; then
-  echo "ERROR: Docker not installed."
+  echo "❌ ERROR: Docker not installed."
   echo "Install it:"
   echo "  curl -fsSL https://get.docker.com | sudo bash"
   exit 1
 fi
 
 if ! docker compose version >/dev/null 2>&1; then
-  echo "ERROR: docker compose (v2) missing."
+  echo "❌ ERROR: docker compose (v2) missing."
   exit 1
 fi
 
@@ -76,19 +80,19 @@ version_ge() {
 }
 
 if ! version_ge "$REQUIRED_COMPOSE" "$COMPOSE_VERSION"; then
-  echo "ERROR: Docker Compose version too old: ${COMPOSE_VERSION}"
+  echo "❌ Docker Compose version too old: ${COMPOSE_VERSION}"
   echo "Please update to ${REQUIRED_COMPOSE}+"
   exit 1
 fi
 
-echo "Docker Compose OK: $COMPOSE_VERSION"
+echo "✅ Docker Compose OK: $COMPOSE_VERSION"
 
 ###########################################################
 # Docker permissions check
 ###########################################################
 if ! docker ps >/dev/null 2>&1; then
   echo
-  echo "ERROR: Cannot talk to Docker daemon as user '$USER'."
+  echo "❌ ERROR: Cannot talk to Docker daemon as user '$USER'."
   echo
 
   if ! id -nG "$USER" | grep -qw docker; then
@@ -105,17 +109,17 @@ if ! docker ps >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "Docker daemon is reachable."
+echo "✅ Docker daemon is reachable."
 
 ###########################################################
 # NVIDIA DRIVER DIAGNOSTICS
 ###########################################################
 echo
-echo "Running NVIDIA diagnostics..."
+echo "🔍 Running NVIDIA diagnostics..."
 
 # 1) Check that nvidia-smi exists at all
 if ! command -v nvidia-smi >/dev/null 2>&1; then
-  echo "ERROR: nvidia-smi not found — NVIDIA driver not installed correctly or GPU not detected."
+  echo "❌ nvidia-smi not found — NVIDIA driver not installed correctly or GPU not detected."
   echo
   echo "Install / fix driver (recommended 550+), then reboot, for example:"
   echo "  sudo apt install -y nvidia-driver-550"
@@ -129,11 +133,11 @@ NVIDIA_ERROR="$(nvidia-smi 2>&1 | grep -i 'Failed' || true)"
 
 if [[ -n "$NVIDIA_ERROR" ]]; then
   echo
-  echo "ERROR: NVIDIA driver is broken."
+  echo "❌ NVIDIA driver is broken!"
   echo "$NVIDIA_ERROR"
   echo
   echo "This means your NVIDIA installation is corrupted or mismatched."
-  echo "Synaptron cannot run until this is fixed."
+  echo "Synaptron CANNOT run until this is fixed."
   echo
   echo "Suggested fix:"
   echo "  sudo apt remove --purge '^nvidia-.*'"
@@ -150,7 +154,7 @@ if [[ -n "$NVIDIA_ERROR" ]]; then
   exit 1
 fi
 
-echo "NVIDIA driver appears present."
+echo "✅ NVIDIA driver appears present."
 
 ###########################################################
 # Helper: detect if GPU is Blackwell-class
@@ -165,53 +169,104 @@ is_blackwell() {
 }
 
 ###########################################################
-# GPU model + CUDA info -> ARCH + image tag
-# Rule:
-#   - Blackwell (5090/5080/5070/GBxx) -> t3_cuda28 / cuda28
-#   - All other GPUs -> t3_cuda24 / cuda24
+# Optional: show CUDA version (informational only)
 ###########################################################
 CUDA_LINE="$(nvidia-smi | grep 'CUDA Version' || true)"
 if [[ -n "$CUDA_LINE" ]]; then
   CUDA_INFO="$(echo "$CUDA_LINE" | sed -E 's/.*CUDA Version: ([0-9]+\.[0-9]+).*/\1/')"
-  echo "Detected CUDA (driver): $CUDA_INFO"
+  echo "🧮 Detected CUDA (driver): $CUDA_INFO"
 else
-  echo "No CUDA version line found in nvidia-smi output."
+  echo "⚠ No CUDA version line found in nvidia-smi output."
 fi
 
-GPU_MODEL_RAW="$(nvidia-smi --query-gpu=name --format=csv,noheader | head -n1 || true)"
-GPU_MODEL="$(echo "$GPU_MODEL_RAW" | sed 's/^ *//;s/ *$//')"
+###########################################################
+# MODE SELECTION PROMPT
+# 1) Automatic (GPU-based)
+# 2) Force cuda24 (t3_cuda24)
+# 3) Force cuda28 (t3_cuda28)
+#
+# If no TTY (non-interactive), default to Automatic.
+###########################################################
+ARCH=""
+CUDA_TAG=""
+MODE="AUTO"
 
-ARCH="t3_cuda24"
-CUDA_TAG="cuda24"
+if [ -t 0 ]; then
+  echo
+  echo "Choose Synaptron CUDA mode:"
+  echo "  1) Automatic (recommended)"
+  echo "       - Blackwell (5090/5080/5070/GBxx) -> cuda28"
+  echo "       - All other GPUs -> cuda24"
+  echo "  2) Force CUDA 12.4 container (t3_cuda24)"
+  echo "  3) Force CUDA 12.8+ container (t3_cuda28)"
+  echo
+  read -rp "Select [1-3, default 1]: " choice || choice=""
 
-if [[ -z "$GPU_MODEL" ]]; then
-  echo "WARNING: Could not detect GPU model via nvidia-smi. Defaulting to ARCH=t3_cuda24 (cuda24 image)."
+  case "$choice" in
+    2)
+      MODE="FORCE24"
+      ARCH="t3_cuda24"
+      CUDA_TAG="cuda24"
+      echo "Mode selected: Force cuda24 (t3_cuda24)"
+      ;;
+    3)
+      MODE="FORCE28"
+      ARCH="t3_cuda28"
+      CUDA_TAG="cuda28"
+      echo "Mode selected: Force cuda28 (t3_cuda28)"
+      ;;
+    *)
+      MODE="AUTO"
+      echo "Mode selected: Automatic"
+      ;;
+  esac
 else
-  echo "Detected GPU model: $GPU_MODEL"
+  # Non-interactive environment – default to automatic
+  MODE="AUTO"
+  echo
+  echo "No interactive TTY detected – defaulting to Automatic mode."
+fi
 
-  if is_blackwell "$GPU_MODEL"; then
-    echo "Blackwell-class GPU detected -> using ARCH=t3_cuda28 (cuda28 image)."
-    ARCH="t3_cuda28"
-    CUDA_TAG="cuda28"
+###########################################################
+# If Automatic, use GPU model to decide ARCH + tag
+###########################################################
+if [[ "$MODE" == "AUTO" ]]; then
+  GPU_MODEL_RAW="$(nvidia-smi --query-gpu=name --format=csv,noheader | head -n1 || true)"
+  GPU_MODEL="$(echo "$GPU_MODEL_RAW" | sed 's/^ *//;s/ *$//')"
+
+  ARCH="t3_cuda24"
+  CUDA_TAG="cuda24"
+
+  if [[ -z "$GPU_MODEL" ]]; then
+    echo "⚠ Could not detect GPU model via nvidia-smi. Defaulting to ARCH=t3_cuda24 (cuda24 image)."
   else
-    echo "Non-Blackwell GPU detected -> using ARCH=t3_cuda24 (cuda24 image)."
-    ARCH="t3_cuda24"
-    CUDA_TAG="cuda24"
+    echo "🧾 Detected GPU model: $GPU_MODEL"
+
+    if is_blackwell "$GPU_MODEL"; then
+      echo "✅ Blackwell-class GPU detected -> using ARCH=t3_cuda28 (cuda28 image)."
+      ARCH="t3_cuda28"
+      CUDA_TAG="cuda28"
+    else
+      echo "✅ Non-Blackwell GPU detected -> using ARCH=t3_cuda24 (cuda24 image)."
+      ARCH="t3_cuda24"
+      CUDA_TAG="cuda24"
+    fi
   fi
 fi
 
-echo "Using ARCH: $ARCH"
-echo "Using image tag: $CUDA_TAG"
+echo
+echo "🏗 Using ARCH: $ARCH"
+echo "🏗 Using image tag: $CUDA_TAG"
 
 ###########################################################
 # Check GPU visibility inside Docker
 ###########################################################
 echo
-echo "Checking GPU access inside Docker..."
+echo "🔍 Checking GPU access inside Docker..."
 
 if ! docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi >/dev/null 2>&1; then
   echo
-  echo "ERROR: Docker cannot access your NVIDIA GPU."
+  echo "❌ Docker CANNOT access your NVIDIA GPU."
   echo
   echo "Fix steps:"
   echo "  sudo apt install -y nvidia-container-toolkit"
@@ -221,7 +276,7 @@ if ! docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi >
   exit 1
 fi
 
-echo "GPU is accessible from inside Docker."
+echo "✅ GPU is accessible from inside Docker."
 
 ###########################################################
 # Patch ARCH + image tag in YAML
@@ -237,12 +292,12 @@ sed -i "s#timpiltd/timpi-synaptron-universal:cuda[0-9]\+#timpiltd/timpi-synaptro
 # Start Synaptron
 ###########################################################
 echo
-echo "Starting Synaptron..."
+echo "🚀 Starting Synaptron..."
 docker compose -f "$YML_FILE" up --pull=always -d
 
 echo
 echo "========================================="
-echo "   Synaptron is now running"
+echo "   ✅ Synaptron is now running"
 echo "========================================="
 echo
 echo "Logs:"
