@@ -266,16 +266,16 @@ bash <(curl -sSL https://raw.githubusercontent.com/johnolofs/Geocore/main/GC-Aut
 ## 3.3 **Manual Install (Any Port)**
 
 GeoCore does not require port 4014 even it´s default.
-You may use any free port — here is a working example using **4014**:
+You may use any free port — here is a working example using **4013**:
 
 ```bash
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
-  -p 4014:4014 \
+  -p 4013:4013 \
   -v /var/timpi:/var/timpi \
-  -e CONPORT=4014 \
+  -e CONPORT=4013 \
   -e GUID="your-guid-here" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -286,13 +286,13 @@ sudo docker run -d \
 ## 3.4 **Open Your Port**
 
 ```bash
-sudo ufw allow 4014/tcp
+sudo ufw allow 4013/tcp
 ```
 
 Router:
 
 ```text
-External:4014 → Internal:4014 (TCP)
+External:4013 → Internal:4013 (TCP)
 ```
 
 ---
@@ -331,9 +331,9 @@ sudo docker pull timpiltd/timpi-geocore:latest
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
-  -p 4014:4014 \
+  -p 4013:4013 \
   -v /var/timpi:/var/timpi \
-  -e CONPORT=4014 \
+  -e CONPORT=4013 \
   -e GUID="your-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -348,13 +348,13 @@ Because `docker logs` only accepts **one container**, and many users run multipl
 If your GeoCore runs on **4014**:
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4014" -q)
+sudo docker logs -f $(docker ps --filter "publish=4013" -q)
 ```
 
 If it runs on **another port**, e.g. 4015:
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4015" -q)
+sudo docker logs -f $(docker ps --filter "publish=4014" -q)
 ```
 
 Look for:
@@ -442,12 +442,12 @@ ls -l /var/timpi/Datacom-log*.txt
 ```text
 GUID=YourGUID
 Environment variable 'LOCATION' found - Sweden/Stockholm
-GeoCore: ConnectionPort found 4014
+GeoCore: ConnectionPort found 4013
 GeoCore: Log folder /var/timpi/GeoCore/logs created.
 INFO: Got version 1.1.xx from core - Own version: 1.1.xx
 INFO: GeoCore is running on the main network
 INFO: Production mode detected.
-Now listening on: http://[::]:4014
+Now listening on: http://[::]:4013
 ```
 
 ---
