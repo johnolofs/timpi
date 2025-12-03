@@ -265,7 +265,7 @@ bash <(curl -sSL https://raw.githubusercontent.com/johnolofs/Geocore/main/GC-Aut
 
 ## 3.3 **Manual Install (Any Port)**
 
-GeoCore does not require port 4014 even it´s default.
+GeoCore does not require port 4013 even if it´s default.
 You may use any free port — here is a working example using **4013**:
 
 ```bash
