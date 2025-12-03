@@ -544,7 +544,7 @@ sudo docker run -d \
 | `-p PORT:PORT`              | GeoCore exposed port        |
 | `-v /var/timpiX:/var/timpi` | Unique volume per node      |
 | `-e GUID=`                  | GeoCore GUID                |
-| `-e CONPORT=`               | GeoCore port                |
+| `-e COMPORT=`               | GeoCore port                |
 | `-e LOCATION=`              | Country/City                |
 
 ---
