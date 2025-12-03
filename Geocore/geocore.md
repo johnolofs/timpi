@@ -275,7 +275,7 @@ sudo docker run -d \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p 4013:4013 \
   -v /var/timpi:/var/timpi \
-  -e CONPORT=4013 \
+  -e COMPORT=4013 \
   -e GUID="your-guid-here" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -333,7 +333,7 @@ sudo docker run -d \
   --pull=always --restart unless-stopped \
   -p 4013:4013 \
   -v /var/timpi:/var/timpi \
-  -e CONPORT=4013 \
+  -e COMPORT=4013 \
   -e GUID="your-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -494,7 +494,7 @@ sudo docker run -d \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p 4015:4015 \
   -v /var/timpi2:/var/timpi \
-  -e CONPORT=4015 \
+  -e COMPORT=4015 \
   -e GUID="your-second-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -510,7 +510,7 @@ sudo docker run -d \
   --pull=always --restart unless-stopped \
   -p 4016:4016 \
   -v /var/timpi3:/var/timpi \
-  -e CONPORT=4016 \
+  -e COMPORT=4016 \
   -e GUID="your-third-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -526,7 +526,7 @@ sudo docker run -d \
   --pull=always --restart unless-stopped \
   -p 4017:4017 \
   -v /var/timpi4:/var/timpi \
-  -e CONPORT=4017 \
+  -e COMPORT=4017 \
   -e GUID="your-fourth-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
