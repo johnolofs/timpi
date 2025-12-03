@@ -107,18 +107,19 @@ Use this when:
 
 ## 2.4A.1 **Stop & remove ALL old GeoCore containers**
 
-This removes containers regardless of name:
+Check containers, images ID´s:
 
 ```bash
-sudo docker stop $(docker ps --filter "ancestor=timpiltd/timpi-geocore:latest" -q) 2>/dev/null
-sudo docker rm $(docker ps --filter "ancestor=timpiltd/timpi-geocore:latest" -q) 2>/dev/null
+sudo docker ps
+sudo docker ps -a
+sudo docker images
 ```
 
-If you know the container name:
+Stop/Remove Container:
 
 ```bash
-sudo docker stop geocore
-sudo docker rm geocore
+sudo docker stop <ContainerID>
+sudo docker rm <ContainerID>
 ```
 
 ---
@@ -136,6 +137,7 @@ sudo docker rmi -f $(docker images "timpiltd/timpi-geocore:*" -q) 2>/dev/null
 ## 2.4A.3 **Confirm everything is gone**
 
 ```bash
+sudo docker ps
 sudo docker ps -a
 sudo docker images
 ```
@@ -263,17 +265,17 @@ bash <(curl -sSL https://raw.githubusercontent.com/johnolofs/Geocore/main/GC-Aut
 
 ## 3.3 **Manual Install (Any Port)**
 
-GeoCore does not require port 4014.
-You may use any free port — here is a working example using **4006**:
+GeoCore does not require port 4014 even it´s default.
+You may use any free port — here is a working example using **4014**:
 
 ```bash
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
-  -p 4006:4006 \
+  -p 4014:4014 \
   -v /var/timpi:/var/timpi \
-  -e CONPORT=4006 \
+  -e CONPORT=4014 \
   -e GUID="your-guid-here" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -284,13 +286,13 @@ sudo docker run -d \
 ## 3.4 **Open Your Port**
 
 ```bash
-sudo ufw allow 4006/tcp
+sudo ufw allow 4014/tcp
 ```
 
 Router:
 
 ```text
-External:4006 → Internal:4006 (TCP)
+External:4014 → Internal:4014 (TCP)
 ```
 
 ---
@@ -323,15 +325,15 @@ sudo docker pull timpiltd/timpi-geocore:latest
 
 ### 4️⃣ Re-run your GeoCore
 
-(Example using port 4006)
+(Example using port 4014)
 
 ```bash
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
-  -p 4006:4006 \
+  -p 4014:4014 \
   -v /var/timpi:/var/timpi \
-  -e CONPORT=4006 \
+  -e CONPORT=4014 \
   -e GUID="your-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -343,16 +345,16 @@ sudo docker run -d \
 
 Because `docker logs` only accepts **one container**, and many users run multiple GeoCores, verify logs **per port**:
 
-If your GeoCore runs on **4006**:
+If your GeoCore runs on **4014**:
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4006" -q)
+sudo docker logs -f $(docker ps --filter "publish=4014" -q)
 ```
 
-If it runs on **another port**, e.g. 4007:
+If it runs on **another port**, e.g. 4015:
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4007" -q)
+sudo docker logs -f $(docker ps --filter "publish=4015" -q)
 ```
 
 Look for:
@@ -382,16 +384,16 @@ sudo docker logs -f $(docker ps --filter "ancestor=timpiltd/timpi-geocore" -q)
 
 Use **port-based filters** so Docker only selects one container:
 
-**GeoCore #1 (example: port 4006)**
+**GeoCore #1 (example: port 4014)**
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4006" -q)
+sudo docker logs -f $(docker ps --filter "publish=4014" -q)
 ```
 
-**GeoCore #2 (example: port 4007)**
+**GeoCore #2 (example: port 4015)**
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4007" -q)
+sudo docker logs -f $(docker ps --filter "publish=4015" -q)
 ```
 
 **GeoCore #N**
@@ -440,12 +442,12 @@ ls -l /var/timpi/Datacom-log*.txt
 ```text
 GUID=YourGUID
 Environment variable 'LOCATION' found - Sweden/Stockholm
-GeoCore: ConnectionPort found 4006
+GeoCore: ConnectionPort found 4014
 GeoCore: Log folder /var/timpi/GeoCore/logs created.
 INFO: Got version 1.1.xx from core - Own version: 1.1.xx
 INFO: GeoCore is running on the main network
 INFO: Production mode detected.
-Now listening on: http://[::]:4006
+Now listening on: http://[::]:4014
 ```
 
 ---
@@ -490,9 +492,9 @@ sudo docker run -d \
   --name geocore2 \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
-  -p 4101:4101 \
+  -p 4015:4015 \
   -v /var/timpi2:/var/timpi \
-  -e CONPORT=4101 \
+  -e CONPORT=4015 \
   -e GUID="your-second-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -506,9 +508,9 @@ sudo docker run -d \
 sudo docker run -d \
   --name geocore3 \
   --pull=always --restart unless-stopped \
-  -p 4102:4102 \
+  -p 4016:4016 \
   -v /var/timpi3:/var/timpi \
-  -e CONPORT=4102 \
+  -e CONPORT=4016 \
   -e GUID="your-third-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -522,9 +524,9 @@ sudo docker run -d \
 sudo docker run -d \
   --name geocore4 \
   --pull=always --restart unless-stopped \
-  -p 4103:4103 \
+  -p 4017:4017 \
   -v /var/timpi4:/var/timpi \
-  -e CONPORT=4103 \
+  -e CONPORT=4017 \
   -e GUID="your-fourth-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
