@@ -181,7 +181,7 @@ sudo docker network prune -f
 ## 2.4A.6 **Restart a stopped GeoCore container**
 
 ```bash
-sudo docker start $(docker ps -a --filter "ancestor=timpiltd/timpi-geocore:latest" -q)
+sudo docker start $(sudo docker ps -a --filter "ancestor=timpiltd/timpi-geocore:latest" -q)
 ```
 
 *(Works fine even with multiple GeoCores – it starts all of them.)*
@@ -308,13 +308,13 @@ Because GeoCore uses `--pull=always`, updating is simple.
 ### 1️⃣ Stop container
 
 ```bash
-sudo docker stop $(docker ps --filter "ancestor=timpiltd/timpi-geocore" -q)
+sudo docker stop $(sudo docker ps --filter "ancestor=timpiltd/timpi-geocore" -q)
 ```
 
 ### 2️⃣ Remove container
 
 ```bash
-sudo docker rm $(docker ps --filter "ancestor=timpiltd/timpi-geocore" -q)
+sudo docker rm $(sudo docker ps --filter "ancestor=timpiltd/timpi-geocore" -q)
 ```
 
 ### 3️⃣ Pull new version
@@ -349,13 +349,13 @@ Because `docker logs` only accepts **one container**, and many users run multipl
 If your GeoCore runs on **4013**:
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4013" -q)
+sudo docker logs -f $(sudo docker ps --filter "publish=4013" -q)
 ```
 
 If it runs on **another port**, e.g. 4014:
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4014" -q)
+sudo docker logs -f $(sudo docker ps --filter "publish=4014" -q)
 ```
 
 Look for:
@@ -378,7 +378,7 @@ Found X free Guardians
 If you only run ONE GeoCore, you can still use:
 
 ```bash
-sudo docker logs -f $(docker ps --filter "ancestor=timpiltd/timpi-geocore" -q)
+sudo docker logs -f $(sudo docker ps --filter "ancestor=timpiltd/timpi-geocore" -q)
 ```
 
 ### Multiple GeoCores (recommended method)
@@ -388,20 +388,20 @@ Use **port-based filters** so Docker only selects one container:
 **GeoCore #1 (example: port 4014)**
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4014" -q)
+sudo docker logs -f $(sudo docker ps --filter "publish=4014" -q)
 ```
 
 **GeoCore #2 (example: port 4015)**
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=4015" -q)
+sudo docker logs -f $(sudo docker ps --filter "publish=4015" -q)
 ```
 
 **GeoCore #N**
 Replace `<PORT>`:
 
 ```bash
-sudo docker logs -f $(docker ps --filter "publish=<PORT>" -q)
+sudo docker logs -f $(sudo docker ps --filter "publish=<PORT>" -q)
 ```
 
 ---
@@ -557,7 +557,7 @@ sudo docker run -d \
 ### Restart a stopped GeoCore
 
 ```bash
-sudo docker start $(docker ps -a --filter "ancestor=timpiltd/timpi-geocore:latest" -q)
+sudo docker start $(sudo docker ps -a --filter "ancestor=timpiltd/timpi-geocore:latest" -q)
 ```
 
 ### DNS issues
