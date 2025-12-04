@@ -345,13 +345,13 @@ sudo docker run -d \
 
 Because `docker logs` only accepts **one container**, and many users run multiple GeoCores, verify logs **per port**:
 
-If your GeoCore runs on **4014**:
+If your GeoCore runs on **4013**:
 
 ```bash
 sudo docker logs -f $(docker ps --filter "publish=4013" -q)
 ```
 
-If it runs on **another port**, e.g. 4015:
+If it runs on **another port**, e.g. 4014:
 
 ```bash
 sudo docker logs -f $(docker ps --filter "publish=4014" -q)
