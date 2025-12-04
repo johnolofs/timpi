@@ -1,4 +1,4 @@
-# 🛡️ Timpi Guardian Node – Official Community Guide (Dec 2025)
+# 🛡️ Timpi Guardian Node – Official Community Guide
 
 Run a Guardian Node to help decentralize the web and power Timpi’s search engine.
 Secure. Distributed. Community-powered.
