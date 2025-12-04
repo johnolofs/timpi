@@ -212,7 +212,7 @@ The script:
 ➡️ Enter the port for Guardian (Default: 4005)
 ➡️ Enter your GUID:
 📍 Country: Sweden
-🏙️ City: Norrkoping
+🏙️ City: Stockholm
 
 📂 Creating data folder...
 
