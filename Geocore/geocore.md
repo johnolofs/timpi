@@ -508,6 +508,7 @@ sudo docker run -d \
 sudo docker run -d \
   --name geocore3 \
   --pull=always --restart unless-stopped \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p 4016:4016 \
   -v /var/timpi3:/var/timpi \
   -e COMPORT=4016 \
@@ -524,6 +525,7 @@ sudo docker run -d \
 sudo docker run -d \
   --name geocore4 \
   --pull=always --restart unless-stopped \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p 4017:4017 \
   -v /var/timpi4:/var/timpi \
   -e COMPORT=4017 \
