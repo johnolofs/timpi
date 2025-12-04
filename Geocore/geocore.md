@@ -188,11 +188,11 @@ sudo docker start $(docker ps -a --filter "ancestor=timpiltd/timpi-geocore:lates
 
 ---
 
-# 2.5 **Register Your GUID**
+# 2.5 **Register Your NFT**
 
 👉 [https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
 
-Example GUID:
+Example Of Generated GUID:
 
 ```text
 2f7256b8-c275-429b-8077-01519cced572
