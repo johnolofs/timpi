@@ -331,6 +331,7 @@ sudo docker pull timpiltd/timpi-geocore:latest
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p 4013:4013 \
   -v /var/timpi:/var/timpi \
   -e COMPORT=4013 \
