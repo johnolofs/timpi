@@ -67,7 +67,7 @@ Guardians:
 | Ports     | Guardian + Solr ports must be open    |
 
 ⚠️ **We officially support only:** Ubuntu 22.04.x LTS + Docker
-⚠️ Other systems *may* work but are not supported (WSL, macOS, Windows, Synology, Proxmox LXC, etc.)
+⚠️ Other systems *may* work but are not supported (WSL, macOS, Windows, Proxmox LXC, etc.)
 
 ---
 
