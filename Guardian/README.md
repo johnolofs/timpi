@@ -28,7 +28,7 @@ Secure. Distributed. Community-powered.
   * [7.1 Create Data & Log Folders](#create-folders)
   * [7.2 Run the Guardian Manually](#run-manually)
   * [7.3 Open Required Ports](#open-ports)
-  * [7.5 Deep Checks – Inside Docker Container](#deep-checks)
+  * [7.4 Deep Checks – Inside Docker Container](#deep-checks)
 * [8. Run a Second Guardian Node](#second-node)
 * [9. Verification & Quick Troubleshooting](#troubleshooting)
 * [10. Docker Parameters Explained](#docker-parameters)
@@ -312,7 +312,7 @@ sudo ufw allow 4005/tcp
 
 <a id="deep-checks"></a>
 
-### 7.5 Deep Checks – Inside Docker Container
+### 7.4 Deep Checks – Inside Docker Container
 
 ```bash
 sudo docker exec -it <container-id> bash
