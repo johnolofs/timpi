@@ -337,6 +337,8 @@ sudo docker run -d --pull=always --restart unless-stopped \
   -p 8984:8984 \
   -p 4006:4006 \
   -v ${HOME}/var/solrdocker2:/var/solr \
+  -e SOLR_HOME=/var/solr \
+  -e SOLR_DATA=/var/solr/data \
   -e SOLR_PORT=8984 \
   -e GUARDIAN_PORT=4006 \
   -e GUID="second-guid" \
