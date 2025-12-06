@@ -28,7 +28,6 @@ Secure. Distributed. Community-powered.
   * [7.1 Create Data & Log Folders](#create-folders)
   * [7.2 Run the Guardian Manually](#run-manually)
   * [7.3 Open Required Ports](#open-ports)
-  * [7.4 Basic Log Checks](#basic-log-checks)
   * [7.5 Deep Checks – Inside Docker Container](#deep-checks)
 * [8. Run a Second Guardian Node](#second-node)
 * [9. Verification & Quick Troubleshooting](#troubleshooting)
@@ -307,22 +306,6 @@ sudo docker run -d --pull=always --restart unless-stopped \
 ```bash
 sudo ufw allow 8983/tcp
 sudo ufw allow 4005/tcp
-```
-
----
-
-<a id="basic-log-checks"></a>
-
-### 7.4 Basic Log Checks
-
-```bash
-curl -I http://localhost:4005
-```
-
-Expected:
-
-```text
-HTTP/1.1 200 OK
 ```
 
 ---
