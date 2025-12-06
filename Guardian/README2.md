@@ -307,7 +307,7 @@ sudo docker run -d --pull=always --restart unless-stopped \
 
 # 9. Verification & Quick Troubleshooting
 
-### Guardian API check
+### **Guardian API check**
 
 ```bash
 curl -I http://localhost:<guardian_port>
@@ -318,21 +318,47 @@ Examples:
 * `4005` → first Guardian
 * `4006` → second Guardian
 
-### Solr UI Check
+---
 
-```text
+### **Solr UI Check**
+
+```
 http://<your-ip>:8983/solr/
 http://<your-ip>:8984/solr/
 ```
 
-### Container logs
+---
+
+### **Container logs**
+
+First, find your Guardian container name:
 
 ```bash
-sudo docker logs guardian1
-sudo docker logs guardian2
+sudo docker ps --filter "ancestor=timpiltd/timpi-guardian"
 ```
 
-### Persistent logs
+Example output:
+
+```
+NAMES
+keen_elgamal
+```
+
+Then check logs:
+
+```bash
+sudo docker logs <container_name>
+```
+
+Example:
+
+```bash
+sudo docker logs keen_elgamal
+```
+
+---
+
+### **Persistent logs**
 
 ```bash
 tail -n 50 ${HOME}/var/solrdocker/logs/guardian-log*.txt
