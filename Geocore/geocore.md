@@ -250,7 +250,7 @@ Logout/login.
 ## 3.2 **Automatic GeoCore Installation**
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/johnolofs/Geocore/main/GC-AutoInstall.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Geocore/GC-AutoInstall.sh)
 ```
 
 **The script:**
