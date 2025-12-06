@@ -12,19 +12,16 @@ Secure. Distributed. Community-powered.
 * [1. What Is a Guardian Node?](#what-is-a-guardian-node)
 * [2. Supported Systems & Requirements](#supported-systems--requirements)
 * [3. Installation Paths](#installation-paths)
-
   * [3.1 New Install (First-Time Setup)](#31-new-install-first-time-setup)
   * [3.2 Upgrade Existing Guardian](#32-upgrade-existing-guardian)
 * [4. Step 0 – Install Docker & Java](#4-step-0--install-docker--java)
 * [5. Step 0.5 – Create Persistent Storage](#5-step-05--create-persistent-storage)
 * [6. Step 1 – Quick Start (Automatic Script)](#6-step-1--quick-start-automatic-script)
-
   * [6.1 What the Script Does](#61-what-the-script-does)
   * [6.2 Expected Script Output](#62-expected-script-output)
   * [6.3 Expected Container Logs](#63-expected-container-logs)
   * [6.4 Expected Persistent Guardian Logs](#64-expected-persistent-guardian-logs)
 * [7. Manual Setup Guide](#7-manual-setup-guide)
-
   * [7.1 Create Data & Log Folders](#71-create-data--log-folders)
   * [7.2 Run the Guardian Manually](#72-run-the-guardian-manually)
   * [7.3 Open Required Ports](#73-open-required-ports)
@@ -36,19 +33,21 @@ Secure. Distributed. Community-powered.
 
 ---
 
+<a id="what-is-a-guardian-node"></a>
 ## 1. What Is a Guardian Node?
 
 A Guardian Node hosts a portion of Timpi’s decentralized index using Apache Solr.
 
 Guardians:
 
-✔ Store segments of the Timpi index
-✔ Serve search queries
-✔ Improve regional latency
-✔ Strengthen decentralization
+✔ Store segments of the Timpi index  
+✔ Serve search queries  
+✔ Improve regional latency  
+✔ Strengthen decentralization  
 
 ---
 
+<a id="supported-systems--requirements"></a>
 ## 2. Supported Systems & Requirements
 
 | Component | Recommended Minimum                |
@@ -61,32 +60,35 @@ Guardians:
 | Docker    | Required                           |
 | Ports     | Solr + Guardian ports must be open |
 
-⚠️ Official support: **Ubuntu 22.04 LTS + Docker**
+⚠️ Official support: **Ubuntu 22.04 LTS + Docker**  
 ⚠️ Unsupported but may work: WSL, macOS, Windows, Proxmox LXC, etc.
 
 ---
 
+<a id="installation-paths"></a>
 ## 3. Installation Paths
 
 Choose one:
 
+<a id="31-new-install-first-time-setup"></a>
 ### 3.1 New Install (First-Time Setup)
 
 Use this if you have never run a Guardian on this machine.
 
-1. Install Docker & Java
-2. Create persistent folders
-3. Run the automatic Quick Start installer
+1. Install Docker & Java  
+2. Create persistent folders  
+3. Run the automatic Quick Start installer  
 
 ---
 
+<a id="32-upgrade-existing-guardian"></a>
 ### 3.2 Upgrade Existing Guardian
 
 Remove old container:
 
 ```bash
 sudo docker rm -f $(sudo docker ps -aq --filter "ancestor=timpiltd/timpi-guardian")
-```
+````
 
 Remove old image:
 
@@ -97,6 +99,8 @@ sudo docker rmi -f $(sudo docker images timpiltd/timpi-guardian -q)
 Then run the Quick Start script below.
 
 ---
+
+<a id="4-step-0--install-docker--java"></a>
 
 ## 4. Step 0 – Install Docker & Java
 
@@ -129,7 +133,7 @@ sudo systemctl status docker
 
 Expected:
 
-```
+```text
 Active: active (running)
 ```
 
@@ -143,6 +147,8 @@ newgrp docker
 ```
 
 ---
+
+<a id="5-step-05--create-persistent-storage"></a>
 
 ## 5. Step 0.5 – Create Persistent Storage
 
@@ -158,6 +164,8 @@ Inside container these map to:
 
 ---
 
+<a id="6-step-1--quick-start-automatic-script"></a>
+
 ## 6. Step 1 – Quick Start (Automatic Script)
 
 ```bash
@@ -165,6 +173,8 @@ bash <(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Gu
 ```
 
 ---
+
+<a id="61-what-the-script-does"></a>
 
 ### 6.1 What the Script Does
 
@@ -179,9 +189,11 @@ bash <(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Gu
 
 ---
 
+<a id="62-expected-script-output"></a>
+
 ### 6.2 Expected Script Output
 
-```
+```text
 ===== Timpi Guardian – Quick Setup =====
 ➡️ Solr Port: 8983
 ➡️ Guardian Port: 4005
@@ -199,9 +211,11 @@ Status: Downloaded newer image...
 
 ---
 
+<a id="63-expected-container-logs"></a>
+
 ### 6.3 Expected Container Logs
 
-```
+```text
 INFO: Guardian is running on the main network
 Guardian: Production mode detected.
 Guardian port = 4005
@@ -211,9 +225,11 @@ Started Solr on port 8983. Happy searching!
 
 ---
 
+<a id="64-expected-persistent-guardian-logs"></a>
+
 ### 6.4 Expected Persistent Guardian Logs
 
-```
+```text
 INFO: Triangulation successful. Region: EMEA
 INFO: Got the Collection list with 19 entries.
 Solr started, starting Guardian API.
@@ -224,7 +240,11 @@ If you see these → your node is fully online.
 
 ---
 
+<a id="7-manual-setup-guide"></a>
+
 # 7. Manual Setup Guide
+
+<a id="71-create-data--log-folders"></a>
 
 ## 7.1 Create Data & Log Folders
 
@@ -234,6 +254,8 @@ mkdir -p ${HOME}/var/solrdocker/logs
 ```
 
 ---
+
+<a id="72-run-the-guardian-manually"></a>
 
 ## 7.2 Run the Guardian Manually
 
@@ -255,6 +277,8 @@ sudo docker run -d --pull=always --restart unless-stopped \
 
 ---
 
+<a id="73-open-required-ports"></a>
+
 ## 7.3 Open Required Ports
 
 ```bash
@@ -263,6 +287,8 @@ sudo ufw allow 4005/tcp
 ```
 
 ---
+
+<a id="74-deep-checks--inside-docker-container"></a>
 
 ## 7.4 Deep Checks – Inside Docker Container
 
@@ -273,6 +299,8 @@ ls -la /var/solr
 ```
 
 ---
+
+<a id="8-run-a-second-guardian-node"></a>
 
 # 8. Run a Second Guardian Node
 
@@ -305,6 +333,8 @@ sudo docker run -d --pull=always --restart unless-stopped \
 
 ---
 
+<a id="9-verification--quick-troubleshooting"></a>
+
 # 9. Verification & Quick Troubleshooting
 
 ### **Guardian API check**
@@ -322,7 +352,7 @@ Examples:
 
 ### **Solr UI Check**
 
-```
+```text
 http://<your-ip>:8983/solr/
 http://<your-ip>:8984/solr/
 ```
@@ -339,7 +369,7 @@ sudo docker ps --filter "ancestor=timpiltd/timpi-guardian"
 
 Example output:
 
-```
+```text
 NAMES
 keen_elgamal
 ```
@@ -367,6 +397,8 @@ tail -n 50 ${HOME}/var/solrdocker2/logs/guardian-log*.txt
 
 ---
 
+<a id="10-docker-parameters-explained"></a>
+
 # 10. Docker Parameters Explained
 
 | Param                           | Meaning                    |
@@ -381,3 +413,13 @@ tail -n 50 ${HOME}/var/solrdocker2/logs/guardian-log*.txt
 | `LOCATION`                      | Region mapping             |
 
 ---
+
+<a id="11-support"></a>
+
+# 11. Support
+
+If you need help:
+
+* 💬 Join the **Timpi Discord** – `#guardian-operators` channel
+* 🐛 Report issues in the **Guardian Support** channel or via the official Timpi support routes
+
