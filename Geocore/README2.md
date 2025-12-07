@@ -1,6 +1,6 @@
 # 🌐 **1. Timpi GeoCore Node – Official Community Guide**
 
-Run a **GeoCore Node** to help power Timpi’s decentralized, location-aware routing infrastructure.  
+Run a **GeoCore Node** to help power Timpi’s decentralized, location-aware routing infrastructure.
 Lightweight. Fast. Privacy-focused.
 
 <img width="1509" height="850" src="https://github.com/user-attachments/assets/7b69280a-a77b-46d3-85d0-88b517c097bb" />
@@ -9,32 +9,35 @@ Lightweight. Fast. Privacy-focused.
 
 # 📘 **2. Table of Contents**
 
-1. [Introduction – What Is a GeoCore Node?](#21-introduction--what-is-a-geocore-node)  
-2. [System Requirements](#22-system-requirements)  
-3. [Important Support Notice](#23-important-support-notice)  
-4. [Two Paths: New Install vs Upgrade](#24-two-paths-new-install--upgrade-flow)  
-5. [Clean Slate (Optional but Recommended)](#24a-clean-slate-optional-but-recommended)  
-6. [Register Your GUID](#25-register-your-guid)  
-7. [NEW INSTALL PATH](#3-new-install-path)  
-   * [3.1 Install Docker](#31-install-docker)  
-   * [3.2 Automatic GeoCore Installation](#32-automatic-geocore-installation)  
-   * [3.3 Manual Install (Any Port)](#33-manual-install-any-port)  
-   * [3.4 Open Your Port](#34-open-your-port)  
-8. [UPGRADE PATH](#4-upgrade-path)  
-   * [4.1 Upgrade Steps](#41-upgrade-steps)  
-   * [4.2 Verify After Upgrade](#42-verify-after-upgrade)  
-9. [Monitor Logs](#5-monitor-logs)  
-10. [Expected Logs & Outputs](#6-expected-logs--outputs)  
-11. [Run Multiple GeoCores](#7-run-multiple-geocores)  
-12. [Docker Parameter Reference](#8-docker-parameter-reference)  
-13. [Troubleshooting](#9-troubleshooting)  
-14. [Upcoming Feature](#10-upcoming-feature)  
+1. [Introduction – What Is a GeoCore Node?](#21-introduction--what-is-a-geocore-node)
+2. [System Requirements](#22-system-requirements)
+3. [Important Support Notice](#23-important-support-notice)
+4. [Two Paths: New Install vs Upgrade](#24-two-paths-new-install--upgrade-flow)
+5. [Clean Slate (Optional but Recommended)](#24a-clean-slate-optional-but-recommended)
+6. [Register Your GUID](#25-register-your-guid)
+7. [NEW INSTALL PATH](#3-new-install-path)
+
+   * [3.1 Install Docker](#31-install-docker)
+   * [3.2 Automatic GeoCore Installation](#32-automatic-geocore-installation)
+   * [3.3 Manual Install (Any Port)](#33-manual-install-any-port)
+   * [3.4 Open Your Port](#34-open-your-port)
+8. [UPGRADE PATH](#4-upgrade-path)
+
+   * [4.1 Upgrade Steps](#41-upgrade-steps)
+   * [4.2 Verify After Upgrade](#42-verify-after-upgrade)
+9. [Monitor Logs](#5-monitor-logs)
+10. [Expected Logs & Outputs](#6-expected-logs--outputs)
+11. [Run Multiple GeoCores](#7-run-multiple-geocores)
+12. [Docker Parameter Reference](#8-docker-parameter-reference)
+13. [Troubleshooting](#9-troubleshooting)
+14. [Upcoming Feature](#10-upcoming-feature)
 15. [Community & Support](#11-community--support)
 
 ---
 
 <a id="21-introduction--what-is-a-geocore-node"></a>
-# 2.1 **Introduction – What Is a GeoCore Node?**
+
+# 1. **Introduction – What Is a GeoCore Node?**
 
 A **GeoCore Node** powers Timpi’s decentralized network by:
 
@@ -48,7 +51,8 @@ GeoCore is lightweight, Docker-based, and ideal for 24/7 operation.
 ---
 
 <a id="22-system-requirements"></a>
-# 2.2 **System Requirements**
+
+# 2. **System Requirements**
 
 | Component | Recommended Minimum           |
 | --------- | ----------------------------- |
@@ -64,24 +68,26 @@ GeoCore is lightweight, Docker-based, and ideal for 24/7 operation.
 ---
 
 <a id="23-important-support-notice"></a>
-# 2.3 **Important Support Notice**
+
+# 3. **Important Support Notice**
 
 Timpi officially supports:
 
-✔ Ubuntu 22.04 LTS  
-✔ Native Docker  
-✔ FluxOS Marketplace deployments  
+✔ Ubuntu 22.04 LTS
+✔ Native Docker
+✔ FluxOS Marketplace deployments
 
 Not supported (community-only):
 
-❌ Windows, WSL, macOS  
-❌ Proxmox LXC  
-❌ Other Linux distributions  
+❌ Windows, WSL, macOS
+❌ Proxmox LXC
+❌ Other Linux distributions
 
 ---
 
 <a id="24-two-paths-new-install--upgrade-flow"></a>
-# 2.4 **Two Paths: New Install & Upgrade Flow**
+
+# 4. **Two Paths: New Install & Upgrade Flow**
 
 ### ✔ Path A – New Install
 
@@ -94,21 +100,22 @@ For existing operators who want to update safely.
 ---
 
 <a id="24a-clean-slate-optional-but-recommended"></a>
-# 2.4A ⚠️ **Clean Slate (Optional but Recommended)**
+
+# 5. ⚠️ **Clean Slate (Optional but Recommended)**
 
 This section **removes all old GeoCore containers and images**, including randomly-named containers such as `epic_satoshi`.
 
 Use this when:
 
-* switching ports  
-* changing GUID  
-* upgrading from older versions  
-* troubleshooting  
-* cleaning broken installations  
+* switching ports
+* changing GUID
+* upgrading from older versions
+* troubleshooting
+* cleaning broken installations
 
 ---
 
-## 2.4A.1 **Stop & remove ALL old GeoCore containers**
+## 5.1 **Stop & remove ALL old GeoCore containers**
 
 Check containers, image IDs:
 
@@ -116,7 +123,7 @@ Check containers, image IDs:
 sudo docker ps
 sudo docker ps -a
 sudo docker images
-````
+```
 
 Stop/Remove Container:
 
@@ -127,7 +134,7 @@ sudo docker rm <ContainerID>
 
 ---
 
-## 2.4A.2 **Remove ALL old GeoCore images**
+## 5.2 **Remove ALL old GeoCore images**
 
 ```bash
 sudo docker rmi timpiltd/timpi-geocore:latest 2>/dev/null
@@ -137,7 +144,7 @@ sudo docker rmi -f $(docker images "timpiltd/timpi-geocore:*" -q) 2>/dev/null
 
 ---
 
-## 2.4A.3 **Confirm everything is gone**
+## 5.3 **Confirm everything is gone**
 
 ```bash
 sudo docker ps
@@ -154,7 +161,7 @@ sudo docker rmi <imageID>
 
 ---
 
-## 2.4A.4 **Remove old GeoCore folders (optional)**
+## 5.4 **Remove old GeoCore folders (optional)**
 
 Remove only GeoCore:
 
@@ -170,7 +177,7 @@ sudo rm -rf /var/timpi
 
 ---
 
-## 2.4A.5 **Deep Docker cleanup (optional)**
+## 5.5 **Deep Docker cleanup (optional)**
 
 ```bash
 sudo docker container prune -f
@@ -181,7 +188,7 @@ sudo docker network prune -f
 
 ---
 
-## 2.4A.6 **Restart a stopped GeoCore container**
+## 5.6 **Restart a stopped GeoCore container**
 
 ```bash
 sudo docker start $(sudo docker ps -a --filter "ancestor=timpiltd/timpi-geocore:latest" -q)
@@ -193,7 +200,7 @@ sudo docker start $(sudo docker ps -a --filter "ancestor=timpiltd/timpi-geocore:
 
 <a id="25-register-your-guid"></a>
 
-# 2.5 **Register Your GUID**
+# 6. **Register Your GUID**
 
 👉 [https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
 
@@ -278,17 +285,17 @@ bash <(curl -sSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Geo
 
 ## 3.3 **Manual Install (Any Port)**
 
-GeoCore does not require port 4013 even if it´s default.
-You may use any free port — here is a working example using **4013**:
+GeoCore does not require port **4014** even if it’s the default.
+You may use any free port — here is a working example using **4014**:
 
 ```bash
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
-  -p 4013:4013 \
+  -p 4014:4014 \
   -v /var/timpi:/var/timpi \
-  -e COMPORT=4013 \
+  -e COMPORT=4014 \
   -e GUID="your-guid-here" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -301,13 +308,13 @@ sudo docker run -d \
 ## 3.4 **Open Your Port**
 
 ```bash
-sudo ufw allow 4013/tcp
+sudo ufw allow 4014/tcp
 ```
 
 Router:
 
 ```text
-External:4013 → Internal:4013 (TCP)
+External:4014 → Internal:4014 (TCP)
 ```
 
 ---
@@ -344,16 +351,16 @@ sudo docker pull timpiltd/timpi-geocore:latest
 
 ### 4️⃣ Re-run your GeoCore
 
-(Example using port 4013)
+(Example using port 4014)
 
 ```bash
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
-  -p 4013:4013 \
+  -p 4014:4014 \
   -v /var/timpi:/var/timpi \
-  -e COMPORT=4013 \
+  -e COMPORT=4014 \
   -e GUID="your-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -367,22 +374,22 @@ sudo docker run -d \
 
 Because `docker logs` only accepts **one container**, and many users run multiple GeoCores, verify logs **per port**:
 
-If your GeoCore runs on **4013**:
-
-```bash
-sudo docker logs -f $(sudo docker ps --filter "publish=4013" -q)
-```
-
-If it runs on **another port**, e.g. 4014:
+If your GeoCore runs on **4014**:
 
 ```bash
 sudo docker logs -f $(sudo docker ps --filter "publish=4014" -q)
 ```
 
+If it runs on **another port**, e.g. **4015**:
+
+```bash
+sudo docker logs -f $(sudo docker ps --filter "publish=4015" -q)
+```
+
 Look for lines like:
 
 ```text
-GeoCore is running on main network
+GeoCore is running on the main network
 Found X free Guardians
 ```
 
@@ -477,12 +484,12 @@ These lines do **not** always appear together – just make sure you see them so
 ```text
 Environment variable 'GUID' found - <YOUR GUID>
 Environment variable 'LOCATION' found - Sweden/Stockholm
-GeoCore: ConnectionPort found 4013
+GeoCore: ConnectionPort found 4014
 GeoCore: Log folder /var/timpi/GeoCore/logs created.
 INFO: Got version 1.1.xx from core - Own version: 1.1.xx
 INFO: GeoCore is running on the main network
 GeoCore: Production mode detected.
-Now listening on: http://[::]:4013
+Now listening on: http://[::]:4014
 ```
 
 ---
@@ -645,3 +652,5 @@ Will show:
 
 **Registration Page**
 [https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
+
+
