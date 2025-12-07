@@ -142,6 +142,21 @@ sudo docker rmi -f $(docker images timpiltd/timpi-geocore -q) 2>/dev/null
 sudo docker rmi -f $(docker images "timpiltd/timpi-geocore:*" -q) 2>/dev/null
 ```
 
+Expected output
+```
+Untagged: timpiltd/timpi-geocore:latest
+Untagged: timpiltd/timpi-geocore@sha256:da4c3d3cbe3bb28b365e335f2cd8260e819c55354e569e681e372e6a58685601
+Deleted: sha256:3878a5239426d2b73f06a2eff39190430b4dfdbd53610c91b46cb8a87a03f84f
+Deleted: sha256:eea381a8de5021105cf5b705bdd0eafddb20e1a136e21ab062453ff5d9b7886e
+Deleted: sha256:3b42107b18bdca6034a110f83d6d20137277c33e45640ef2a1066b3f69d203c7
+Deleted: sha256:25c9bd9824529f5ba09933bad018069159cfb6e27fa8333e593f251dd891bfdb
+Deleted: sha256:4ac6541196fdea9e07b513cd3be7a847e7bc4a421297e16218b4923fab5cdf7b
+Deleted: sha256:a6a882b83a0fe39b03d31f8e57bcdda99245dce78dc3a8499f72d0c0b51f54d7
+Deleted: sha256:0624e8ef7c79887727e867cc93bc64c86fc4a9368d239d5f2bdd40e4dba99ac1
+Deleted: sha256:9cb1201be94fedc643598b405bdb9b6588124437001815037174d12564464483
+Deleted: sha256:f1a9b6ac3ae92f79ddc2c56cd7452b95d31f04860ba758a344ba0e5c76959187
+```
+
 ---
 
 ## 5.3 **Confirm everything is gone**
