@@ -294,6 +294,93 @@ bash <(curl -sSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Geo
 * launches container
 * prints log commands
 
+#### ✅ Example run (expected output)
+
+```bash
+timpi@timpi-timpicore:/var/timpi/GeoCore$ bash <(curl -sSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Geocore/GC-AutoInstall.sh)
+
+🌐 Timpi GeoCore Setup Script
+
+➡️ Enter the port for GeoCore (Default: 4013)
+GeoCore Port: 4013
+
+🆔 Enter your GUID (Found in your Timpi dashboard)
+GUID: YOUR-ACTUAL-GUID-HERE
+
+📍 Let's enter your **location**
+🌍 Country (Example: Sweden, Germany, United States): Sweden
+🏙️ City (Example: Stockholm, Berlin, New York): Stockholm
+
+✅ Location set to: Sweden/Stockholm
+
+🚀 Launching GeoCore container...
+latest: Pulling from timpiltd/timpi-geocore
+7e49dc6156b0: Already exists
+82e5182ff07f: Pull complete
+e926bcd8cfd8: Pull complete
+26c93f7a5ed6: Pull complete
+49474c3d06da: Pull complete
+0ba4642246c9: Pull complete
+9757068358ec: Pull complete
+e0a111a75b31: Pull complete
+Digest: sha256:da4c3d3cbe3bb28b365e335f2cd8260e819c55354e569e681e372e6a58685601
+Status: Downloaded newer image for timpiltd/timpi-geocore:latest
+
+✅ GeoCore is now running on port 4013
+🧾 Container ID: 4d915ab92ec8c15665e03eae6d63f350b9106fc499a95ac01e12723bff6d4453
+
+📡 To view logs:
+
+1️⃣  Real-time log file:
+    sudo tail -f $(ls -t /var/timpi/GeoCore/logs/GeoCore-log*.txt | head -n 1)
+
+2️⃣  Docker logs:
+    sudo docker logs -f --tail 50 4d915ab92ec8c15665e03eae6d63f350b9106fc499a95ac01e12723bff6d4453
+
+🧠 Tip: Press Ctrl + C to stop viewing the logs.
+```
+
+#### 📄 Example GeoCore logs (first healthy startup)
+
+```bash
+timpi@timpi-timpicore:/var/timpi/GeoCore$ sudo docker logs -f --tail 50 4d915ab92ec8c15665e03eae6d63f350b9106fc499a95ac01e12723bff6d4453
+Setting timezone to UTC...
+Current UTC time: Mon Dec  8 08:10:03 UTC 2025
+timedatectl not available. Skipping sync check.
+Warning: /opt/timpi/datacom/Timpi_DataCom not found. Using image copy in /opt/datacom if needed.
+Starting TimpiDataCom...
+Starting TimpiGeoCore...
+GeoCore: Log_Folder missing, trying to get it from appsettings.json
+ERROR: Could not read Log_Folder from appsettings.json. Error: Object reference not set to an instance of an object.
+----------------------------- PreLogger messages END ------------------------------
+INFO: GeoCore is running on the main network
+INFO: IsDirectDeployment is not set, using default value 0.
+GeoCore: Production mode detected.
+GeoCore: DEBUG_LEVEL missing, trying to get it from appsettings.json
+ERROR: DEBUG_LEVEL missing, assume Warning level
+GeoCore: Log_Folder missing, trying to get it from appsettings.json
+GeoCore: Log folder /var/timpi/GeoCore/logs exists.
+Environment variable 'GUID' found - YOUR-ACTUAL-GUID-HERE.
+GeoCore: Checking parameters
+GeoCore: ConnectionPort port = 4013
+Environment variable 'LOCATION' found - Sweden/Stockholm.
+GeoCore: Checking done, starting log manager. Logs are now in the persistent folder as /var/timpi/GeoCore/logs/GeoCore-log[DATE].txt
+----------------------------- PreLogger messages END ------------------------------
+---------------------------- GeoCore: System test done ----------------------------
+INFO: Got version X.X.XX from core - Own version: X.X.XX
+INFO: GeoCore Node information received from TAP. NA - USEC
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://[::]:4013
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /opt/timpi/geocore
+INFO: Found 79 free Guardians in 11 regions
+INFO: Starting Processor 1 with 0 files in the InboundFolder folder
+```
+
 ---
 
 <a id="33-manual-install-any-port"></a>
