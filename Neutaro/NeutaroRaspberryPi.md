@@ -224,12 +224,12 @@ Description=Neutaro Node Service
 After=network-online.target
 
 [Service]
-User=johnolofs
-ExecStart=/home/johnolofs/go/bin/cosmovisor run start
+User=YOUR-USERNAME-HERE
+ExecStart=/home/YOUR-USERNAME-HERE/go/bin/cosmovisor run start
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
-Environment="DAEMON_HOME=/home/johnolofs/.Neutaro"
+Environment="DAEMON_HOME=/home/YOUR-USERNAME-HERE/.Neutaro"
 Environment="DAEMON_NAME=Neutaro"
 Environment="UNSAFE_SKIP_BACKUP=true"
 
@@ -238,7 +238,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-(Change username if needed.)
+(Change username at the places that says YOUR-USERNAME-HERE.)
 
 ---
 
