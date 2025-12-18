@@ -40,6 +40,8 @@ sudo systemctl disable Neutaro
 
 ### 2. Prepare a new node (fresh machine or clean install)
 
+https://github.com/Neutaro/Neutaro/blob/main/Instructions/NeutaroInstallation.md
+
 ```bash
 Neutaro init <NEW_MONIKER> --chain-id Neutaro-1
 ```
