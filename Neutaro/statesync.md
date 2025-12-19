@@ -268,7 +268,7 @@ Neutaro tendermint unsafe-reset-all --home "$HOME/.Neutaro" --keep-addr-book
 
 ---
 
-### OPTION B — SNAPSHOT (If you did State sync step sjip this step)
+### OPTION B — SNAPSHOT (If you did State sync step skip this step)
 
 ```bash
 cd "$HOME/.Neutaro"
