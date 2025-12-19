@@ -107,6 +107,7 @@ sudo systemctl reset-failed
 rm -rf ~/.Neutaro ~/Neutaro
 sudo rm -f /usr/local/bin/Neutaro /usr/local/bin/cosmovisor
 rm -f ~/go/bin/Neutaro ~/go/bin/cosmovisor
+rm -r go
 ```
 
 ---
