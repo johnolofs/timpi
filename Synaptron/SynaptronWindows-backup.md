@@ -64,7 +64,11 @@ A clean, click-by-click setup for **Timpi Synaptron** nodes.
 
 ### 0.1 Open Terminal (Admin)
 
-* Right-click Start → **Terminal (Admin)** (or *Windows PowerShell (Admin)*).
+* Click Start → Windows PowerShell (Run as Administrator).
+
+<img width="829" height="635" alt="image" src="https://github.com/user-attachments/assets/d13eabc9-454f-4744-ac8f-fd51e9901128" />
+
+
 
 ### 0.2 Remove conda environment (`synap`)
 
@@ -74,6 +78,9 @@ conda env remove -n synap
 ```
 
 * If you see “conda is not recognized”, try one of these explicit paths:
+<img width="858" height="292" alt="image" src="https://github.com/user-attachments/assets/1aadd4da-e870-47f2-a5aa-98cf66b7d088" />
+
+
 
 ```powershell
 & "C:\Program Files\Synaptron\miniconda3\Scripts\conda.exe" env remove -n synap
@@ -130,8 +137,11 @@ If it shows **Update Required**, complete **[0) Quick upgrade]** or **[11) Updat
 ## 3) Register your node & get the GUID
 
 1. Go to **https://timpi.com/node/v2/management** and connect **Keplr**.
-2. Select your **Synaptron NFT**.
-3. Copy your **GUID** (you will paste it in the app during registration).
+<img width="2017" height="357" alt="image" src="https://github.com/user-attachments/assets/73026350-2dc7-49fb-884a-fc762d4bab05" />
+
+
+3. Select your **Synaptron NFT**.
+4. Copy your **GUID** (you will paste it in the app during registration).
 
 ---
 
@@ -143,7 +153,8 @@ https://timpi.io/applications/windows/SynaptronSetupConda.zip
 
 * Download **`SynaptronSetupConda.zip`**, right-click → **Extract All…**
 
-![Extract the ZIP](https://github.com/user-attachments/assets/26905e93-9dc2-4266-8537-a73db1a55471)
+<img width="712" height="646" alt="image" src="https://github.com/user-attachments/assets/4bf6fdbb-eaa1-4433-bdf6-07f1083f23d5" />
+
 
 * Open the extracted folder and **double-click** `setup.exe`.
 
