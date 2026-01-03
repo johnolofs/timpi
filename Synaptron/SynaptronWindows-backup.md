@@ -1,5 +1,7 @@
 # Synaptron — Windows 10/11 Installation Guide
 
+<img width="1480" height="862" src="https://github.com/user-attachments/assets/b0749433-3720-4422-a14d-26c4dec067c3"/>
+
 A clean, click-by-click setup for **Timpi Synaptron** nodes.
 
 > **Verify your version:** In Discord run **`/synaptronchecker`** with your node’s GUID.
