@@ -77,9 +77,9 @@ cd "C:\Program Files\Synaptron"
 conda env remove -n synap
 ```
 
-* If you see “conda is not recognized”, try one of these explicit paths:
 <img width="858" height="292" alt="image" src="https://github.com/user-attachments/assets/1aadd4da-e870-47f2-a5aa-98cf66b7d088" />
 
+* If you see “conda is not recognized”, try one of these explicit paths:
 
 
 ```powershell
