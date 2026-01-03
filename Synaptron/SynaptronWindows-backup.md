@@ -301,7 +301,7 @@ If **`/synaptronchecker`** says **Update Required**:
 * **Discord support (tickets):**
   [https://discord.com/channels/946982023245992006/1179427377844068493](https://discord.com/channels/946982023245992006/1179427377844068493)
 * **Windows video guide:** [https://www.youtube.com/watch?v=_SPVbZuCCPQ](https://www.youtube.com/watch?v=_SPVbZuCCPQ)
-* **Download (Windows):** `synaptron_win_latest.zip` (Timpi downloads)
+* **Download (Windows):** `SynaptronSetupConda.zip` https://timpi.io/applications/windows/SynaptronSetupConda.zip
 
 ---
 
