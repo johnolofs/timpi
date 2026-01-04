@@ -190,6 +190,8 @@ After installation, a desktop shortcut **Launch Synaptron** will be created.
    * If the UI shows a “minimum 16 chars” note, still use **17+** to be safe.
 
 You should receive a **Registration successful** prompt.
+<img width="784" height="895" alt="image" src="https://github.com/user-attachments/assets/eeec72d3-47ee-4dd9-8a56-f6d1be5c8400" />
+
 
 ---
 
