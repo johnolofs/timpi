@@ -180,16 +180,14 @@ https://timpi.io/applications/windows/SynaptronSetupConda.zip
 
 <br><br>
 * After installation, a desktop shortcut **Launch Synaptron** will be created.
-<br>
- <img width="135" height="139" alt="Launch Synaptron Icon" src="https://github.com/user-attachments/assets/e436f7b8-8857-4e56-a936-4248faeb6a05" />
 
+ <img width="135" height="139" alt="Launch Synaptron Icon" src="https://github.com/user-attachments/assets/e436f7b8-8857-4e56-a936-4248faeb6a05" />
+<br>
 
 ---
 
 ## 5) First launch & registration (in the app)
-<br>
 1. Double-click **Launch Synaptron** (approve any UAC prompt for the agent).
-<br>
 <img width="135" height="139" alt="Launch Synaptron Icon" src="https://github.com/user-attachments/assets/e436f7b8-8857-4e56-a936-4248faeb6a05" />
 <br><br>
 
@@ -197,6 +195,7 @@ https://timpi.io/applications/windows/SynaptronSetupConda.zip
 <img width="483" height="339" alt="image" src="https://github.com/user-attachments/assets/035e1f9e-5e01-4d4c-8976-f326f46f86eb" />
 
    * If the UI shows a “minimum 16 chars” note, still use **17+** to be safe.
+   <br>
 
 You should receive a **Registration successful** prompt.
 <img width="784" height="895" alt="image" src="https://github.com/user-attachments/assets/eeec72d3-47ee-4dd9-8a56-f6d1be5c8400" />
