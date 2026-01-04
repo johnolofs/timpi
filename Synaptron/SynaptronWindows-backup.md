@@ -202,6 +202,8 @@ You should receive a **Registration successful** prompt.
 
 
 3. Click **Install** → wait for **Completed Successfully**.
+<img width="835" height="892" alt="image" src="https://github.com/user-attachments/assets/18d829cc-53f0-4733-8f3a-3958bb4c05d0" />
+
 
 These steps fetch dependencies and can take **~15–20 minutes**. Do not close the application.
 
