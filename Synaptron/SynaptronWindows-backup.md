@@ -198,7 +198,10 @@ You should receive a **Registration successful** prompt.
 ## 6) Pre-Install & Install (one-time prerequisites)
 
 1. Click **Pre-Install** → wait for **Completed Successfully**.
-2. Click **Install** → wait for **Completed Successfully**.
+<img width="830" height="1310" alt="image" src="https://github.com/user-attachments/assets/6c16d78b-ac06-4202-b7a0-b99bfa804f2b" />
+
+
+3. Click **Install** → wait for **Completed Successfully**.
 
 These steps fetch dependencies and can take **~15–20 minutes**. Do not close the application.
 
