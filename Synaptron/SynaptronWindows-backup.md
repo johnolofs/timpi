@@ -181,7 +181,11 @@ After installation, a desktop shortcut **Launch Synaptron** will be created.
 ## 5) First launch & registration (in the app)
 
 1. Double-click **Launch Synaptron** (approve any UAC prompt for the agent).
-2. Paste your **GUID** and enter a **Friendly Name** (**≥17 characters**), then **Complete Registration**.
+<img width="1039" height="393" alt="Screenshot 2026-01-03 202353" src="https://github.com/user-attachments/assets/9f1b218a-5d8f-4f77-883e-4751c9333686" />
+
+
+3. Paste your **GUID** and enter a **Friendly Name** (**≥17 characters**), then **Complete Registration**.
+<img width="483" height="339" alt="image" src="https://github.com/user-attachments/assets/035e1f9e-5e01-4d4c-8976-f326f46f86eb" />
 
    * If the UI shows a “minimum 16 chars” note, still use **17+** to be safe.
 
