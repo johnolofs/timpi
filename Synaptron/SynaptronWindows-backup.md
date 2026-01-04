@@ -159,12 +159,18 @@ https://timpi.io/applications/windows/SynaptronSetupConda.zip
 * Open the extracted folder and **double-click** `setup.exe`.
 
 ### 4.2 SmartScreen → Run anyway
+<img width="336" height="314" alt="image" src="https://github.com/user-attachments/assets/d4dcc5c9-fa51-4205-818e-3d6130f8ac24" />
+
 
 * If Windows SmartScreen appears → **More info** → **Run anyway**.
+<img width="334" height="310" alt="image" src="https://github.com/user-attachments/assets/a2791aa3-5c17-45f1-92b4-bd63443bef85" />
+
 
 ### 4.3 Approve UAC
 
 * When prompted by UAC, click **Yes**.
+<img width="293" height="219" alt="image" src="https://github.com/user-attachments/assets/b799e2ae-9b89-4b0a-8b19-9c47b2a1f1f3" />
+
 
 After installation, a desktop shortcut **Launch Synaptron** will be created.
 
