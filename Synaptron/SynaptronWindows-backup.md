@@ -156,7 +156,12 @@ https://timpi.io/applications/windows/SynaptronSetupConda.zip
 
 
 * Open the extracted folder and right click on 'setup.exe' and select **Run as administrator**.
-* <img width="613" height="114" alt="Run as asministrator" src="https://github.com/user-attachments/assets/f73c89f7-96ab-40e4-93de-a2bccfd872b6" />
+<img width="613" height="114" alt="Run as asministrator" src="https://github.com/user-attachments/assets/f73c89f7-96ab-40e4-93de-a2bccfd872b6" />
+
+
+* Installing .NET Desktop components
+<img width="380" height="216" alt="image" src="https://github.com/user-attachments/assets/94c5e9bb-3265-4f4c-9b2c-153df8ce71eb" />
+
 
 ### 4.2 Approve UAC
 
