@@ -60,11 +60,11 @@ A clean, click-by-click setup for **Timpi Synaptron** nodes.
 
 ## 0) Quick upgrade (existing installs only)
 
-> **Goal:** remove the old **conda env** and app, then install the latest package.
+> **Goal:** remove the old **conda env** and app, then install the latest package. (VERY IMPORTANT STEP MUST BE DONE)
 
 ### 0.1 Open Terminal (Admin)
 
-* Click Start → Windows PowerShell (Run as Administrator).
+* Click Start → Windows PowerShell (Run as Administrator). You may need to right click the menu item to get the Run as administrator selection depending on Windows version.
 
 <img width="829" height="635" alt="image" src="https://github.com/user-attachments/assets/d13eabc9-454f-4744-ac8f-fd51e9901128" />
 
@@ -102,7 +102,7 @@ conda env remove -n synap
 
 ---
 
-## 1) Before you start
+## 1) Before you start (New installations)
 
 ### 1.1 Hardware requirements
 
@@ -152,37 +152,46 @@ https://timpi.io/applications/windows/SynaptronSetupConda.zip
 ### 4.1 Extract ZIP & run `setup.exe`
 
 * Download **`SynaptronSetupConda.zip`**, right-click → **Extract All…**
-
 <img width="712" height="646" alt="image" src="https://github.com/user-attachments/assets/4bf6fdbb-eaa1-4433-bdf6-07f1083f23d5" />
 
 
-* Open the extracted folder and **double-click** `setup.exe`.
-<img width="335" height="276" alt="image" src="https://github.com/user-attachments/assets/61f62dcc-c04c-4d37-8e11-56a88c166e26" />
+* Open the extracted folder and right click on 'setup.exe' and select **Run as administrator**.
+* <img width="613" height="114" alt="Run as asministrator" src="https://github.com/user-attachments/assets/f73c89f7-96ab-40e4-93de-a2bccfd872b6" />
 
-
-### 4.2 SmartScreen → Run anyway
-<img width="336" height="314" alt="image" src="https://github.com/user-attachments/assets/d4dcc5c9-fa51-4205-818e-3d6130f8ac24" />
-
-
-* If Windows SmartScreen appears → **More info** → **Run anyway**.
-<img width="334" height="310" alt="image" src="https://github.com/user-attachments/assets/a2791aa3-5c17-45f1-92b4-bd63443bef85" />
-
-
-### 4.3 Approve UAC
+### 4.2 Approve UAC
 
 * When prompted by UAC, click **Yes**.
 <img width="293" height="219" alt="image" src="https://github.com/user-attachments/assets/b799e2ae-9b89-4b0a-8b19-9c47b2a1f1f3" />
 
+* NOTE: If you have multiple monitors this may show on a different monitor also in single monitor setups this can be hidding behind other windows. You have to allow this in order to continue to the next step. 
 
-After installation, a desktop shortcut **Launch Synaptron** will be created.
+### 4.3 SmartScreen → Run anyway
+
+* If Windows SmartScreen appears → **More info** → **Run anyway**.
+<img width="334" height="310" alt="image" src="https://github.com/user-attachments/assets/a2791aa3-5c17-45f1-92b4-bd63443bef85" />
+
+<img width="336" height="314" alt="image" src="https://github.com/user-attachments/assets/d4dcc5c9-fa51-4205-818e-3d6130f8ac24" />
+
+<br><br>
+
+* You should now be able to start the installation process. 
+<img width="335" height="276" alt="image" src="https://github.com/user-attachments/assets/61f62dcc-c04c-4d37-8e11-56a88c166e26" />
+
+
+<br><br>
+* After installation, a desktop shortcut **Launch Synaptron** will be created.
+<br>
+ <img width="135" height="139" alt="Launch Synaptron Icon" src="https://github.com/user-attachments/assets/e436f7b8-8857-4e56-a936-4248faeb6a05" />
+
 
 ---
 
 ## 5) First launch & registration (in the app)
-
+<br>
 1. Double-click **Launch Synaptron** (approve any UAC prompt for the agent).
-<img width="1039" height="393" alt="Screenshot 2026-01-03 202353" src="https://github.com/user-attachments/assets/9f1b218a-5d8f-4f77-883e-4751c9333686" />
-
+<br>
+<img width="135" height="139" alt="Launch Synaptron Icon" src="https://github.com/user-attachments/assets/e436f7b8-8857-4e56-a936-4248faeb6a05" />
+<br><br>
 
 3. Paste your **GUID** and enter a **Friendly Name** (**≥17 characters**), then **Complete Registration**.
 <img width="483" height="339" alt="image" src="https://github.com/user-attachments/assets/035e1f9e-5e01-4d4c-8976-f326f46f86eb" />
