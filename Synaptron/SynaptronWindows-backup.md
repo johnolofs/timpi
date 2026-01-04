@@ -206,6 +206,8 @@ These steps fetch dependencies and can take **~15–20 minutes**. Do not close t
 
 1. In **Configure GPU Card(s)**, choose your **GPU** and click **Enable**.
 2. Confirm your GPU shows **Enabled** and **Timpi Connected** is visible.
+<img width="391" height="440" alt="image" src="https://github.com/user-attachments/assets/52750363-5133-44a8-87b7-19d089a0d00b" />
+
 
 If the GPU does not appear: update NVIDIA drivers, reboot, re-launch Synaptron.
 
