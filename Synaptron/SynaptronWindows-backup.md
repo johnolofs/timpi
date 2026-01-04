@@ -157,6 +157,8 @@ https://timpi.io/applications/windows/SynaptronSetupConda.zip
 
 
 * Open the extracted folder and **double-click** `setup.exe`.
+<img width="335" height="276" alt="image" src="https://github.com/user-attachments/assets/61f62dcc-c04c-4d37-8e11-56a88c166e26" />
+
 
 ### 4.2 SmartScreen → Run anyway
 <img width="336" height="314" alt="image" src="https://github.com/user-attachments/assets/d4dcc5c9-fa51-4205-818e-3d6130f8ac24" />
