@@ -206,16 +206,24 @@ You should receive a **Registration successful** prompt.
 <img width="784" height="895" alt="image" src="https://github.com/user-attachments/assets/eeec72d3-47ee-4dd9-8a56-f6d1be5c8400" />
 
 
+
 ---
 
 ## 6) Pre-Install & Install (one-time prerequisites)
 
 1. Click **Pre-Install** → wait for **Completed Successfully**.
-<img width="830" height="1310" alt="image" src="https://github.com/user-attachments/assets/6c16d78b-ac06-4202-b7a0-b99bfa804f2b" />
+<img width="576" height="142" alt="install button" src="https://github.com/user-attachments/assets/8af5f9f8-b8a1-4eb3-9de0-4266d55421fb" />
 
+<br>
+At one point during Pre-Install you will see Ollama start its installation process. Allow it to complete so the node can properly use the option.
+<img width="420" height="321" alt="ollama installing" src="https://github.com/user-attachments/assets/ccdba406-8a0f-4b6e-8f25-388229660b44" />
+<br><br>
+2. You should get a success message <br>
+<img width="167" height="133" alt="install success" src="https://github.com/user-attachments/assets/e48210d5-5d4f-4f80-b56b-7867190342a3" />
+<br><br>
+3. Click **Install** → wait for **Completed Successfully**. <br>
+<img width="565" height="126" alt="install button1" src="https://github.com/user-attachments/assets/91efac36-3ba8-42e4-bb05-1193bd2e659b" />
 
-3. Click **Install** → wait for **Completed Successfully**.
-<img width="835" height="892" alt="image" src="https://github.com/user-attachments/assets/18d829cc-53f0-4733-8f3a-3958bb4c05d0" />
 
 
 These steps fetch dependencies and can take **~15–20 minutes**. Do not close the application.
