@@ -26,8 +26,8 @@ A clean, click-by-click setup for **Timpi Synaptron** nodes.
 
 3. [Download & install Synaptron](#3-download--install-synaptron)
    * 3.1 [Extract ZIP & run `setup.exe`](#31-Extract-ZIP-&-run-`setup.exe`)
-   * 3.2 [SmartScreen → Run anyway](#32-smartscreen-run-anyway)
-   * 3.3 [Approve UAC](#33-approve-uac)
+   * 3.2 [Approve UAC](#32-approve-uac)
+   * 3.3 [SmartScreen → Run anyway](#33-smartscreen-run-anyway)
 
 4. [First launch & registration (in the app)](#4-first-launch--registration-in-the-app)
 
