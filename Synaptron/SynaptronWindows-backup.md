@@ -18,7 +18,7 @@ A clean, click-by-click setup for **Timpi Synaptron** nodes.
    * 0.3 [Uninstall old app](#03-uninstall-old-app)
    * 0.4 [Install latest build](#04-install-latest-build)
 
-1. [Before you start](#1-Before-you-start-(New-installations))
+1. [Begin New Installation](#1-Begin-New-Installation)
    * 1.1 [Hardware requirements](#11-hardware-requirements)
    * 1.2 [Windows settings for uptime](#12-windows-settings-for-uptime)
 
@@ -106,9 +106,10 @@ conda env remove -n synap
 * Verify with **`/synaptronchecker`** after installation.
 
 ---
+**(SKIP Steps 1 - 3 below if following the Upgrade steps from above)**
+---
 
-## 1) Before you start (New installations) 
-**(SKIP Steps 1 - 3 if following the Upgrade path above)**
+## 1) Begin New Installation
 
 ### 1.1 Hardware requirements
 
