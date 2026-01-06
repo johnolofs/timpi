@@ -18,42 +18,40 @@ A clean, click-by-click setup for **Timpi Synaptron** nodes.
    * 0.3 [Uninstall old app](#03-uninstall-old-app)
    * 0.4 [Install latest build](#04-install-latest-build)
 
-1. [Before you start](#1-before-you-start)
+1. [Before you start](#1-before-you-start-new-installations)
    * 1.1 [Hardware requirements](#11-hardware-requirements)
    * 1.2 [Windows settings for uptime](#12-windows-settings-for-uptime)
 
-2. [Check if you need an update (Discord)](#2-check-if-you-need-an-update-discord)
+2. [Register your node & get the GUID](#2-register-your-node--get-the-guid)
 
-3. [Register your node & get the GUID](#3-register-your-node--get-the-guid)
+3. [Download & install Synaptron](#3-download--install-synaptron)
+   * 3.1 [Extract ZIP & run `setup.exe`](#31-Extract-ZIP-&-run-`setup.exe`)
+   * 3.2 [SmartScreen → Run anyway](#32-smartscreen-run-anyway)
+   * 3.3 [Approve UAC](#33-approve-uac)
 
-4. [Download & install Synaptron](#4-download--install-synaptron)
-   * 4.1 [Extract ZIP & run `setup_ClickMe.exe`](#41-extract-zip--run-setup_clickmeexe)
-   * 4.2 [SmartScreen → Run anyway](#42-smartscreen--run-anyway)
-   * 4.3 [Approve UAC](#43-approve-uac)
+4. [First launch & registration (in the app)](#4-first-launch--registration-in-the-app)
 
-5. [First launch & registration (in the app)](#5-first-launch--registration-in-the-app)
+5. [Pre-Install & Install (one-time prerequisites)](#5-pre-install--install-one-time-prerequisites)
 
-6. [Pre-Install & Install (one-time prerequisites)](#6-pre-install--install-one-time-prerequisites)
+6. [Enable your GPU & connect](#6-enable-your-gpu--connect)
 
-7. [Enable your GPU & connect](#7-enable-your-gpu--connect)
+7. [Start Work & verify](#7-start-work--verify)
 
-8. [Start Work & verify](#8-start-work--verify)
+8. [Post-install checks](#8-post-install-checks)
 
-9. [Post-install checks](#9-post-install-checks)
+9. [(Optional) Auto-start on login](#9-optional-auto-start-on-login)
 
-10. [(Optional) Auto-start on login](#10-optional-auto-start-on-login)
+10. [Updating (clean reinstall)](#10-updating-clean-reinstall)
 
-11. [Updating (clean reinstall)](#11-updating-clean-reinstall)
+11. [Logs & paths](#11-logs--paths)
 
-12. [Logs & paths](#12-logs--paths)
+12. [Troubleshooting (quick fixes)](#12-troubleshooting-quick-fixes)
 
-13. [Troubleshooting (quick fixes)](#13-troubleshooting-quick-fixes)
+13. [Support & resources](#13-support--resources)
 
-14. [Support & resources](#14-support--resources)
+14. [FAQ (full)](#14-faq-full)
 
-15. [FAQ (full)](#15-faq-full)
-
-16. [Revisions](#16-revisions)
+15. [Revisions](#15-revisions)
 
 
 ---
@@ -92,8 +90,15 @@ conda env remove -n synap
 
 ### 0.3 Uninstall old app
 
-* Windows **Settings → Apps → Installed apps** → **Synaptron → Uninstall**.
-* If “Python” from the prior bundle is listed, uninstall it as well.
+* Windows **Settings → Apps → Installed apps** → **Synaptron → Uninstall**. (May be a little different depending on Windows Version)
+  <img width="543" height="447" alt="synaptron remove" src="https://github.com/user-attachments/assets/a385d36e-5142-4c38-9215-40703a85c6fe" />
+  <br>
+  Follow the Windows uninstall process and be sure it uninstalls the application complete
+  <br><br>
+* If **Python** and/or **miniconda** from the prior bundle is listed, uninstall it as well.
+  <img width="555" height="470" alt="python remove" src="https://github.com/user-attachments/assets/8b747539-4177-490e-ae58-45e6f17a020d" />
+  <br><br>
+
 
 ### 0.4 Install latest build
 
@@ -102,7 +107,7 @@ conda env remove -n synap
 
 ---
 
-## 1) Before you start (New installations)
+## 1) Before you start (New installations) **(SKIP Steps 1 - 3 if following the Upgrade path above)**
 
 ### 1.1 Hardware requirements
 
@@ -120,57 +125,44 @@ conda env remove -n synap
 
 ---
 
-## 2) Check if you need an update (Discord)
-
-Open Discord and run the checker.
-
-![Open command palette for /synaptronchecker](https://github.com/user-attachments/assets/f1bcfd31-e8ef-460f-b210-996a90658d62)
-
-![Checker modal — paste GUID](https://github.com/user-attachments/assets/8d8d958f-60e5-4a52-8582-386d2d68b8e7)
-
-![Checker result — includes Update Required](https://github.com/user-attachments/assets/aec5c152-80d1-4af4-b258-e811092236f2)
-
-If it shows **Update Required**, complete **[0) Quick upgrade]** or **[11) Updating]**.
-
----
-
-## 3) Register your node & get the GUID
+## 2) Register your node & get the GUID
 
 1. Go to **https://timpi.com/node/v2/management** and connect **Keplr**.
 <img width="2017" height="357" alt="image" src="https://github.com/user-attachments/assets/73026350-2dc7-49fb-884a-fc762d4bab05" />
 
 
-3. Select your **Synaptron NFT**.
-4. Copy your **GUID** (you will paste it in the app during registration).
+3. Select your **Synaptron NFT**. (If you have multiple NFT you may need to scroll down to find the registration button)
+4. Once registered it will display the GUID. This is held here if you ever need to get it back but it is good to also keep a local copy for yourself.
+5. Copy your **GUID** (you will paste it in the app during registration).
 
 ---
 
-## 4) Download & install Synaptron
+## 3) Download & install Synaptron
 
 https://timpi.io/applications/windows/SynaptronSetupConda.zip
 
-### 4.1 Extract ZIP & run `setup.exe`
+### 3.1 Extract ZIP & run `setup.exe`
 
 * Download **`SynaptronSetupConda.zip`**, right-click → **Extract All…**
-<img width="712" height="646" alt="image" src="https://github.com/user-attachments/assets/4bf6fdbb-eaa1-4433-bdf6-07f1083f23d5" />
-
+<img width="456" height="423" alt="image" src="https://github.com/user-attachments/assets/4bf6fdbb-eaa1-4433-bdf6-07f1083f23d5" />
+<br><br>
 
 * Open the extracted folder and right click on 'setup.exe' and select **Run as administrator**.
 <img width="613" height="114" alt="Run as asministrator" src="https://github.com/user-attachments/assets/f73c89f7-96ab-40e4-93de-a2bccfd872b6" />
+<br><br>
 
-
-* Installing .NET Desktop components
+* Installing .NET Desktop components (May be required on fresh new installations.)
 <img width="380" height="216" alt="image" src="https://github.com/user-attachments/assets/94c5e9bb-3265-4f4c-9b2c-153df8ce71eb" />
+<br><br>
 
-
-### 4.2 Approve UAC
+### 3.2 Approve UAC
 
 * When prompted by UAC, click **Yes**.
 <img width="293" height="219" alt="image" src="https://github.com/user-attachments/assets/b799e2ae-9b89-4b0a-8b19-9c47b2a1f1f3" />
 
 * NOTE: If you have multiple monitors this may show on a different monitor also in single monitor setups this can be hidding behind other windows. You have to allow this in order to continue to the next step. 
 
-### 4.3 SmartScreen → Run anyway
+### 3.3 SmartScreen → Run anyway
 
 * If Windows SmartScreen appears → **More info** → **Run anyway**.
 <img width="334" height="310" alt="image" src="https://github.com/user-attachments/assets/a2791aa3-5c17-45f1-92b4-bd63443bef85" />
@@ -191,25 +183,25 @@ https://timpi.io/applications/windows/SynaptronSetupConda.zip
 
 ---
 
-## 5) First launch & registration (in the app)
+## 4) First launch & registration (in the app)
 1. Double-click **Launch Synaptron** (approve any UAC prompt for the agent).
 <img width="135" height="139" alt="Launch Synaptron Icon" src="https://github.com/user-attachments/assets/e436f7b8-8857-4e56-a936-4248faeb6a05" />
 <br><br>
 
-3. Paste your **GUID** and enter a **Friendly Name** (**≥17 characters**), then **Complete Registration**.
+2. Paste your **GUID** and enter a **Friendly Name** (**≥17 characters**), then **Complete Registration**.
 <img width="483" height="339" alt="image" src="https://github.com/user-attachments/assets/035e1f9e-5e01-4d4c-8976-f326f46f86eb" />
 
    * If the UI shows a “minimum 16 chars” note, still use **17+** to be safe.
    <br>
 
-You should receive a **Registration successful** prompt.
-<img width="784" height="895" alt="image" src="https://github.com/user-attachments/assets/eeec72d3-47ee-4dd9-8a56-f6d1be5c8400" />
+3. You should receive a **Registration successful** prompt.
+<img width="492" height="465" alt="image" src="https://github.com/user-attachments/assets/eeec72d3-47ee-4dd9-8a56-f6d1be5c8400" />
 
 
 
 ---
 
-## 6) Pre-Install & Install (one-time prerequisites)
+## 5) Pre-Install & Install (one-time prerequisites)
 
 1. Click **Pre-Install** → wait for **Completed Successfully**.
 <img width="576" height="142" alt="install button" src="https://github.com/user-attachments/assets/8af5f9f8-b8a1-4eb3-9de0-4266d55421fb" />
@@ -230,7 +222,7 @@ These steps fetch dependencies and can take **~15–20 minutes**. Do not close t
 
 ---
 
-## 7) Enable your GPU & connect
+## 6) Enable your GPU & connect
 
 1. In **Configure GPU Card(s)**, choose your **GPU** and click **Enable**.
 2. Confirm your GPU shows **Enabled** and **Timpi Connected** is visible.
@@ -241,7 +233,7 @@ If the GPU does not appear: update NVIDIA drivers, reboot, re-launch Synaptron.
 
 ---
 
-## 8) Start Work & verify
+## 7) Start Work & verify
 
 1. Click **Start Work** → you should see **Register For Work: Success**.
 2. Logs will begin scrolling; detections will appear intermittently.
@@ -249,21 +241,21 @@ If the GPU does not appear: update NVIDIA drivers, reboot, re-launch Synaptron.
 
 ---
 
-## 9) Post-install checks
+## 8) Post-install checks
 
 * Open **Task Manager** and confirm **SynapAgent** and related processes are running.
 * You may see a tray notification indicating the agent continues to run in the background.
 
 ---
 
-## 10) (Optional) Auto-start on login
+## 9) (Optional) Auto-start on login
 
 1. Press **Win + R**, type `shell:startup`, press **Enter**.
 2. Copy the **Launch Synaptron** shortcut into the **Startup** folder.
 
 ---
 
-## 11) Updating (clean reinstall)
+## 10) Updating (clean reinstall)
 
 If **`/synaptronchecker`** says **Update Required**:
 
@@ -291,7 +283,7 @@ If **`/synaptronchecker`** says **Update Required**:
 
 ---
 
-## 12) Logs & paths
+## 11) Logs & paths
 
 * **Logs:** `C:\Users\<You>\AppData\Roaming\Synaptron`
 * **GUID & app data:** `C:\ProgramData\Synaptron`
@@ -299,7 +291,7 @@ If **`/synaptronchecker`** says **Update Required**:
 
 ---
 
-## 13) Troubleshooting (quick fixes)
+## 12) Troubleshooting (quick fixes)
 
 **Installer blocked (SmartScreen/UAC)**
 
@@ -338,7 +330,7 @@ If **`/synaptronchecker`** says **Update Required**:
 
 ---
 
-## 14) Support & resources
+## 13) Support & resources
 
 * **Discord support (tickets):**
   [https://discord.com/channels/946982023245992006/1179427377844068493](https://discord.com/channels/946982023245992006/1179427377844068493)
@@ -347,7 +339,7 @@ If **`/synaptronchecker`** says **Update Required**:
 
 ---
 
-## 15) FAQ (full)
+## 14) FAQ (full)
 
 ### GPU
 
@@ -409,7 +401,7 @@ Tier 2 targets ~**14.3%** higher than Tier 1. Initially equal split within a tie
 
 ---
 
-## 16) Revisions
+## 15) Revisions
 
 * **v1.3 — 2026-01-03:** Complete rewrite for GitHub; added **Quick upgrade** (conda removal), consolidated troubleshooting; image links use original user-attachments where available.
 * **v1.1:** Added node registration steps; cleanup clarification; video tutorial.
