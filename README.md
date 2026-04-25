@@ -87,7 +87,8 @@ Timpi guarantees minimum reward pools per node type for fixed periods. Rewards b
 
 ### 🔎 Explorer & tooling
 
-* **Block explorer** → [https://explorer.neutaro.io](https://explorer.neutaro.io)
+* **Block explorer (new)** → [https://timpi.se](https://timpi.se)
+* **Block explorer (legacy)** → [https://explorer.neutaro.io](https://explorer.neutaro.io)
 * **Neutaro chain repo** → [github.com/Neutaro/Neutaro](https://github.com/Neutaro/Neutaro)
 
 ### 💰 Exchanges & bridge
