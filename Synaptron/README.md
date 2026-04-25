@@ -4,9 +4,10 @@
 
 The **Synaptron** is Timpi's GPU AI worker. It runs models for image / text understanding tasks fed by the Collector network, and pays out monthly $NTMPI rewards based on availability and (later) performance.
 
-> 📦 **Latest Linux images:** `timpiltd/timpi-synaptron-universal:cuda24` (most GPUs) · `:cuda28` (Blackwell)
-> 🪟 **Latest Windows installer:** `SynaptronSetupConda.zip`
-> 🔍 **Verify your version:** in Discord run `/synaptronchecker` with your GUID
+> [!NOTE]
+> **Latest Linux images:** `timpiltd/timpi-synaptron-universal:cuda24` (most GPUs) · `:cuda28` (Blackwell).
+> **Latest Windows installer:** `SynaptronSetupConda.zip`.
+> Verify your running version in Discord with `/synaptronchecker`.
 
 ---
 
@@ -14,10 +15,10 @@ The **Synaptron** is Timpi's GPU AI worker. It runs models for image / text unde
 
 | Platform | Guide | Notes |
 | --- | --- | --- |
-| 🐧 Linux (auto) | [linux.md](linux.md) | One-line `curl \| bash` installer with auto-detection |
-| 🐧 Linux (manual) | [linux-manual.md](linux-manual.md) | Full step-by-step Docker Compose walkthrough |
-| 🪟 Windows 10 / 11 | [windows.md](windows.md) | Native installer (`setup.exe`), Conda-based |
-| ☁️ FluxEdge (GPU) | [../Flux/synaptron.md](../Flux/synaptron.md) | Rent a GPU machine on Flux |
+| Linux (auto) | [linux.md](linux.md) | One-line `curl \| bash` installer with auto-detection |
+| Linux (manual) | [linux-manual.md](linux-manual.md) | Full step-by-step Docker Compose walkthrough |
+| Windows 10 / 11 | [windows.md](windows.md) | Native installer (`setup.exe`), Conda-based |
+| FluxEdge (GPU) | [../Flux/synaptron.md](../Flux/synaptron.md) | Rent a GPU machine on Flux |
 
 ---
 
@@ -32,15 +33,15 @@ The **Synaptron** is Timpi's GPU AI worker. It runs models for image / text unde
 | Storage | 250 GB SSD / NVMe |
 | OS | Ubuntu 22.04 LTS or Windows 10 / 11 |
 
-> ⚠️ **NVIDIA only** — AMD and Apple Silicon are not supported.
-> ⚠️ **One node per GPU** — the NFT-to-GPU mapping is 1:1.
+> [!IMPORTANT]
+> **NVIDIA only** — AMD and Apple Silicon are not supported.
+> **One node per GPU** — the NFT-to-GPU mapping is 1:1.
 
 ---
 
 ## 🆔 Get your GUID
 
-Register your Synaptron NFT and copy its GUID:
-👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
+Register your Synaptron NFT and copy its GUID at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management).
 
 You'll also need a **node NAME** with at least **17 characters** (letters, digits, `_`, `-` only).
 
@@ -69,6 +70,6 @@ Rewards start with availability-based equal split within a tier, then transition
 
 ## 🆘 Support
 
-* 💬 [Timpi Discord](https://discord.com/channels/946982023245992006) — `#synaptron-support`
-* 🛠 [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
-* 📺 [Windows video walkthrough](https://www.youtube.com/watch?v=_SPVbZuCCPQ)
+* [Timpi Discord — #synaptron-support](https://discord.com/channels/946982023245992006)
+* [Open a support ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
+* [Windows video walkthrough](https://www.youtube.com/watch?v=_SPVbZuCCPQ)

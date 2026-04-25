@@ -4,8 +4,8 @@
 
 This guide installs:
 
-* 🧠 **TimpiCollector** — the worker binary
-* 🔄 **CollectorAutoUpdater** — keeps the worker up to date
+* **TimpiCollector** — the worker binary
+* **CollectorAutoUpdater** — keeps the worker up to date
 
 Both run automatically in the background via **systemd services + timer**, including across reboots.
 
@@ -36,7 +36,7 @@ Both run automatically in the background via **systemd services + timer**, inclu
 
 ## 1. Get your GUID
 
-Register your Collector and copy its GUID at 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management).
+Register your Collector and copy its GUID at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management).
 
 From the same dashboard you can:
 
@@ -44,7 +44,8 @@ From the same dashboard you can:
 * adjust **Workers** and **Threads** per node
 * check **online / offline** status
 
-💡 Recommended starting config: **1 Worker, 5 Threads**.
+> [!TIP]
+> Recommended starting config: **1 Worker, 5 Threads**.
 
 ---
 
@@ -120,7 +121,8 @@ sudo chmod +x /opt/timpi/CollectorAutoUpdater
 sudo nano /etc/systemd/system/collector.service
 ```
 
-> ⚠️ **Replace `YOUR-GUID-HERE`** with your actual GUID from [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management) before saving.
+> [!IMPORTANT]
+> Replace `YOUR-GUID-HERE` with your actual GUID from [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management) before saving.
 
 ```ini
 [Unit]
@@ -225,7 +227,7 @@ sudo journalctl -u collector-updater -f
 systemctl list-timers | grep collector-updater
 ```
 
-✅ `NEXT` and `LAST` should be roughly 6 hours apart.
+`NEXT` and `LAST` should be roughly 6 hours apart.
 
 ---
 
@@ -242,14 +244,14 @@ systemctl list-timers | grep collector-updater
 
 ## 12. Manual update / hotfix
 
-### 🟢 Force an update now
+### Force an update now
 
 ```bash
 sudo systemctl start collector-updater.service
 sudo journalctl -u collector-updater -f
 ```
 
-### 🟡 Manual run (advanced)
+### Manual run (advanced)
 
 ```bash
 sudo systemctl stop collector
@@ -258,13 +260,13 @@ sudo ./CollectorAutoUpdater
 sudo systemctl start collector
 ```
 
-### 🔵 Reset the timer
+### Reset the timer
 
 ```bash
 sudo systemctl restart collector-updater.timer
 ```
 
-### 🧾 Check version & health
+### Check version & health
 
 ```bash
 sudo systemctl status collector
@@ -337,4 +339,4 @@ sudo systemctl start collector-updater.service
 
 ---
 
-🆘 **Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
+**Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)

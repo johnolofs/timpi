@@ -6,8 +6,8 @@ Flux offers two products:
 
 | Product | Best for | Available Timpi nodes |
 | --- | --- | --- |
-| 🟢 **FluxCloud** | Marketplace deployments — pay a subscription, Flux runs your container across 3 servers | Collector, GeoCore |
-| 🔵 **FluxEdge** | Rent a specific machine (often with a GPU) and run multiple apps on it | Synaptron, Collector |
+| **FluxCloud** | Marketplace deployments — pay a subscription, Flux runs your container across 3 servers | Collector, GeoCore |
+| **FluxEdge** | Rent a specific machine (often with a GPU) and run multiple apps on it | Synaptron, Collector |
 
 ---
 
@@ -15,9 +15,9 @@ Flux offers two products:
 
 | Node | Platform | Guide |
 | --- | --- | --- |
-| 🔄 Collector | FluxCloud or FluxEdge | [collector.md](collector.md) |
-| 🌍 GeoCore | FluxCloud | [geocore.md](geocore.md) |
-| 🧬 Synaptron (GPU) | FluxEdge | [synaptron.md](synaptron.md) |
+| Collector | FluxCloud or FluxEdge | [collector.md](collector.md) |
+| GeoCore | FluxCloud | [geocore.md](geocore.md) |
+| Synaptron (GPU) | FluxEdge | [synaptron.md](synaptron.md) |
 
 ---
 
@@ -29,7 +29,7 @@ Flux offers two products:
 | GeoCore | Registered **GeoCore GUID** + Flux account |
 | Synaptron | Registered **Synaptron GUID**, descriptive **NAME ≥ 17 chars**, FluxEdge credit |
 
-Get your GUIDs at 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management).
+Get your GUIDs at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management).
 
 ---
 
@@ -50,7 +50,8 @@ To force an earlier update:
    * **Soft Redeploy** — keeps container data
    * **Hard Redeploy** — wipes container data
 
-📖 [Flux Cloud Watchtower docs](https://help.runonflux.io/docs/the-flux-cloud-watchtower/)
+> [!NOTE]
+> See the [Flux Cloud Watchtower docs](https://help.runonflux.io/docs/the-flux-cloud-watchtower/) for the official walkthrough.
 
 ---
 
@@ -58,10 +59,10 @@ To force an earlier update:
 
 | Method | Notes |
 | --- | --- |
-| 💳 Stripe (credit card) | Standard pricing |
-| 🅿️ PayPal | Standard pricing |
-| 🔷 Flux (FLUX token) | **5% discount** on FluxCloud, **5% bonus** on FluxEdge funding |
-| 🧾 SSP / ZelCore | FLUX-based, same discount as Flux |
+| Stripe (credit card) | Standard pricing |
+| PayPal | Standard pricing |
+| Flux (FLUX token) | **5% discount** on FluxCloud, **5% bonus** on FluxEdge funding |
+| SSP / ZelCore | FLUX-based, same discount as Flux |
 
 ---
 

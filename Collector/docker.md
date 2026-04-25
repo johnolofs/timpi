@@ -24,9 +24,10 @@ Run one or more Collectors as Docker containers on Ubuntu. Ideal for multi-node 
 
 ## 1. Get your GUID
 
-Register at 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management) and copy the GUID. You'll pass it as `-e GUID="..."` to Docker.
+Register at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management) and copy the GUID. You'll pass it as `-e GUID="..."` to Docker.
 
-⚠️ Each Collector container needs a **unique GUID**.
+> [!IMPORTANT]
+> Each Collector container needs a **unique GUID**.
 
 ---
 
@@ -103,7 +104,8 @@ Healthy startup looks like:
 [INF] Trying to send keep alive…
 ```
 
-> 💡 The Collector is fully headless — manage **Workers / Threads** at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management). No ports need to be exposed.
+> [!NOTE]
+> The Collector is fully headless — manage **Workers / Threads** at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management). No ports need to be exposed.
 
 ---
 
@@ -210,4 +212,4 @@ sudo docker inspect timpi_collector | grep -iE '"NanoCpus"|"Memory"|"MemorySwap"
 
 ---
 
-🆘 **Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
+**Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)

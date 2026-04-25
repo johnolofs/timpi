@@ -45,21 +45,21 @@ GeoCore is **lightweight**, **Docker-based**, and built for 24/7 operation.
 
 ### Officially supported
 
-* ✅ Ubuntu 22.04 LTS (native)
-* ✅ Native Docker
-* ✅ FluxOS Marketplace deployments
+* Ubuntu 22.04 LTS (native)
+* Native Docker
+* FluxOS Marketplace deployments
 
 ### Not supported (community-only)
 
-* ❌ Windows, WSL, macOS
-* ❌ Proxmox LXC
-* ❌ Other Linux distributions
+* Windows, WSL, macOS
+* Proxmox LXC
+* Other Linux distributions
 
 ---
 
 ## 2. Get your GUID
 
-Register at 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management). Full guide: [Timpi-official/Nodes/Registration](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md).
+Register at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management). Full guide: [Timpi-official/Nodes/Registration](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md).
 
 A GUID looks like `2f7256b8-c275-429b-8077-01519cced572`.
 
@@ -69,10 +69,11 @@ A GUID looks like `2f7256b8-c275-429b-8077-01519cced572`.
 
 | Path | When to use |
 | --- | --- |
-| 🟦 **New install** | First GeoCore on this machine — go to [Section 5](#5-new-install-path) |
-| 🟩 **Upgrade** | Already running a GeoCore — go to [Section 6](#6-upgrade-path) |
+| **New install** | First GeoCore on this machine — go to [Section 5](#5-new-install-path) |
+| **Upgrade** | Already running a GeoCore — go to [Section 6](#6-upgrade-path) |
 
-> 🧹 If you're switching ports, changing GUID, or recovering from a broken install, run the [Clean slate](#4-clean-slate-optional-but-recommended) section first.
+> [!TIP]
+> If you're switching ports, changing GUID, or recovering from a broken install, run the [Clean slate](#4-clean-slate-optional-but-recommended) section first.
 
 ---
 
@@ -291,12 +292,7 @@ Starting worker!
 
 ## 9. Run multiple GeoCores
 
-Each node needs:
-
-* unique container name
-* unique port
-* unique volume folder
-* unique GUID
+Each node needs a **unique container name, port, volume folder, and GUID**.
 
 ```bash
 # GeoCore #2
@@ -362,6 +358,6 @@ In Discord, run `/geocore` with your GUID and port. See [../NodeChecker/README.m
 
 ## 12. Community & support
 
-* 💬 [Timpi Discord — GeoCore channel](https://discord.com/channels/946982023245992006)
-* 🛠 [Open a support ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
-* 📝 [Registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
+* [Timpi Discord — GeoCore channel](https://discord.com/channels/946982023245992006)
+* [Open a support ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
+* [Registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)

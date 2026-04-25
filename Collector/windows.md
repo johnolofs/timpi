@@ -24,7 +24,7 @@ The Windows installer ships as a native `.exe` and runs the Collector as a backg
 
 ## 1. Get your GUID
 
-Register your Collector at 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management) and copy the GUID. You'll paste it during the installer's prompt.
+Register your Collector at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management) and copy the GUID. You'll paste it during the installer's prompt.
 
 If you haven't registered an NFT yet, follow the [Timpi Node Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md) first.
 
@@ -32,8 +32,8 @@ If you haven't registered an NFT yet, follow the [Timpi Node Registration Guide]
 
 ## 2. Install
 
-📦 **Installer:** native `.exe` (Windows program)
-🔗 **Download:** [TimpiCollectorWindowsLatest-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
+* **Installer:** native `.exe` (Windows program)
+* **Download:** [TimpiCollectorWindowsLatest-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
 
 ### Steps
 
@@ -52,25 +52,27 @@ If you haven't registered an NFT yet, follow the [Timpi Node Registration Guide]
 
 5. Wait for the installer to finish (usually under a minute).
 
-> ⚠️ If Windows SmartScreen blocks the installer, click **More info → Run anyway**.
+> [!WARNING]
+> If Windows SmartScreen blocks the installer, click **More info → Run anyway**.
 
 ---
 
 ## 3. What the installer sets up
 
-✅ Installs the Collector to `C:\Program Files\Timpi Intl. LTD`
-✅ Creates a **Windows service** that starts on boot and restarts on crash
-✅ Saves your GUID to `C:\Program Files\Timpi Intl. LTD\guid.txt`
-✅ Adds two desktop shortcuts:
+* Installs the Collector to `C:\Program Files\Timpi Intl. LTD`
+* Creates a **Windows service** that starts on boot and restarts on crash
+* Saves your GUID to `C:\Program Files\Timpi Intl. LTD\guid.txt`
+* Adds two desktop shortcuts:
 
 | Shortcut | What it does |
 | --- | --- |
 | **Timpi Collector Logs** | Opens a PowerShell tail of the live log |
 | **Timpi Collector – Check for Updates** | Runs the auto-updater on demand |
 
-✅ Adds the Collector to **Apps & Features** for clean uninstall.
+* Adds the Collector to **Apps & Features** for clean uninstall.
 
-🧩 v2 has **no UI / tray icon** — it runs fully headless and is managed from the web dashboard.
+> [!NOTE]
+> v2 has **no UI / tray icon** — it runs fully headless and is managed from the web dashboard.
 
 ---
 
@@ -88,7 +90,7 @@ Double-click **Timpi Collector Logs** to open a live tail in PowerShell.
 Get-Content "C:\Program Files\Timpi Intl. LTD\logs\collector.out.log" -Tail 50 -Wait
 ```
 
-📂 **Log files:**
+**Log files:**
 
 ```text
 C:\Program Files\Timpi Intl. LTD\logs\
@@ -102,7 +104,7 @@ Stop tailing with `Ctrl + C`.
 
 ## 5. Check for updates
 
-The Collector auto-updates on reboot, but you can trigger an update on demand by double-clicking **🪄 Timpi Collector – Check for Updates** on the desktop.
+The Collector auto-updates on reboot, but you can trigger an update on demand by double-clicking **Timpi Collector – Check for Updates** on the desktop.
 
 Example output:
 
@@ -129,13 +131,14 @@ The updater stops the service, downloads the latest build, replaces the executab
 
 3. Right-click for **Start / Stop / Restart / Pause**.
 
-🧩 Use `Verbose` log level for troubleshooting, then revert to `Info` to keep log size down. Edit log level in the dashboard or in `CollectorSettings.json`.
+> [!TIP]
+> Use `Verbose` log level for troubleshooting, then revert to `Info` to keep log size down. Edit it in the dashboard or in `CollectorSettings.json`.
 
 ---
 
 ## 7. Manage workers from the dashboard
 
-Open 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
+Open [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management).
 
 From here you can:
 
@@ -157,7 +160,7 @@ From here you can:
 
 `Win + R` → `control` → **Programs → Uninstall a Program** → right-click **Timpi Collector → Uninstall**.
 
-✅ This removes all installed files, the Windows service, and both desktop shortcuts.
+This removes all installed files, the Windows service, and both desktop shortcuts.
 
 ---
 
@@ -165,11 +168,11 @@ From here you can:
 
 | Feature | Description |
 | --- | --- |
-| 🧩 No UI / Tray | Fully headless — no Timpi Manager or tray icon |
-| 🧾 GUID prompt | Enter or paste your GUID during installation |
-| 🔄 Auto-updater | Runs automatically on reboot, or manually from the desktop shortcut |
-| 💻 Web dashboard | Manage workers, threads, and performance online |
+| No UI / Tray | Fully headless — no Timpi Manager or tray icon |
+| GUID prompt | Enter or paste your GUID during installation |
+| Auto-updater | Runs automatically on reboot, or manually from the desktop shortcut |
+| Web dashboard | Manage workers, threads, and performance online |
 
 ---
 
-🆘 **Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
+**Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)

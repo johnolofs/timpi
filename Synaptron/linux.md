@@ -99,7 +99,8 @@ newgrp docker
 docker ps   # verify
 ```
 
-> ⚠️ **Do not use Snap Docker** — strict AppArmor confinement breaks GPU access. The installer will refuse to run if Snap Docker is detected.
+> [!WARNING]
+> **Do not use Snap Docker** — strict AppArmor confinement breaks GPU access. The installer will refuse to run if Snap Docker is detected.
 
 ---
 
@@ -281,4 +282,4 @@ Plus your GPU model, the image tag (`cuda24` / `cuda28`), and your GUID.
 
 ---
 
-🆘 **Support:** [Timpi Discord — #synaptron-support](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
+**Support:** [Timpi Discord — #synaptron-support](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
