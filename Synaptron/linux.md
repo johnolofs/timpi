@@ -63,7 +63,7 @@ docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi     # 
 Run as a **normal user** (not root):
 
 ```bash
-curl -s https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/scripts/install.sh | bash
 ```
 
 The installer prompts for:

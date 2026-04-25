@@ -129,7 +129,7 @@ Status: Downloaded newer image...
 ```bash
 sudo docker run -d --pull=always --restart unless-stopped \
   --name guardian1 \
-  --dns=100.42.180.116 --dns=8.8.8.8 \
+  --dns=100.42.180.116 --dns=1.1.1.1 \
   -p 8983:8983 \
   -p 4005:4005 \
   -v ${HOME}/var/solrdocker:/var/solr \
@@ -141,6 +141,9 @@ sudo docker run -d --pull=always --restart unless-stopped \
   -e LOCATION="Country/City" \
   timpiltd/timpi-guardian:latest
 ```
+
+> [!IMPORTANT]
+> The `100.42.180.116` DNS entry is **Timpi's name server** and is **required** — your Guardian needs it to talk to TAP and other Timpi services. The `1.1.1.1` entry is a public Cloudflare fallback for general DNS lookups.
 
 ### Open required ports
 
@@ -240,7 +243,7 @@ mkdir -p ${HOME}/var/solrdocker2/logs
 
 sudo docker run -d --pull=always --restart unless-stopped \
   --name guardian2 \
-  --dns=100.42.180.116 --dns=8.8.8.8 \
+  --dns=100.42.180.116 --dns=1.1.1.1 \
   -p 8984:8984 \
   -p 4006:4006 \
   -v ${HOME}/var/solrdocker2:/var/solr \
@@ -264,7 +267,8 @@ sudo docker run -d --pull=always --restart unless-stopped \
 | --- | --- |
 | `--pull=always` | Always refresh image |
 | `--restart unless-stopped` | Auto-restart on crash |
-| `--dns=` | Timpi DNS + Google DNS |
+| `--dns 100.42.180.116` | **Required** Timpi name server — used to reach TAP and Timpi services |
+| `--dns 1.1.1.1` | Cloudflare fallback for general DNS lookups |
 | `-v ~/var/solrdocker:/var/solr` | Persistent Solr storage |
 | `SOLR_HOME` | Solr root folder |
 | `SOLR_DATA` | Solr index folder |

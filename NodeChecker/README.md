@@ -77,7 +77,7 @@ Other users can't see your GUID or status.
 
    <img width="377" height="163" alt="geocore prompt" src="https://github.com/user-attachments/assets/7c2ab308-8a9b-4de6-8ca7-dc88ca55737f" />
 
-2. Enter your **GUID** and **Port** (default: `4014`).
+2. Enter your **GUID** and **Port** (default: `4013`).
 
    <img width="479" height="408" alt="geocore popup" src="https://github.com/user-attachments/assets/d413ae5b-055e-4efa-90f0-98290d6e5e0d" />
 

@@ -263,10 +263,9 @@ services:
     restart: always
     container_name: synaptron_universal
     dns:
-      - 100.42.180.29
-      - 100.42.180.99
-      - 8.8.8.8
-      - 1.1.1.1
+      - 100.42.180.29   # ns1.timpi.com (required)
+      - 100.42.180.99   # ns2.timpi.com (required)
+      - 1.1.1.1         # Cloudflare fallback
     ports:
       - "8000:8000"
     environment: *synaptron-vars
@@ -285,6 +284,9 @@ volumes:
   neo4jtest_logs:
   neo4jtest_plugins:
 ```
+
+> [!IMPORTANT]
+> The two `100.42.180.*` DNS entries are **Timpi's name servers** and are **required** — the Synaptron container needs them to talk to Wilson and other Timpi services. The `1.1.1.1` entry is a public Cloudflare fallback for general DNS lookups.
 
 > [!TIP]
 > You can also download the canonical version directly:
