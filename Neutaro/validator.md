@@ -1,75 +1,33 @@
-# WHY NEUTARO
+# 🖥 Neutaro — Linux Validator Guide (x86_64)
 
-Neutaro works closely with **Timpi** to help build the **first truly decentralized search engine**.
+Full, clean, working Neutaro node guide using **Cosmovisor + systemd**, with **State Sync** (recommended) or **Snapshot** sync. Safe to re-run from scratch.
 
-On Neutaro, you can:
-
-* Earn rewards by contributing to Timpi
-* Stake and secure the network
-* Vote on governance proposals affecting Timpi, including ethical and operational decisions for the Timpi search engine
+> Run everything in the **same terminal session**.
 
 ---
 
-## SECURITY (READ FIRST)
+## 📑 Table of Contents
 
-Before running infrastructure, review the official security guide:
-[https://github.com/Neutaro/Neutaro/blob/main/Security%20Guide.md](https://github.com/Neutaro/Neutaro/blob/main/Security%20Guide.md)
-
----
-
-## HOW YOU CAN PARTICIPATE
-
-You can participate in Neutaro by:
-
-* Holding NTMPI
-* Delegating tokens
-* Running a full node
-* Becoming a validator
-
----
-
-## TOKEN UNITS
-
-```
-1 NTMPI = 1,000,000 uneutaro
-```
+1. [System requirements](#1-system-requirements)
+2. [Open the required port](#2-open-the-required-port)
+3. [Optional: full cleanup (safe reinstall)](#3-optional-full-cleanup-safe-reinstall)
+4. [Sanity check](#4-sanity-check)
+5. [Install dependencies](#5-install-dependencies)
+6. [Install Go (system-wide)](#6-install-go-system-wide)
+7. [Build Neutaro](#7-build-neutaro)
+8. [Install Cosmovisor](#8-install-cosmovisor)
+9. [Cosmovisor layout](#9-cosmovisor-layout)
+10. [Init the node](#10-init-the-node)
+11. [Sync the node](#11-sync-the-node)
+12. [systemd service](#12-systemd-service)
+13. [Verify sync](#13-verify-sync)
+14. [Disable State Sync after sync](#14-disable-state-sync-after-sync)
+15. [Create a validator](#15-create-a-validator)
+16. [Quick troubleshooting](#16-quick-troubleshooting)
 
 ---
 
-## DELEGATING TOKENS (OPTIONAL)
-
-Example: delegate **1 NTMPI** to a validator:
-
-```bash
-Neutaro tx staking delegate <VALIDATOR_ADDRESS> 1000000uneutaro \
-  --from YOUR_WALLET \
-  --chain-id Neutaro-1
-```
-
----
-
-# BEFORE RUNNING A NODE
-
-## OPEN REQUIRED PORT
-
-Port **26656/TCP** must be open to allow inbound peers.
-
-### Linux (UFW)
-
-```bash
-sudo ufw allow 26656/tcp
-sudo ufw reload
-```
-
-### Router
-
-Forward **TCP 26656** to your node’s local IP.
-
----
-
-## SYSTEM REQUIREMENTS
-
-Recommended minimum:
+## 1. System requirements
 
 * Ubuntu 22.04 LTS
 * 4 CPU cores
@@ -78,24 +36,20 @@ Recommended minimum:
 
 ---
 
-# FULL, CLEAN, WORKING NEUTARO NODE GUIDE
+## 2. Open the required port
 
-*(root AND normal user – reinstall-safe)*
+```bash
+sudo ufw allow 26656/tcp
+sudo ufw reload
+```
 
-This guide:
-
-* Uses **ONE `$HOME` variable**
-* Uses **Cosmovisor + systemd**
-* Supports **State Sync (recommended)** or **Snapshot**
-* Is safe to re-run from scratch
-
-> Run everything in the **same terminal session**
+Router: forward **TCP 26656** to your node's LAN IP.
 
 ---
 
-## OPTIONAL: FULL CLEANUP (SAFE REINSTALL)
+## 3. Optional: full cleanup (safe reinstall)
 
-Run **ONLY** if reinstalling or fixing a broken setup.
+Run **only** if you're reinstalling or recovering from a broken setup:
 
 ```bash
 sudo systemctl stop Neutaro 2>/dev/null || true
@@ -107,12 +61,12 @@ sudo systemctl reset-failed
 rm -rf ~/.Neutaro ~/Neutaro
 sudo rm -f /usr/local/bin/Neutaro /usr/local/bin/cosmovisor
 rm -f ~/go/bin/Neutaro ~/go/bin/cosmovisor
-rm -r go
+rm -rf ~/go
 ```
 
 ---
 
-## 0) SANITY CHECK
+## 4. Sanity check
 
 ```bash
 set -euo pipefail
@@ -122,7 +76,7 @@ echo "HOME: $HOME"
 
 ---
 
-## 1) INSTALL DEPENDENCIES
+## 5. Install dependencies
 
 ```bash
 sudo apt update && sudo apt install -y \
@@ -133,7 +87,7 @@ sudo apt update && sudo apt install -y \
 
 ---
 
-## 2) INSTALL GO (SYSTEM-WIDE)
+## 6. Install Go (system-wide)
 
 ```bash
 GO_VERSION="1.22.2"
@@ -152,7 +106,7 @@ go version
 
 ---
 
-## 3) BUILD NEUTARO
+## 7. Build Neutaro
 
 ```bash
 cd "$HOME"
@@ -169,11 +123,11 @@ ls -lah ./build/Neutaro
 ./build/Neutaro version --long
 ```
 
-❌ If the binary does not exist — STOP.
+❌ If the binary isn't there — STOP and fix the build before continuing.
 
 ---
 
-## 4) INSTALL COSMOVISOR
+## 8. Install Cosmovisor
 
 ```bash
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.4.0
@@ -182,7 +136,7 @@ sudo ln -sf "$HOME/go/bin/cosmovisor" /usr/local/bin/cosmovisor
 
 ---
 
-## 5) COSMOVISOR LAYOUT
+## 9. Cosmovisor layout
 
 ```bash
 mkdir -p "$HOME/.Neutaro/cosmovisor/genesis/bin"
@@ -202,21 +156,21 @@ sudo ln -sf "$HOME/.Neutaro/cosmovisor/current/bin/Neutaro" \
 
 ---
 
-## 6) INIT NODE
+## 10. Init the node
 
 ```bash
 MONIKER="YourMoniker"
 Neutaro init "$MONIKER" --chain-id Neutaro-1
 ```
 
-### GENESIS
+### Genesis file
 
 ```bash
 curl -fsSL http://154.26.153.186/genesis.json \
   > "$HOME/.Neutaro/config/genesis.json"
 ```
 
-### SEEDS + PRUNING
+### Seeds + pruning
 
 ```bash
 CONFIG="$HOME/.Neutaro/config/config.toml"
@@ -233,15 +187,15 @@ sed -i \
 
 ---
 
-## 7) SYNC THE NODE
+## 11. Sync the node
 
-### OPTION A — STATE SYNC (RECOMMENDED)
+Pick **one**. State Sync is fastest.
+
+### Option A — State Sync (recommended)
 
 ```bash
 sed -i 's|^persistent_peers *=.*|persistent_peers = "ee64e5d0c3549fe807149f5f29a2913074e08a62@147.93.4.184:26656"|' "$CONFIG"
-```
 
-```bash
 cat > "$HOME/state_sync.sh" << 'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
@@ -267,9 +221,9 @@ chmod +x "$HOME/state_sync.sh"
 Neutaro tendermint unsafe-reset-all --home "$HOME/.Neutaro" --keep-addr-book
 ```
 
----
+### Option B — Snapshot
 
-### OPTION B — SNAPSHOT (If you did State sync step skip this step)
+Skip this if you ran State Sync.
 
 ```bash
 cd "$HOME/.Neutaro"
@@ -280,7 +234,7 @@ rm -f latest.tar.lz4
 
 ---
 
-## 8) SYSTEMD SERVICE
+## 12. systemd service
 
 ```bash
 sudo tee /etc/systemd/system/Neutaro.service > /dev/null << EOF
@@ -311,7 +265,7 @@ sudo journalctl -fu Neutaro -o cat
 
 ---
 
-## 9) VERIFY SYNC
+## 13. Verify sync
 
 ```bash
 Neutaro status 2>&1 | jq .SyncInfo
@@ -325,7 +279,9 @@ Wait for:
 
 ---
 
-## 10) DISABLE STATE SYNC (AFTER SYNC)
+## 14. Disable State Sync after sync
+
+Once `catching_up` is `false`, turn off State Sync to avoid replays on restart:
 
 ```bash
 sed -i \
@@ -340,17 +296,17 @@ sudo systemctl restart Neutaro
 
 ---
 
-## 11) CREATE VALIDATOR (FINAL STEP)
+## 15. Create a validator
 
-### CREATE / RECOVER WALLET
+> Only run this **after** the node is fully synced.
+
+### Create or recover a wallet
 
 ```bash
 Neutaro keys add WALLET --keyring-backend os --recover
 ```
 
-### CREATE VALIDATOR
-
-(ONLY after fully synced)
+### Create the validator
 
 ```bash
 Neutaro tx staking create-validator \
@@ -369,7 +325,7 @@ Neutaro tx staking create-validator \
 
 ---
 
-## QUICK TROUBLESHOOTING
+## 16. Quick troubleshooting
 
 ```bash
 which Neutaro
@@ -378,6 +334,10 @@ systemctl status Neutaro --no-pager
 ls -lah ~/.Neutaro/config
 ```
 
+For state-sync that won't complete: re-run `state_sync.sh` to refresh the trust hash, then restart the service.
+
 ---
 
-## ✅ DONE
+✅ **Done.** Your node should be in sync, running under Cosmovisor, and ready for delegation or validator promotion.
+
+🆘 [Timpi Discord](https://discord.com/channels/946982023245992006) · [Neutaro repo](https://github.com/Neutaro/Neutaro)
