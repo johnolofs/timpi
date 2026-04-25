@@ -2,10 +2,8 @@
 
 Run a **GeoCore** node on FluxCloud via the Marketplace. Flux deploys 3 instances and keeps them updated automatically.
 
-> ✅ **Requirements**
-> · Registered **GeoCore GUID** ([dashboard](https://timpi.com/node/v2/management))
-> · Flux account
-> · (Optional) email for alerts
+> [!NOTE]
+> **Requirements:** registered **GeoCore GUID** ([dashboard](https://timpi.com/node/v2/management)), a Flux account, and optionally an email for alerts.
 
 ---
 
@@ -85,7 +83,7 @@ Flux emails you when:
 
 <img width="917" height="646" alt="sign" src="https://github.com/user-attachments/assets/54b5de58-ad5b-49b6-b8a9-da1f8ff48ae2" />
 
-Wait for **✔️ Signing and Registration Complete** — you'll be redirected to payment.
+Wait for **Signing and Registration Complete** — you'll be redirected to payment.
 
 ## 8. Pay
 
@@ -115,7 +113,8 @@ Deployment can take up to **45 minutes**. Flux automatically starts **3 instance
 1. **Applications → Management → My Active Apps** → **Manage**.
 2. **Running Instances** — click **App** next to an IP to open the GeoCore UI.
 
-> 💡 IPs may change on redeploy. Always click the **App** button to open the currently active instance.
+> [!TIP]
+> IPs may change on redeploy. Always click the **App** button to open the currently active instance.
 
 For high-level GeoCore management, use [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management).
 
@@ -145,5 +144,5 @@ Watchtower auto-updates your containers. Force an update with **Soft Redeploy** 
 
 ## 🆘 Support
 
-* 💬 [Timpi Discord](https://discord.com/channels/946982023245992006) — GUID, node, reward questions
-* 🧾 [Flux Support](https://runonflux.zendesk.com) — deployment, billing, infrastructure
+* [Timpi Discord](https://discord.com/channels/946982023245992006) — GUID, node, reward questions
+* [Flux Support](https://runonflux.zendesk.com) — deployment, billing, infrastructure
