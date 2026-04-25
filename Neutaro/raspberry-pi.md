@@ -37,7 +37,8 @@ Neutaro works with **Timpi** to power the decentralized search engine. Running a
 * lets you become a validator
 * helps power Timpi's global search infrastructure
 
-🔐 **Security guide:** [Neutaro Security Guide](https://github.com/Neutaro/Neutaro/blob/main/Security%20Guide.md)
+> [!IMPORTANT]
+> **Security guide:** [Neutaro Security Guide](https://github.com/Neutaro/Neutaro/blob/main/Security%20Guide.md). Read it before exposing a node.
 
 ---
 
@@ -52,7 +53,8 @@ Neutaro works with **Timpi** to power the decentralized search engine. Running a
 | Internet | 20–50 Mbps stable |
 | Power | Official Pi power supply |
 
-⚠️ **Do not use SD cards for blockchain data — SSD only.**
+> [!WARNING]
+> **Do not use SD cards for blockchain data — SSD only.** SD cards will wear out and corrupt within weeks.
 
 ---
 
@@ -200,7 +202,7 @@ if [ $? -eq 0 ]; then
     lz4 -d latest.tar.lz4 | tar -xvf - -C ~/.Neutaro
     rm -f latest.tar.lz4
 else
-    echo "❌ Snapshot corrupted."
+    echo "Snapshot corrupted."
     rm -f latest.tar.lz4
 fi
 ```
@@ -291,6 +293,7 @@ sudo Neutaro keys add WALLET --keyring-backend os --recover
 
 ## 17. Create a validator
 
+> [!IMPORTANT]
 > Only after the node is fully synced.
 
 ```bash
@@ -310,6 +313,6 @@ Neutaro tx staking create-validator \
 
 ---
 
-🎉 **Your Neutaro Pi validator is now live.**
+**Your Neutaro Pi validator is now live.**
 
-🆘 [Timpi Discord](https://discord.com/channels/946982023245992006) · [Neutaro repo](https://github.com/Neutaro/Neutaro)
+**Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Neutaro repo](https://github.com/Neutaro/Neutaro)

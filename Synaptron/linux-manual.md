@@ -286,7 +286,8 @@ volumes:
   neo4jtest_plugins:
 ```
 
-> 💡 You can also download the canonical version directly:
+> [!TIP]
+> You can also download the canonical version directly:
 > ```bash
 > curl -fsSL -O https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/docker-compose.yml
 > ```
@@ -324,7 +325,8 @@ image: timpiltd/timpi-synaptron-universal:cuda28
 
 For all other GPUs, leave them as `t3_cuda24` and `:cuda24`.
 
-⚠️ **Both `ARCH` and the `image:` tag must match.** Mismatch is the most common manual-install bug.
+> [!IMPORTANT]
+> **Both `ARCH` and the `image:` tag must match.** Mismatch is the most common manual-install bug.
 
 ---
 
@@ -432,4 +434,4 @@ Plus your GPU model, image tag (`cuda24` / `cuda28`), and GUID.
 
 ---
 
-🆘 **Support:** [Timpi Discord — #synaptron-support](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
+**Support:** [Timpi Discord — #synaptron-support](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)

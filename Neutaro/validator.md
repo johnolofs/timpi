@@ -298,6 +298,7 @@ sudo systemctl restart Neutaro
 
 ## 15. Create a validator
 
+> [!IMPORTANT]
 > Only run this **after** the node is fully synced.
 
 ### Create or recover a wallet
@@ -338,6 +339,6 @@ For state-sync that won't complete: re-run `state_sync.sh` to refresh the trust 
 
 ---
 
-✅ **Done.** Your node should be in sync, running under Cosmovisor, and ready for delegation or validator promotion.
+**Done.** Your node should be in sync, running under Cosmovisor, and ready for delegation or validator promotion.
 
-🆘 [Timpi Discord](https://discord.com/channels/946982023245992006) · [Neutaro repo](https://github.com/Neutaro/Neutaro)
+**Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Neutaro repo](https://github.com/Neutaro/Neutaro)

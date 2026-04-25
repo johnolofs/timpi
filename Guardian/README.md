@@ -39,14 +39,14 @@ A Guardian Node hosts a portion of Timpi's decentralized search index using **Ap
 | Docker | Required |
 | Ports | Solr + Guardian ports must be open |
 
-⚠️ Officially supported: **Ubuntu 22.04 LTS + Docker**.
-⚠️ Other environments (WSL, macOS, Windows, Proxmox LXC, etc.) may work but are unsupported.
+> [!IMPORTANT]
+> Officially supported: **Ubuntu 22.04 LTS + Docker**. Other environments (WSL, macOS, Windows, Proxmox LXC, etc.) may work but are unsupported.
 
 ---
 
 ## 2. Get your GUID
 
-Register your Guardian NFT and copy the GUID at 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management). Full registration guide: [Timpi-official/Nodes/Registration](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md).
+Register your Guardian NFT and copy the GUID at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management). Full registration guide: [Timpi-official/Nodes/Registration](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md).
 
 ---
 
@@ -123,9 +123,9 @@ bash <(curl -fsSL https://raw.githubusercontent.com/johnolofs/timpi/main/Guardia
 
 The script:
 
-✔ Prompts for Solr port, Guardian port, GUID, country/city
-✔ Creates persistent folders
-✔ Starts the Guardian container with the right DNS, ports, and environment
+* Prompts for Solr port, Guardian port, GUID, country/city
+* Creates persistent folders
+* Starts the Guardian container with the right DNS, ports, and environment
 
 ### Expected script output
 
@@ -235,7 +235,8 @@ sudo docker run -d --pull=always --restart unless-stopped \
   timpiltd/timpi-guardian:latest
 ```
 
-💡 You can run unlimited Guardians on one host as long as the **ports**, **folders**, and **GUIDs** are unique.
+> [!TIP]
+> You can run unlimited Guardians on one host as long as the **ports**, **folders**, and **GUIDs** are unique.
 
 ---
 
@@ -298,9 +299,9 @@ In Discord, run `/guardianchecker` with your GUID and port. See [../NodeChecker/
 
 ## 11. Support
 
-* 💬 [Timpi Discord — #guardian-operators](https://discord.com/channels/946982023245992006)
-* 🛠 [Open a support ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
+* [Timpi Discord — #guardian-operators](https://discord.com/channels/946982023245992006)
+* [Open a support ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
 
 ---
 
-**Built with ❤️ by the Timpi community** — helping power a free and private internet 🌍
+Built by the Timpi community.

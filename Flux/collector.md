@@ -5,9 +5,8 @@ Two paths:
 * **A) FluxCloud** — recommended. Subscribe in the Marketplace, Flux runs your Collector across **3 instances** automatically.
 * **B) FluxEdge** — add a Collector to a machine you already rent (e.g. alongside a Synaptron).
 
-> ✅ **Requirements**
-> · Timpi wallet that holds a **Collector NFT**
-> · Flux account (FluxCloud or FluxEdge)
+> [!NOTE]
+> **Requirements:** a Timpi wallet that holds a **Collector NFT** + a Flux account (FluxCloud or FluxEdge).
 
 ---
 
@@ -48,7 +47,8 @@ Two paths:
 
    ![](https://github.com/user-attachments/assets/f8a48e8b-905e-4b1a-a964-8b188eaedcfd)
 
-> 📌 **Locked hardware:** 2 vCPU · 2000 MB RAM · 1 GB storage. Leave instance count at the default of **3** — extra instances bring no benefit for the Collector.
+> [!IMPORTANT]
+> **Locked hardware:** 2 vCPU · 2000 MB RAM · 1 GB storage. Leave instance count at the default of **3** — extra instances bring no benefit for the Collector.
 
 ### 3. Sign & register
 
@@ -60,7 +60,7 @@ Two paths:
 
    ![](https://github.com/user-attachments/assets/70011e19-9687-46ca-b064-fb11c7c60f85)
 
-3. Confirm **Total Price + VAT** → **Register** → wait for ✅ **DONE**.
+3. Confirm **Total Price + VAT** → **Register** → wait for **DONE**.
 
    ![](https://github.com/user-attachments/assets/6778f235-b45c-4ec4-8551-3c09ff2dbe23)
 
@@ -83,16 +83,17 @@ Two paths:
 
 4. In the app:
 
-   * ⚙️ **Settings** → enter your **Timpi Wallet Address** (must hold the Collector NFT)
+   * Open **Settings** (gear icon) → enter your **Timpi Wallet Address** (must hold the Collector NFT)
    * Set **Workers** (1–5) → **Save**
 
      ![](https://github.com/user-attachments/assets/91e3f515-7e75-47ba-a2d1-c72e510469ac)
 
-5. Open the **Collector** tab → ✅ indexing starts.
+5. Open the **Collector** tab — indexing starts.
 
    ![](https://github.com/user-attachments/assets/44ca58a4-71af-4579-8e1d-b6d455ab7ef5)
 
-> ℹ️ FluxCloud may rotate IPs on redeploy. If that happens, repeat steps 3–4 for the new IP.
+> [!NOTE]
+> FluxCloud may rotate IPs on redeploy. If that happens, repeat steps 3–4 for the new IP.
 
 ### 5. Auto-updates & redeploy
 
@@ -138,10 +139,10 @@ If you already run a **Synaptron** (or any machine) on FluxEdge, you can add a C
 5. Wait for **Running** → open **App URL**
 6. In the app:
 
-   * ⚙️ **Settings → Wallet Address** (NFT required)
+   * Open **Settings → Wallet Address** (NFT required)
    * Set **Workers** (1–5) → **Save**
 
-7. **Collector** tab → ✅ indexing starts
+7. Open the **Collector** tab — indexing starts.
 
 ---
 
@@ -157,5 +158,5 @@ If you already run a **Synaptron** (or any machine) on FluxEdge, you can add a C
 
 ## Support
 
-* 💬 [Timpi Discord](https://discord.com/channels/946982023245992006) — community help
-* 🧾 [Flux Help Center](https://help.runonflux.io) · [Support portal](https://support.runonflux.io)
+* [Timpi Discord](https://discord.com/channels/946982023245992006) — community help
+* [Flux Help Center](https://help.runonflux.io) · [Support portal](https://support.runonflux.io)

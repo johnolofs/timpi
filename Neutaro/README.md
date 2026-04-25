@@ -7,7 +7,8 @@
 * vote on governance proposals (including ethical & operational decisions for Timpi search)
 * (optionally) become a validator
 
-🔐 **Read the security guide first:** [Neutaro Security Guide](https://github.com/Neutaro/Neutaro/blob/main/Security%20Guide.md)
+> [!IMPORTANT]
+> **Read the security guide first:** [Neutaro Security Guide](https://github.com/Neutaro/Neutaro/blob/main/Security%20Guide.md).
 
 ---
 
@@ -15,8 +16,8 @@
 
 | Platform | Guide | Notes |
 | --- | --- | --- |
-| 🖥 Linux server (x86_64) | [validator.md](validator.md) | Cosmovisor + State Sync (recommended), full validator setup |
-| 🍓 Raspberry Pi 4 / 5 (8 GB) | [raspberry-pi.md](raspberry-pi.md) | ARM64 build, snapshot-based sync |
+| Linux server (x86_64) | [validator.md](validator.md) | Cosmovisor + State Sync (recommended), full validator setup |
+| Raspberry Pi 4 / 5 (8 GB) | [raspberry-pi.md](raspberry-pi.md) | ARM64 build, snapshot-based sync |
 
 ---
 
@@ -58,6 +59,6 @@ Neutaro tx staking delegate <VALIDATOR_ADDRESS> 1000000uneutaro \
 
 ## 🆘 Support & resources
 
-* 📦 [Neutaro/Neutaro](https://github.com/Neutaro/Neutaro) — main repository
-* 🔐 [Security Guide](https://github.com/Neutaro/Neutaro/blob/main/Security%20Guide.md)
-* 💬 [Timpi Discord](https://discord.com/channels/946982023245992006)
+* [Neutaro/Neutaro](https://github.com/Neutaro/Neutaro) — main repository
+* [Security Guide](https://github.com/Neutaro/Neutaro/blob/main/Security%20Guide.md)
+* [Timpi Discord](https://discord.com/channels/946982023245992006)

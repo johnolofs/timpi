@@ -2,8 +2,8 @@
 
 A clean, click-by-click setup for **Timpi Synaptron** nodes on Windows.
 
-> **Verify your version:** in Discord run `/synaptronchecker` with your node's GUID.
-> 📺 [Video walkthrough](https://www.youtube.com/watch?v=_SPVbZuCCPQ)
+> [!NOTE]
+> Verify your running version in Discord with `/synaptronchecker`. There's also a [video walkthrough on YouTube](https://www.youtube.com/watch?v=_SPVbZuCCPQ).
 
 ---
 
@@ -81,8 +81,9 @@ Skip ahead to **[3. Download & install Synaptron](#3-download--install-synaptron
 * Install the **latest NVIDIA driver**, then reboot
 * If you use third-party AV / firewall, allow the installer and Synaptron binaries
 
-> 💡 **Dedicated PC:** consider pausing Windows Update during long runs.
-> 💡 **Shared PC:** ensure AV/firewall allows Synaptron; keep Sleep off.
+> [!TIP]
+> **Dedicated PC:** consider pausing Windows Update during long runs.
+> **Shared PC:** ensure AV/firewall allows Synaptron; keep Sleep off.
 
 ---
 
@@ -101,7 +102,7 @@ For the full registration walkthrough see the [Timpi Node Registration Guide](ht
 
 ## 3. Download & install Synaptron
 
-**📥 Download:** [SynaptronSetupConda.zip](https://timpi.io/applications/windows/SynaptronSetupConda.zip)
+**Download:** [SynaptronSetupConda.zip](https://timpi.io/applications/windows/SynaptronSetupConda.zip)
 
 ### 3.1 Extract the ZIP and run `setup.exe`
 
@@ -123,7 +124,8 @@ Click **Yes**.
 
 <img width="293" height="219" alt="UAC prompt" src="https://github.com/user-attachments/assets/b799e2ae-9b89-4b0a-8b19-9c47b2a1f1f3" />
 
-> 💡 With multiple monitors the UAC prompt may appear elsewhere. With one monitor it can hide behind other windows. You must approve it to continue.
+> [!NOTE]
+> With multiple monitors the UAC prompt may appear elsewhere. With one monitor it can hide behind other windows. You must approve it to continue.
 
 ### 3.3 SmartScreen → Run anyway
 
@@ -233,7 +235,8 @@ If `/synaptronchecker` says **Update Required**:
 
 5. Verify with `/synaptronchecker`.
 
-> 💡 Your **GUID stays the same** — don't generate a new one.
+> [!IMPORTANT]
+> Your **GUID stays the same** — don't generate a new one.
 
 ---
 
@@ -308,4 +311,4 @@ Yes — use **PCIe Gen3 x8 or higher**.
 
 ---
 
-🆘 **Support:** [Timpi Discord — #synaptron-support](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493) · 📺 [Video walkthrough](https://www.youtube.com/watch?v=_SPVbZuCCPQ)
+**Support:** [Timpi Discord — #synaptron-support](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493) · [Video walkthrough](https://www.youtube.com/watch?v=_SPVbZuCCPQ)

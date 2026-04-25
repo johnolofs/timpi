@@ -2,7 +2,8 @@
 
 Discord slash commands for checking the status of your Timpi nodes. Results are **ephemeral** — only you see them.
 
-> ✅ You need the **Verified Human** role on the Timpi Discord to use these commands.
+> [!IMPORTANT]
+> You need the **Verified Human** role on the Timpi Discord to use these commands.
 
 ---
 
@@ -99,6 +100,6 @@ No. The popup appears when you type the command, and the GUID stays in the popup
 
 ---
 
-🆘 **Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
+**Support:** [Timpi Discord](https://discord.com/channels/946982023245992006) · [Open a ticket](https://discord.com/channels/946982023245992006/1179427377844068493)
 
-**Built with ❤️ by the Timpi community** — powering a free, decentralized internet 🌍
+Built by the Timpi community.

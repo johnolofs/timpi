@@ -2,10 +2,8 @@
 
 Deploy a **Synaptron** (AI / GPU) node on **FluxEdge** by renting a GPU machine, then optionally add Collector nodes to the same machine.
 
-> ✅ **Requirements**
-> · FluxEdge account with credit
-> · GPU machine (per template suggestions)
-> · Synaptron `GUID` + descriptive `NAME` (≥ 17 characters)
+> [!NOTE]
+> **Requirements:** FluxEdge account with credit, a GPU machine (per template suggestions), Synaptron `GUID`, and a descriptive `NAME` (≥ 17 characters).
 
 ---
 
@@ -33,9 +31,9 @@ Deploy a **Synaptron** (AI / GPU) node on **FluxEdge** by renting a GPU machine,
 
 2. Add funds in **Account Overview**:
 
-   * 💳 Stripe / Card
-   * 🅿️ PayPal
-   * 🔷 Flux (**+5% bonus**)
+   * Stripe / Card
+   * PayPal
+   * Flux (**+5% bonus**)
 
    ![](https://github.com/user-attachments/assets/9e4c56b8-8dbe-4380-8339-0be696dc5bf2)
 
@@ -81,7 +79,8 @@ After deployment, your Synaptron Dashboard shows:
 
   ![](https://github.com/user-attachments/assets/59896e32-5d17-47ce-b345-bcff562cbe97)
 
-> 💡 Keep NAME and region consistent across your fleet — easier to triage with support.
+> [!TIP]
+> Keep NAME and region consistent across your fleet — easier to triage with support.
 
 ---
 
@@ -93,10 +92,10 @@ After deployment, your Synaptron Dashboard shows:
 4. Adjust minimal resources → **Deploy App**.
 5. Once **Running** → open **App URL**:
 
-   * ⚙️ **Settings → Wallet Address** (must hold a **Collector NFT**)
+   * Open **Settings → Wallet Address** (must hold a **Collector NFT**)
    * Set **Workers** (1–5) → **Save**
 
-6. **Collector** tab → ✅ indexing starts.
+6. Open the **Collector** tab — indexing starts.
 
 ---
 
@@ -113,5 +112,5 @@ After deployment, your Synaptron Dashboard shows:
 
 ## Support
 
-* 💬 [Timpi Discord — #synaptron-support](https://discord.com/channels/946982023245992006)
-* 🧾 [FluxEdge Support](https://support.runonflux.io) — machine / rental issues
+* [Timpi Discord — #synaptron-support](https://discord.com/channels/946982023245992006)
+* [FluxEdge Support](https://support.runonflux.io) — machine / rental issues
