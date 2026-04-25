@@ -14,9 +14,10 @@ set -euo pipefail
 ###########################################################
 
 REPO_BASE="https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron"
+SCRIPTS_BASE="${REPO_BASE}/scripts"
 INSTALL_DIR="${HOME}/Synaptron"
 YML_FILE="docker-compose.yml"
-RUN_FILE="run_synaptron.sh"
+RUN_FILE="run-synaptron.sh"
 
 echo "===== Timpi Synaptron – Installer ====="
 echo
@@ -41,7 +42,7 @@ echo "📂 Using directory: ${INSTALL_DIR}"
 echo
 
 echo "📥 Downloading ${RUN_FILE}..."
-curl -fsS -o "${RUN_FILE}" "${REPO_BASE}/${RUN_FILE}"
+curl -fsS -o "${RUN_FILE}" "${SCRIPTS_BASE}/${RUN_FILE}"
 
 echo "📥 Downloading ${YML_FILE}..."
 curl -fsS -o "${YML_FILE}" "${REPO_BASE}/${YML_FILE}"
