@@ -9,21 +9,23 @@ A Guardian Node hosts a portion of Timpi's decentralized search index using **Ap
 * Improve regional latency
 * Strengthen decentralization
 
+> [!TIP]
+> **Already running an older Guardian?** Skip ahead to **[Section 7 — Upgrading](#7-upgrading)** for a clean stop / pull / re-run.
+
 ---
 
 ## 📑 Table of Contents
 
 1. [Supported systems & requirements](#1-supported-systems--requirements)
 2. [Get your GUID](#2-get-your-guid)
-3. [Install paths](#3-install-paths)
-4. [Step 0 — Install Docker & Java](#4-step-0--install-docker--java)
-5. [Step 0.5 — Create persistent storage](#5-step-05--create-persistent-storage)
-6. [Step 1 — Quick start (automatic script)](#6-step-1--quick-start-automatic-script)
-7. [Manual setup](#7-manual-setup)
+3. [Install Docker & Java](#3-install-docker--java)
+4. [Create persistent storage](#4-create-persistent-storage)
+5. [Install Guardian](#5-install-guardian)
+6. [Verify and monitor logs](#6-verify-and-monitor-logs)
+7. [Upgrading](#7-upgrading)
 8. [Run multiple Guardians](#8-run-multiple-guardians)
-9. [Verification & troubleshooting](#9-verification--troubleshooting)
-10. [Docker parameter reference](#10-docker-parameter-reference)
-11. [Support](#11-support)
+9. [Docker parameter reference](#9-docker-parameter-reference)
+10. [Support](#10-support)
 
 ---
 
@@ -50,27 +52,9 @@ Register your Guardian NFT and copy the GUID at [https://timpi.com/node/v2/manag
 
 ---
 
-## 3. Install paths
+## 3. Install Docker & Java
 
-| Path | When to use |
-| --- | --- |
-| **New install** | First Guardian on this machine — go to [Step 0](#4-step-0--install-docker--java) |
-| **Upgrade existing** | Already running a Guardian — see [Upgrade](#upgrade-an-existing-guardian) |
-
-### Upgrade an existing Guardian
-
-Remove the old container and image, then re-run the quick start:
-
-```bash
-sudo docker rm -f $(sudo docker ps -aq --filter "ancestor=timpiltd/timpi-guardian")
-sudo docker rmi -f $(sudo docker images timpiltd/timpi-guardian -q)
-```
-
-Then jump to [Step 1 — Quick start](#6-step-1--quick-start-automatic-script).
-
----
-
-## 4. Step 0 — Install Docker & Java
+Skip this section if `docker version` and `java -version` already work.
 
 ```bash
 sudo apt update
@@ -88,11 +72,7 @@ sudo apt install -y docker-ce default-jre
 sudo systemctl status docker
 ```
 
-Expected: `Active: active (running)`.
-
-### Add your user to the Docker group
-
-Avoids `permission denied /var/run/docker.sock`:
+Expected: `Active: active (running)`. Then add your user to the docker group to avoid `permission denied /var/run/docker.sock`:
 
 ```bash
 sudo usermod -aG docker $USER
@@ -101,21 +81,22 @@ newgrp docker
 
 ---
 
-## 5. Step 0.5 — Create persistent storage
+## 4. Create persistent storage
 
 ```bash
 mkdir -p ${HOME}/var/solrdocker/data
 mkdir -p ${HOME}/var/solrdocker/logs
 ```
 
-Inside the container these map to:
-
-* `/var/solr/data`
-* `/var/solr/logs`
+Inside the container these map to `/var/solr/data` and `/var/solr/logs`.
 
 ---
 
-## 6. Step 1 — Quick start (automatic script)
+## 5. Install Guardian
+
+You have two options. Pick one.
+
+### Option A — Automatic install (recommended)
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/johnolofs/timpi/main/Guardian/scripts/install.sh)
@@ -127,7 +108,7 @@ The script:
 * Creates persistent folders
 * Starts the Guardian container with the right DNS, ports, and environment
 
-### Expected script output
+#### Expected output
 
 ```text
 ===== Timpi Guardian – Quick Setup =====
@@ -143,39 +124,7 @@ Status: Downloaded newer image...
 ✅ Guardian started successfully!
 ```
 
-### Expected container logs
-
-```text
-INFO: Guardian is running on the main network
-Guardian: Production mode detected.
-Guardian port = 4005
-Starting Solr instance...
-Started Solr on port 8983. Happy searching!
-```
-
-### Expected persistent logs
-
-```text
-INFO: Triangulation successful. Region: EMEA
-INFO: Got the Collection list with 19 entries.
-Solr started, starting Guardian API.
-Guardian update sent to CO.
-```
-
-If you see these, your Guardian is **fully online**.
-
----
-
-## 7. Manual setup
-
-### 7.1 Create data and log folders
-
-```bash
-mkdir -p ${HOME}/var/solrdocker/data
-mkdir -p ${HOME}/var/solrdocker/logs
-```
-
-### 7.2 Run the Guardian manually
+### Option B — Manual install
 
 ```bash
 sudo docker run -d --pull=always --restart unless-stopped \
@@ -193,7 +142,7 @@ sudo docker run -d --pull=always --restart unless-stopped \
   timpiltd/timpi-guardian:latest
 ```
 
-### 7.3 Open required ports
+### Open required ports
 
 ```bash
 sudo ufw allow 8983/tcp
@@ -202,13 +151,82 @@ sudo ufw allow 4005/tcp
 
 Forward the same ports on your router to the Guardian's LAN IP.
 
-### 7.4 Deep checks inside the container
+---
+
+## 6. Verify and monitor logs
+
+### Healthy container logs
+
+```text
+INFO: Guardian is running on the main network
+Guardian: Production mode detected.
+Guardian port = 4005
+Starting Solr instance...
+Started Solr on port 8983. Happy searching!
+```
+
+### Healthy persistent logs
+
+```text
+INFO: Triangulation successful. Region: EMEA
+INFO: Got the Collection list with 19 entries.
+Solr started, starting Guardian API.
+Guardian update sent to CO.
+```
+
+If you see these, your Guardian is fully online.
+
+### Quick checks
+
+```bash
+# Guardian API
+curl -I http://localhost:4005
+
+# Solr UI (browser)
+http://<your-ip>:8983/solr/
+
+# Container logs
+sudo docker ps --filter "ancestor=timpiltd/timpi-guardian"
+sudo docker logs <container_name>
+
+# Persistent log files
+tail -n 50 ${HOME}/var/solrdocker/logs/guardian-log*.txt
+```
+
+### Inside-container deep check
 
 ```bash
 sudo docker exec -it guardian1 bash
 env | grep SOLR
 ls -la /var/solr
 ```
+
+### Status check (Discord)
+
+In Discord, run `/guardianchecker` with your GUID and port. See [../NodeChecker/README.md](../NodeChecker/README.md).
+
+---
+
+## 7. Upgrading
+
+### 7.1 Stop and remove the old container
+
+```bash
+sudo docker rm -f $(sudo docker ps -aq --filter "ancestor=timpiltd/timpi-guardian")
+```
+
+### 7.2 Remove the old image
+
+```bash
+sudo docker rmi -f $(sudo docker images timpiltd/timpi-guardian -q)
+```
+
+### 7.3 Re-run the installer
+
+The persistent volume at `~/var/solrdocker/` is preserved — your GUID stays the same. Use [Section 5](#5-install-guardian) to launch the new version.
+
+> [!NOTE]
+> Because each `docker run` uses `--pull=always`, the new container will pick up the latest image automatically.
 
 ---
 
@@ -240,49 +258,7 @@ sudo docker run -d --pull=always --restart unless-stopped \
 
 ---
 
-## 9. Verification & troubleshooting
-
-### Guardian API check
-
-```bash
-curl -I http://localhost:4005   # or 4006 etc.
-```
-
-### Solr UI
-
-```text
-http://<your-ip>:8983/solr/
-http://<your-ip>:8984/solr/
-```
-
-### Container logs
-
-Find the Guardian container name:
-
-```bash
-sudo docker ps --filter "ancestor=timpiltd/timpi-guardian"
-```
-
-Then:
-
-```bash
-sudo docker logs <container_name>
-```
-
-### Persistent log files
-
-```bash
-tail -n 50 ${HOME}/var/solrdocker/logs/guardian-log*.txt
-tail -n 50 ${HOME}/var/solrdocker2/logs/guardian-log*.txt
-```
-
-### Status checker
-
-In Discord, run `/guardianchecker` with your GUID and port. See [../NodeChecker/README.md](../NodeChecker/README.md).
-
----
-
-## 10. Docker parameter reference
+## 9. Docker parameter reference
 
 | Parameter | Meaning |
 | --- | --- |
@@ -297,7 +273,7 @@ In Discord, run `/guardianchecker` with your GUID and port. See [../NodeChecker/
 
 ---
 
-## 11. Support
+## 10. Support
 
 * [Timpi Discord — #guardian-operators](https://discord.com/channels/946982023245992006)
 * [Open a support ticket](https://discord.com/channels/946982023245992006/1179427377844068493)

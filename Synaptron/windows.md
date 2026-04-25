@@ -5,11 +5,13 @@ A clean, click-by-click setup for **Timpi Synaptron** nodes on Windows.
 > [!NOTE]
 > Verify your running version in Discord with `/synaptronchecker`. There's also a [video walkthrough on YouTube](https://www.youtube.com/watch?v=_SPVbZuCCPQ).
 
+> [!TIP]
+> **Already running an older Synaptron?** Skip ahead to **[Section 9 — Updating](#9-updating-clean-reinstall)** first to remove the old install cleanly. Your GUID stays the same.
+
 ---
 
 ## 📑 Table of Contents
 
-0. [Quick upgrade (existing installs only)](#0-quick-upgrade-existing-installs-only)
 1. [Hardware & Windows settings](#1-hardware--windows-settings)
 2. [Register your node & get the GUID](#2-register-your-node--get-the-guid)
 3. [Download & install Synaptron](#3-download--install-synaptron)
@@ -17,51 +19,11 @@ A clean, click-by-click setup for **Timpi Synaptron** nodes on Windows.
 5. [Pre-Install & Install (one-time prerequisites)](#5-pre-install--install-one-time-prerequisites)
 6. [Enable your GPU & connect](#6-enable-your-gpu--connect)
 7. [Start Work & verify](#7-start-work--verify)
-8. [Post-install checks](#8-post-install-checks)
-9. [(Optional) Auto-start on login](#9-optional-auto-start-on-login)
-10. [Updating (clean reinstall)](#10-updating-clean-reinstall)
-11. [Logs & paths](#11-logs--paths)
-12. [Troubleshooting](#12-troubleshooting)
-13. [FAQ](#13-faq)
-
----
-
-## 0. Quick upgrade (existing installs only)
-
-If you already run Synaptron and `/synaptronchecker` says **Update Required**, do this **before** running the new installer.
-
-### 0.1 Open Terminal as Admin
-
-Start → search **PowerShell** → right-click → **Run as administrator**.
-
-<img width="829" height="635" alt="powershell as admin" src="https://github.com/user-attachments/assets/d13eabc9-454f-4744-ac8f-fd51e9901128" />
-
-### 0.2 Remove conda environment (`synap`)
-
-```powershell
-cd "C:\Program Files\Synaptron"
-conda env remove -n synap
-```
-
-If `conda` isn't recognized, use the explicit path:
-
-```powershell
-& "C:\Program Files\Synaptron\miniconda3\Scripts\conda.exe" env remove -n synap
-# or, if miniconda is under your user profile:
-& "$env:USERPROFILE\miniconda3\Scripts\conda.exe" env remove -n synap
-```
-
-Confirm with **Y** when prompted.
-
-### 0.3 Uninstall the old app
-
-**Settings → Apps → Installed apps → Synaptron → Uninstall.**
-
-If **Python** or **miniconda** from the prior bundle is listed, uninstall those too.
-
-### 0.4 Continue with the latest build
-
-Skip ahead to **[3. Download & install Synaptron](#3-download--install-synaptron)** — your GUID stays the same.
+8. [(Optional) Auto-start on login](#8-optional-auto-start-on-login)
+9. [Updating (clean reinstall)](#9-updating-clean-reinstall)
+10. [Logs & paths](#10-logs--paths)
+11. [Troubleshooting](#11-troubleshooting)
+12. [FAQ](#12-faq)
 
 ---
 
@@ -135,8 +97,6 @@ If Windows SmartScreen appears, click **More info → Run anyway**.
 
 <img width="336" height="314" alt="smartscreen run anyway" src="https://github.com/user-attachments/assets/d4dcc5c9-fa51-4205-818e-3d6130f8ac24" />
 
-The installer then runs through.
-
 After install, a **Launch Synaptron** desktop shortcut appears.
 
 <img width="135" height="139" alt="launch shortcut" src="https://github.com/user-attachments/assets/e436f7b8-8857-4e56-a936-4248faeb6a05" />
@@ -193,54 +153,68 @@ If the GPU doesn't appear: update NVIDIA drivers, reboot, and re-launch Synaptro
 2. Logs scroll; detections appear between routine "No object detected" lines (normal).
 3. In Discord, run `/synaptronchecker` to confirm **version**, **GPU**, and **status**.
 
----
-
-## 8. Post-install checks
-
-* Open **Task Manager** — you should see **SynapAgent** and related processes.
-* The system tray may show the agent running in the background.
+Open **Task Manager** to confirm **SynapAgent** and related processes are running. The system tray may also show the agent in the background.
 
 ---
 
-## 9. (Optional) Auto-start on login
+## 8. (Optional) Auto-start on login
 
 1. `Win + R` → `shell:startup` → **Enter**.
 2. Copy the **Launch Synaptron** shortcut into the Startup folder.
 
 ---
 
-## 10. Updating (clean reinstall)
+## 9. Updating (clean reinstall)
 
-If `/synaptronchecker` says **Update Required**:
-
-1. **Remove conda env** in an Admin terminal:
-
-   ```powershell
-   cd "C:\Program Files\Synaptron"
-   conda env remove -n synap
-   # if conda isn't in PATH:
-   & "C:\Program Files\Synaptron\miniconda3\Scripts\conda.exe" env remove -n synap
-   ```
-
-2. **Uninstall** Synaptron from **Settings → Apps → Installed apps**.
-   Also remove **Python** / **miniconda** from the prior bundle if listed.
-
-3. **Delete leftovers** (show hidden files):
-
-   * `C:\ProgramData\Synaptron`
-   * `C:\Users\<You>\AppData\Roaming\Synaptron`
-   * *(optional model cache)* `C:\Users\<You>\.cache\huggingface\hub` or `C:\Users\<You>\timpi.cache\huggingface\hub`
-
-4. **Reboot**, re-download the ZIP, run `setup.exe`, repeat sections **4–7**.
-
-5. Verify with `/synaptronchecker`.
+When `/synaptronchecker` says **Update Required**, do a clean reinstall.
 
 > [!IMPORTANT]
-> Your **GUID stays the same** — don't generate a new one.
+> Your GUID stays the same — don't generate a new one.
+
+### 9.1 Open Terminal as Admin
+
+Start → search **PowerShell** → right-click → **Run as administrator**.
+
+<img width="829" height="635" alt="powershell as admin" src="https://github.com/user-attachments/assets/d13eabc9-454f-4744-ac8f-fd51e9901128" />
+
+### 9.2 Remove the conda environment
+
+```powershell
+cd "C:\Program Files\Synaptron"
+conda env remove -n synap
+```
+
+If `conda` isn't on your PATH, use the explicit path:
+
+```powershell
+& "C:\Program Files\Synaptron\miniconda3\Scripts\conda.exe" env remove -n synap
+# or, if miniconda is under your user profile:
+& "$env:USERPROFILE\miniconda3\Scripts\conda.exe" env remove -n synap
+```
+
+Confirm with **Y** when prompted.
+
+### 9.3 Uninstall the old app
+
+**Settings → Apps → Installed apps → Synaptron → Uninstall.**
+
+If **Python** or **miniconda** from the prior bundle is listed, uninstall those too.
+
+### 9.4 Delete leftovers
+
+Show hidden files in Explorer, then delete:
+
+* `C:\ProgramData\Synaptron`
+* `C:\Users\<You>\AppData\Roaming\Synaptron`
+* *(optional model cache)* `C:\Users\<You>\.cache\huggingface\hub` or `C:\Users\<You>\timpi.cache\huggingface\hub`
+
+### 9.5 Reboot, then reinstall
+
+Reboot the PC, then go through **[Section 3 onwards](#3-download--install-synaptron)** with the latest [SynaptronSetupConda.zip](https://timpi.io/applications/windows/SynaptronSetupConda.zip). After installation, verify with `/synaptronchecker`.
 
 ---
 
-## 11. Logs & paths
+## 10. Logs & paths
 
 | Path | Contents |
 | --- | --- |
@@ -250,7 +224,7 @@ If `/synaptronchecker` says **Update Required**:
 
 ---
 
-## 12. Troubleshooting
+## 11. Troubleshooting
 
 | Symptom | Fix |
 | --- | --- |
@@ -260,13 +234,13 @@ If `/synaptronchecker` says **Update Required**:
 | "Timpi Connected: No" | Internet down / firewall blocked — allow Synaptron in firewall and AV |
 | High VRAM / OOM | Close other GPU-heavy apps (games, miners, renderers), restart Synaptron |
 | "No object detected" spam | Normal between detections, let it run |
-| Checker shows old version after update | You skipped cleanup — repeat the **conda env remove** + uninstall + leftover cleanup |
-| `conda` not recognized | Use the explicit path shown in section 0.2 |
+| Checker shows old version after update | You skipped cleanup — repeat **[Section 9 Updating](#9-updating-clean-reinstall)** fully (conda env + uninstall + leftovers) |
+| `conda` not recognized | Use the explicit `conda.exe` path shown in [Section 9.2](#92-remove-the-conda-environment) |
 | Start Work button missing | Make sure GPU is **Enabled** and registration succeeded |
 
 ---
 
-## 13. FAQ
+## 12. FAQ
 
 ### GPU
 

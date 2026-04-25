@@ -9,6 +9,9 @@ This guide installs:
 
 Both run automatically in the background via **systemd services + timer**, including across reboots.
 
+> [!TIP]
+> **Already running an older Collector?** Section 3 below stops and removes the old install before you begin — that step is safe to run on a fresh machine too.
+
 ---
 
 <img width="1024" height="576" alt="Timpi Collector" src="https://github.com/user-attachments/assets/8dcd810f-fa30-4912-ac11-c63417ec15bc" />
@@ -19,14 +22,14 @@ Both run automatically in the background via **systemd services + timer**, inclu
 
 1. [Get your GUID](#1-get-your-guid)
 2. [System requirements](#2-system-requirements)
-3. [Step 1 — Remove old versions](#3-step-1--remove-old-versions)
-4. [Step 2 — Prepare a clean directory](#4-step-2--prepare-a-clean-directory)
-5. [Step 3 — Download & extract](#5-step-3--download--extract)
-6. [Step 4 — Set permissions](#6-step-4--set-permissions)
-7. [Step 5 — Create the Collector service](#7-step-5--create-the-collector-service)
-8. [Step 6 — Add the auto-updater service](#8-step-6--add-the-auto-updater-service)
-9. [Step 7 — Create and enable the 6-hour timer](#9-step-7--create-and-enable-the-6-hour-timer)
-10. [Step 8 — Verify](#10-step-8--verify)
+3. [Remove any old version](#3-remove-any-old-version)
+4. [Prepare a clean directory](#4-prepare-a-clean-directory)
+5. [Download & extract](#5-download--extract)
+6. [Set permissions](#6-set-permissions)
+7. [Create the Collector service](#7-create-the-collector-service)
+8. [Add the auto-updater service](#8-add-the-auto-updater-service)
+9. [Create and enable the 6-hour timer](#9-create-and-enable-the-6-hour-timer)
+10. [Verify](#10-verify)
 11. [How the auto-updater works](#11-how-the-auto-updater-works)
 12. [Manual update / hotfix](#12-manual-update--hotfix)
 13. [File summary](#13-file-summary)
@@ -38,11 +41,7 @@ Both run automatically in the background via **systemd services + timer**, inclu
 
 Register your Collector and copy its GUID at [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management).
 
-From the same dashboard you can:
-
-* register additional Collectors
-* adjust **Workers** and **Threads** per node
-* check **online / offline** status
+From the same dashboard you can register additional Collectors, adjust **Workers** and **Threads** per node, and check online / offline status.
 
 > [!TIP]
 > Recommended starting config: **1 Worker, 5 Threads**.
@@ -61,7 +60,9 @@ From the same dashboard you can:
 
 ---
 
-## 3. Step 1 — Remove old versions
+## 3. Remove any old version
+
+Safe to run on a fresh machine — it just no-ops. Run it before installing a new version.
 
 ```bash
 sudo systemctl stop collector 2>/dev/null || true
@@ -74,7 +75,7 @@ sudo systemctl daemon-reload
 
 ---
 
-## 4. Step 2 — Prepare a clean directory
+## 4. Prepare a clean directory
 
 ```bash
 sudo rm -rf /opt/timpi
@@ -85,7 +86,7 @@ cd /opt/timpi
 
 ---
 
-## 5. Step 3 — Download & extract
+## 5. Download & extract
 
 ```bash
 wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest-v2.rar -O TimpiCollectorLinuxLatest-v2.rar
@@ -106,7 +107,7 @@ Expected layout:
 
 ---
 
-## 6. Step 4 — Set permissions
+## 6. Set permissions
 
 ```bash
 sudo chmod +x /opt/timpi/TimpiCollector
@@ -115,7 +116,7 @@ sudo chmod +x /opt/timpi/CollectorAutoUpdater
 
 ---
 
-## 7. Step 5 — Create the Collector service
+## 7. Create the Collector service
 
 ```bash
 sudo nano /etc/systemd/system/collector.service
@@ -145,7 +146,7 @@ Save with `Ctrl + O`, `Enter`, `Ctrl + X`.
 
 ---
 
-## 8. Step 6 — Add the auto-updater service
+## 8. Add the auto-updater service
 
 ```bash
 sudo nano /etc/systemd/system/collector-updater.service
@@ -174,7 +175,7 @@ ExecStart=/bin/bash -c '\
 
 ---
 
-## 9. Step 7 — Create and enable the 6-hour timer
+## 9. Create and enable the 6-hour timer
 
 ```bash
 sudo nano /etc/systemd/system/collector-updater.timer
@@ -206,7 +207,7 @@ sudo systemctl start collector-updater.timer
 
 ---
 
-## 10. Step 8 — Verify
+## 10. Verify
 
 **Service status:**
 
