@@ -41,7 +41,7 @@ GeoCore is **lightweight**, **Docker-based**, and built for 24/7 operation.
 | Storage | 3 GB |
 | Bandwidth | 50 Mbps |
 | Uptime | 95%+ |
-| Port | **4014/TCP** (default — any free port works) |
+| Port | **4013/TCP** (default — any free TCP port works) |
 | Docker | Required |
 
 ### Officially supported
@@ -133,22 +133,25 @@ GUID: YOUR-ACTUAL-GUID-HERE
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
-  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
-  -p 4014:4014 \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
+  -p 4013:4013 \
   -v /var/timpi:/var/timpi \
-  -e COMPORT=4014 \
+  -e COMPORT=4013 \
   -e GUID="your-guid-here" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
 ```
 
+> [!IMPORTANT]
+> The two `100.42.180.*` DNS entries are **Timpi's name servers** and are **required** — your GeoCore needs them to talk to TAP and other Timpi services. The `1.1.1.1` entry is a public Cloudflare fallback for general DNS lookups.
+
 ### Open the port
 
 ```bash
-sudo ufw allow 4014/tcp
+sudo ufw allow 4013/tcp
 ```
 
-On your router, forward `External:4014 → Internal:4014 (TCP)` to the GeoCore host.
+On your router, forward `External:4013 → Internal:4013 (TCP)` to the GeoCore host.
 
 ---
 
@@ -165,7 +168,7 @@ sudo docker logs -f $(sudo docker ps --filter "ancestor=timpiltd/timpi-geocore" 
 If multiple GeoCores are running, filter by the port:
 
 ```bash
-sudo docker logs -f $(sudo docker ps --filter "publish=4014" -q)   # GeoCore on port 4014
+sudo docker logs -f $(sudo docker ps --filter "publish=4013" -q)   # GeoCore on port 4013
 ```
 
 ### Persistent log files
@@ -191,11 +194,11 @@ sudo tail -f /var/timpi/Datacom-log*.txt
 ```text
 Environment variable 'GUID' found - <YOUR GUID>
 Environment variable 'LOCATION' found - Sweden/Stockholm
-GeoCore: ConnectionPort found 4014
+GeoCore: ConnectionPort found 4013
 INFO: Got version 1.1.xx from core - Own version: 1.1.xx
 INFO: GeoCore is running on the main network
 GeoCore: Production mode detected.
-Now listening on: http://[::]:4014
+Now listening on: http://[::]:4013
 INFO: Found 78 free Guardians in 11 regions
 ```
 
@@ -239,7 +242,7 @@ Use the same `docker run` command from [Section 4 Option B](#option-b--manual-in
 ### 6.4 Verify
 
 ```bash
-sudo docker logs -f $(sudo docker ps --filter "publish=4014" -q)
+sudo docker logs -f $(sudo docker ps --filter "publish=4013" -q)
 ```
 
 Look for `GeoCore is running on the main network` and `Found X free Guardians`.
@@ -280,16 +283,16 @@ Each node needs a **unique container name, port, volume folder, and GUID**.
 sudo docker run -d \
   --name geocore2 \
   --pull=always --restart unless-stopped \
-  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
-  -p 4015:4015 \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
+  -p 4014:4014 \
   -v /var/timpi2:/var/timpi \
-  -e COMPORT=4015 \
+  -e COMPORT=4014 \
   -e GUID="your-second-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
 
-# GeoCore #3 → port 4016, /var/timpi3, third GUID
-# GeoCore #4 → port 4017, /var/timpi4, fourth GUID
+# GeoCore #3 → port 4015, /var/timpi3, third GUID
+# GeoCore #4 → port 4016, /var/timpi4, fourth GUID
 ```
 
 ---
@@ -300,7 +303,8 @@ sudo docker run -d \
 | --- | --- |
 | `--pull=always` | Always fetch the latest image |
 | `--restart unless-stopped` | Auto-restart on crash |
-| `--dns` | Timpi DNS (with fallback) |
+| `--dns 100.42.180.29 / .99` | **Required** Timpi name servers — used to reach TAP and Timpi services |
+| `--dns 1.1.1.1` | Cloudflare fallback for general DNS lookups |
 | `-p PORT:PORT` | GeoCore exposed port |
 | `-v /var/timpiX:/var/timpi` | Unique volume per node |
 | `-e GUID=` | GeoCore identity |
